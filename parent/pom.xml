@@ -43,7 +43,7 @@
 			    	<skip>true</skip>
 				</configuration>
 			</plugin>
-		<!-- 	<plugin>
+			<plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-compiler-plugin</artifactId>
 	            <version>3.0</version>
@@ -51,7 +51,7 @@
 	                <source>1.7</source>
 	                <target>1.7</target>
 	            </configuration>
-        	</plugin> -->
+        	</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -276,4 +276,10 @@
 			</activation>
 		</profile>
 	</profiles>
+	<modules>
+		<module>../facade</module>
+		<module>../platform</module>
+		<module>../service</module>
+		<module>../shop</module>
+	</modules>
 </project>

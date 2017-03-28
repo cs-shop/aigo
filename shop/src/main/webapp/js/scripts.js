@@ -30,11 +30,8 @@ jQuery(document).ready(function() {
 });
 var login = function() {
 	$.ajax({
-		url:"http://localhost:8081/cs-service/user/getUser",
+		url:"http://localhost:8080/cs-shop/rest/user/getUsers",
 		type:'get',
-		dataType:"jsonp",    //跨域json请求一定是jsonp
-		jsonp: "callbackparam",    //跨域请求的参数名，默认是callback
-		//jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
 		success: function(data) {
 			 //请求成功处理，和本地回调完全一样
 			debugger;
