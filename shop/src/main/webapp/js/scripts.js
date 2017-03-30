@@ -30,10 +30,12 @@ jQuery(document).ready(function() {
 });
 var login = function() {
 	$.ajax({
-		url:"http://localhost:8080/cs-shop/rest/user/getUsers",
+		url:"http://localhost:8080/cs-shop/user/getUsers",
 		type:'get',
 		success: function(data) {
 			 //请求成功处理，和本地回调完全一样
+			alert('login success');
+			windows.localtion.href='/pages/test.jsp';
 			debugger;
 			    },
 			

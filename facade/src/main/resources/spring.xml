@@ -9,29 +9,54 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
  	<!-- 引入配置文件  -->
 	<context:property-placeholder location="classpath:config.properties" />
+	    <!-- 自动扫描 -->  
+    <context:component-scan base-package="com.cs" />
+    <!-- enable autowire -->
+	<context:annotation-config />
 	
-<!--     配置数据源
-    <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
-        <property name="driver" value="${jdbc.driver}" />
-        <property name="driverUrl" value="${jdbc.url}" />
-        <property name="user" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="minimumConnectionCount" value="${jdbc.minConnection}" />
-        <property name="maximumConnectionCount" value="${jdbc.maxConnection}" />
-        <property name="maximumConnectionLifetime" value="${jdbc.maxConnectionLife}" />
-        <property name="maximumActiveTime" value="${jdbc.maxActiveTime}" />
-        <property name="prototypeCount" value="${jdbc.prototypeCount}" />
-        <property name="houseKeepingTestSql" value="${jdbc.testSql}" />
-    </bean>
-
-	配置事务管理器
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean> -->
-   
-  <!-- 事务（注解 ）-->
-<!--   <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>  -->
+    <!-- 引入配置文件 -->  
+    <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location" value="classpath:config.properties" />  
+    </bean>  
+  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
+        destroy-method="close">  
+        <property name="driverClassName" value="${jdbc.driver}" />  
+        <property name="url" value="${jdbc.url}" />  
+        <property name="username" value="${jdbc.username}" />  
+        <property name="password" value="${jdbc.password}" />  
+        <!-- 初始化连接大小 -->  
+        <property name="initialSize" value="${jdbc.initialSize}"></property>  
+        <!-- 连接池最大数量 -->  
+        <property name="maxActive" value="${jdbc.maxActive}"></property>  
+        <!-- 连接池最大空闲 -->  
+        <property name="maxIdle" value="${jdbc.maxIdle}"></property>  
+        <!-- 连接池最小空闲 -->  
+        <property name="minIdle" value="${jdbc.minIdle}"></property>  
+        <!-- 获取连接最大等待时间 -->  
+        <property name="maxWait" value="${jdbc.maxWait}"></property>  
+    </bean>  
+  
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:com/cs/dao/*.xml"></property>  
+    </bean>  
+  
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.cs.dao" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+    </bean>  
+  
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
+    <bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
  <!-- 配置dubbo服务 -->
 	<import resource="classpath:dubbo-provider.xml" />
 </beans>
