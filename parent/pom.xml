@@ -17,6 +17,9 @@
 		<aspectj.version>1.6.12</aspectj.version>
 		<javassist.version>3.15.0-GA</javassist.version>
 		<zkclient.version>0.7</zkclient.version>
+		
+		<servlet-api.version>3.0-alpha-1</servlet-api.version>
+		
 		<copy-dependencies.outputDirectory>src/main/webapp/WEB-INF/lib</copy-dependencies.outputDirectory>
 	</properties>
 
@@ -273,6 +276,15 @@
 		    <artifactId>fastjson</artifactId>
 		    <version>1.2.29</version>
 		</dependency>
+		<!--创建Java web 3.0支持  -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>		
+		</dependency>
+		
+		
 		<!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
 		<dependency>
             <groupId>com.alibaba</groupId>

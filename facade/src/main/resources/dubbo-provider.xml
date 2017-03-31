@@ -23,7 +23,7 @@
 <!--     <dubbo:protocol name="dubbo" serialization="kryo" optimizer="bhz.sys.serial.SerializationOptimizerImpl" /> -->
    
 	<!-- rest -->
-   <!--  <dubbo:protocol name="rest" server="${dubbox.rest.server}" port="${dubbox.rest.port}" contextpath="${dubbox.rest.contextpath}" threads="${dubbox.rest.threads}" accepts="${dubbox.rest.accepts}" />
+  <!--   <dubbo:protocol name="rest" server="${dubbox.rest.server}" port="${dubbox.rest.port}" contextpath="${dubbox.rest.contextpath}" threads="${dubbox.rest.threads}" accepts="${dubbox.rest.accepts}" />
 	 -->
      
    	<!-- 具体的实现bean -->
