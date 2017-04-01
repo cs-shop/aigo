@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 });
 var login = function() {
 	$.ajax({
-		url:"http://localhost:8080/cs-shop/user/getUsers",
+		url:"http://localhost:8080/cs-shop/user/getUsers/100",
 		type:'get',
 		success: function(data) {
 			 //请求成功处理，和本地回调完全一样

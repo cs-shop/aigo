@@ -23,6 +23,6 @@
 	<mvc:resources mapping="/pages/**" location="/pages/"/>
 	<mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
      
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/pages/" p:suffix=".jsp" />  
 
 </beans>  

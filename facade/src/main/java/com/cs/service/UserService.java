@@ -1,18 +1,17 @@
 package com.cs.service;
 
-import java.util.List;
-
 import com.cs.pojo.Criteria;
 import com.cs.pojo.User;
+import java.util.List;
 
 public interface UserService {
     int countByParams(Criteria example);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Long userSid);
 
     List<User> selectByParams(Criteria example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long userSid);
 
     int updateByPrimaryKeySelective(User record);
 

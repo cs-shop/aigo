@@ -5,18 +5,34 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    /**
+     * 用户SID
+     */
+    private Long userSid;
 
     private String name;
 
-    private Integer age;
+    private String sex;
 
-    public Integer getId() {
-        return id;
+    private Integer tel;
+
+    private String emall;
+
+    private String addr;
+
+    /**
+     * @return 用户SID
+     */
+    public Long getUserSid() {
+        return userSid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    /**
+     * @param userSid 
+	 *            用户SID
+     */
+    public void setUserSid(Long userSid) {
+        this.userSid = userSid;
     }
 
     public String getName() {
@@ -27,11 +43,35 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getSex() {
+        return sex;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Integer getTel() {
+        return tel;
+    }
+
+    public void setTel(Integer tel) {
+        this.tel = tel;
+    }
+
+    public String getEmall() {
+        return emall;
+    }
+
+    public void setEmall(String emall) {
+        this.emall = emall;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 }

@@ -3,5 +3,5 @@ package com.cs.controller;
 
 public interface UserController {
 
-	String login();
+	String login(long id);
 }
