@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.User" >
+    <id column="USER_SID" property="userSid" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="INTEGER" />
+    <result column="EMALL" property="emall" jdbcType="VARCHAR" />
+    <result column="ADDR" property="addr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.name != null" >
+         and NAME = #{condition.name}
+      </if>
+      <if test="condition.sex != null" >
+         and SEX = #{condition.sex}
+      </if>
+      <if test="condition.tel != null" >
+         and TEL = #{condition.tel}
+      </if>
+      <if test="condition.emall != null" >
+         and EMALL = #{condition.emall}
+      </if>
+      <if test="condition.addr != null" >
+         and ADDR = #{condition.addr}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_SID, NAME, SEX, TEL, EMALL, ADDR
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USER_SID = #{userSid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where USER_SID = #{userSid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.User" >
+    insert into sys_user (USER_SID, NAME, SEX, TEL, EMALL, ADDR)
+    values (#{userSid}, #{name}, #{sex}, #{tel}, #{emall}, #{addr})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.User" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userSid != null" >
+        USER_SID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="emall != null" >
+        EMALL,
+      </if>
+      <if test="addr != null" >
+        ADDR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userSid != null" >
+        #{userSid},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="sex != null" >
+        #{sex},
+      </if>
+      <if test="tel != null" >
+        #{tel},
+      </if>
+      <if test="emall != null" >
+        #{emall},
+      </if>
+      <if test="addr != null" >
+        #{addr},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from sys_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update sys_user
+    <set >
+      <if test="record.userSid != null" >
+        USER_SID = #{record.userSid},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name},
+      </if>
+      <if test="record.sex != null" >
+        SEX = #{record.sex},
+      </if>
+      <if test="record.tel != null" >
+        TEL = #{record.tel},
+      </if>
+      <if test="record.emall != null" >
+        EMALL = #{record.emall},
+      </if>
+      <if test="record.addr != null" >
+        ADDR = #{record.addr},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update sys_user
+    set USER_SID = #{record.userSid},
+      NAME = #{record.name},
+      SEX = #{record.sex},
+      TEL = #{record.tel},
+      EMALL = #{record.emall},
+      ADDR = #{record.addr}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.User" >
+    update sys_user
+    <set >
+      <if test="name != null" >
+        NAME = #{name},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel},
+      </if>
+      <if test="emall != null" >
+        EMALL = #{emall},
+      </if>
+      <if test="addr != null" >
+        ADDR = #{addr},
+      </if>
+    </set>
+    where USER_SID = #{userSid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.User" >
+    update sys_user
+    set NAME = #{name},
+      SEX = #{sex},
+      TEL = #{tel},
+      EMALL = #{emall},
+      ADDR = #{addr}
+    where USER_SID = #{userSid}
+  </update>
+</mapper>
