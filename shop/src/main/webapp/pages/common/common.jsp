@@ -8,9 +8,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  		<!-- Javascript -->
-        <script src="${ctx}/js/jquery-1.11.1.min.js"></script>
+        <script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
         <script src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
-        <script src="${ctx}/js/jquery.backstretch.min.js"></script>
+        <script src="${ctx}/js/jquery/jquery.backstretch.min.js"></script>
         <script src="${ctx}/js/scripts.js"></script>
         
          <!-- CSS -->
