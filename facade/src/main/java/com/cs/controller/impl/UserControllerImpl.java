@@ -26,7 +26,7 @@ public class UserControllerImpl  implements UserController{
 	public String login(@PathVariable("id") long id) {
 		User user = userService.selectByPrimaryKey(id);
 
-		System.out.println("fffc");
+		System.out.println("fff都");
 
 		return JSON.toJSONString(user);
 	}
