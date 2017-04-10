@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#shortcut {
+    border-bottom: 1px solid #ddd;
+    background-color: #e3e4e5;
+}
+
+.w {
+    margin: auto;
+    width: 1190px;
+}
+
+#shortcut .w {
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+.fl {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.fr {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown {
+    position: relative;
+    z-index: 21;
+}
+
+#shortcut li {
+    float: left;
+}
+
+#shortcut li.spacer {
+    overflow: hidden;
+    margin: 11px 5px 0;
+    width: 1px;
+    height: 10px;
+    background-color: #ccc;
+}
+
+#ttbar-mycity {
+    margin-left: 200px;
+}
+
+#ttbar-login {
+    margin-right: 8px;
+    z-index: 20;
+}
+li {
+    list-style: none;
+}
+
+.city-text{
+	font-size: 12px;
+	font-family: "Microsoft YaHei", tahoma, arial, "Hiragino Sans GB", "\\5b8b体", sans-serif;
+	line-height: 28px;
+}
+
+#shortcut a {
+    color: #999;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
