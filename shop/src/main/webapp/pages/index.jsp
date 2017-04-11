@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <head>
-<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
+<script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="${ctx }/css/main.css">
 
 <style>
