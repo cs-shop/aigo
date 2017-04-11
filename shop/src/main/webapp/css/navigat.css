@@ -21,6 +21,12 @@
     color: #999;
 }
 
+#header .w {
+    position: relative;
+    z-index: 11;
+    height: 140px;
+}
+
 ul, menu, dir {
     display: block;
     list-style-type: disc;
@@ -29,6 +35,10 @@ ul, menu, dir {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
+}
+
+button, input {
+    font-family: Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
 }
 
 .fl {
@@ -84,4 +94,99 @@ li {
 a {
     color: #666;
     text-decoration: none;
+}
+
+#logo {
+    z-index: 2;
+    left: 0;
+    top: -31px;
+    width: 190px;
+    height: 170px;
+    box-shadow: 0 -12px 10px rgba(0,0,0,.2);
+    background-color: #fff;
+}
+
+.logo_tit {
+    width: 100%;
+    height: 100%;
+}
+
+#logo, .logo_tit {
+    position: absolute;
+}
+
+.logo_tit_lk {
+    overflow: hidden;
+    display: block;
+    width: 190px;
+    height: 170px;
+    background-image: url(../img/index/logo.v2.png);
+    background-repeat: no-repeat;
+    text-indent: -999px;
+}
+
+.logo_subtit {
+    display: none;
+}
+
+.logo_extend {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 搜索框DIV的样式 */
+.search-m {
+    position: relative;
+    z-index: 1;
+    height: 60px;
+}
+
+.search-m .form {
+    position: absolute;
+    left: 320px;
+    top: 25px;
+    width: 550px;
+    height: 35px;
+}
+
+.search-m .text {
+    left: 0;
+    padding: 4px;
+    width: 490px;
+    height: 25px;
+    border: 1px solid #f10215;
+    line-height: 25px;
+    font-size: 14px;
+    color: #989898;
+}
+
+.search-m .button, .search-m .text {
+    position: absolute;
+    top: 0;
+    outline: none;
+}
+
+.search-m .button {
+    right: 0;
+    width: 50px;
+    height: 35px;
+    line-height: 35px;
+    border: none;
+    background-color: #f10215;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.iconfont {
+    font-family: iconfont;
+    font-style: normal;
+    -webkit-text-stroke-width: .2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+em, i {
+    font-style: normal;
 }
