@@ -7,9 +7,10 @@
 <%@include file="/pages/common/common.jsp" %>
 <head>
 <title>CS-SHOP</title>
-<link rel="stylesheet" href="${ctx }/css/navigat.css">
+<link rel="stylesheet" href="${ctx }/css/jd.css">
 </head>
-<body>
+<body class="index">
 <%@ include file="/pages/common/navigat.jsp"%>
+<%@ include file="/pages/index_menu.jsp"%>
 </body>
 </html> 
