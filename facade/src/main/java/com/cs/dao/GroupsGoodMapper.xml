@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GroupsGoodMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GroupsGood" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="groupId" property="groupid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="groupMoney" property="groupmoney" jdbcType="DECIMAL" />
+    <result column="goodsStock" property="goodsstock" jdbcType="INTEGER" />
+    <result column="virtualBuyCnt" property="virtualbuycnt" jdbcType="INTEGER" />
+    <result column="saleCnt" property="salecnt" jdbcType="INTEGER" />
+    <result column="goodsStatus" property="goodsstatus" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+    <result column="sortNo" property="sortno" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.groupid != null" >
+         and groupId = #{condition.groupid}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.groupmoney != null" >
+         and groupMoney = #{condition.groupmoney}
+      </if>
+      <if test="condition.goodsstock != null" >
+         and goodsStock = #{condition.goodsstock}
+      </if>
+      <if test="condition.virtualbuycnt != null" >
+         and virtualBuyCnt = #{condition.virtualbuycnt}
+      </if>
+      <if test="condition.salecnt != null" >
+         and saleCnt = #{condition.salecnt}
+      </if>
+      <if test="condition.goodsstatus != null" >
+         and goodsStatus = #{condition.goodsstatus}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+      <if test="condition.sortno != null" >
+         and sortNo = #{condition.sortno}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, groupId, shopId, goodsId, groupMoney, goodsStock, virtualBuyCnt, saleCnt, goodsStatus, 
+    createTime, dataFlag, sortNo
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_groups_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_groups_goods
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_groups_goods
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_groups_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GroupsGood" >
+    insert into cs_groups_goods (id, groupId, shopId, goodsId, groupMoney, goodsStock, virtualBuyCnt, 
+      saleCnt, goodsStatus, createTime, dataFlag, sortNo)
+    values (#{id}, #{groupid}, #{shopid}, #{goodsid}, #{groupmoney}, #{goodsstock}, #{virtualbuycnt}, 
+      #{salecnt}, #{goodsstatus}, #{createtime}, #{dataflag}, #{sortno})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GroupsGood" >
+    insert into cs_groups_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupid != null" >
+        groupId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="groupmoney != null" >
+        groupMoney,
+      </if>
+      <if test="goodsstock != null" >
+        goodsStock,
+      </if>
+      <if test="virtualbuycnt != null" >
+        virtualBuyCnt,
+      </if>
+      <if test="salecnt != null" >
+        saleCnt,
+      </if>
+      <if test="goodsstatus != null" >
+        goodsStatus,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+      <if test="sortno != null" >
+        sortNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="groupid != null" >
+        #{groupid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="groupmoney != null" >
+        #{groupmoney},
+      </if>
+      <if test="goodsstock != null" >
+        #{goodsstock},
+      </if>
+      <if test="virtualbuycnt != null" >
+        #{virtualbuycnt},
+      </if>
+      <if test="salecnt != null" >
+        #{salecnt},
+      </if>
+      <if test="goodsstatus != null" >
+        #{goodsstatus},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+      <if test="sortno != null" >
+        #{sortno},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_groups_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_groups_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.groupid != null" >
+        groupId = #{record.groupid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.groupmoney != null" >
+        groupMoney = #{record.groupmoney},
+      </if>
+      <if test="record.goodsstock != null" >
+        goodsStock = #{record.goodsstock},
+      </if>
+      <if test="record.virtualbuycnt != null" >
+        virtualBuyCnt = #{record.virtualbuycnt},
+      </if>
+      <if test="record.salecnt != null" >
+        saleCnt = #{record.salecnt},
+      </if>
+      <if test="record.goodsstatus != null" >
+        goodsStatus = #{record.goodsstatus},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+      <if test="record.sortno != null" >
+        sortNo = #{record.sortno},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_groups_goods
+    set id = #{record.id},
+      groupId = #{record.groupid},
+      shopId = #{record.shopid},
+      goodsId = #{record.goodsid},
+      groupMoney = #{record.groupmoney},
+      goodsStock = #{record.goodsstock},
+      virtualBuyCnt = #{record.virtualbuycnt},
+      saleCnt = #{record.salecnt},
+      goodsStatus = #{record.goodsstatus},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      sortNo = #{record.sortno}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GroupsGood" >
+    update cs_groups_goods
+    <set >
+      <if test="groupid != null" >
+        groupId = #{groupid},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="groupmoney != null" >
+        groupMoney = #{groupmoney},
+      </if>
+      <if test="goodsstock != null" >
+        goodsStock = #{goodsstock},
+      </if>
+      <if test="virtualbuycnt != null" >
+        virtualBuyCnt = #{virtualbuycnt},
+      </if>
+      <if test="salecnt != null" >
+        saleCnt = #{salecnt},
+      </if>
+      <if test="goodsstatus != null" >
+        goodsStatus = #{goodsstatus},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+      <if test="sortno != null" >
+        sortNo = #{sortno},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GroupsGood" >
+    update cs_groups_goods
+    set groupId = #{groupid},
+      shopId = #{shopid},
+      goodsId = #{goodsid},
+      groupMoney = #{groupmoney},
+      goodsStock = #{goodsstock},
+      virtualBuyCnt = #{virtualbuycnt},
+      saleCnt = #{salecnt},
+      goodsStatus = #{goodsstatus},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      sortNo = #{sortno}
+    where id = #{id}
+  </update>
+</mapper>

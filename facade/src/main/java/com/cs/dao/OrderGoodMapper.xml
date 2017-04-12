@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.OrderGoodMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.OrderGood" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsNums" property="goodsnums" jdbcType="INTEGER" />
+    <result column="goodsPrice" property="goodsprice" jdbcType="DECIMAL" />
+    <result column="goodsAttrId" property="goodsattrid" jdbcType="INTEGER" />
+    <result column="goodsAttrName" property="goodsattrname" jdbcType="VARCHAR" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodsThums" property="goodsthums" jdbcType="VARCHAR" />
+    <result column="commission" property="commission" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.orderid != null" >
+         and orderId = #{condition.orderid}
+      </if>
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.goodsnums != null" >
+         and goodsNums = #{condition.goodsnums}
+      </if>
+      <if test="condition.goodsprice != null" >
+         and goodsPrice = #{condition.goodsprice}
+      </if>
+      <if test="condition.goodsattrid != null" >
+         and goodsAttrId = #{condition.goodsattrid}
+      </if>
+      <if test="condition.goodsattrname != null" >
+         and goodsAttrName = #{condition.goodsattrname}
+      </if>
+      <if test="condition.goodsname != null" >
+         and goodsName = #{condition.goodsname}
+      </if>
+      <if test="condition.goodsthums != null" >
+         and goodsThums = #{condition.goodsthums}
+      </if>
+      <if test="condition.commission != null" >
+         and commission = #{condition.commission}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, orderId, goodsId, goodsNums, goodsPrice, goodsAttrId, goodsAttrName, goodsName, 
+    goodsThums, commission
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_order_goods
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_order_goods
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.OrderGood" >
+    insert into cs_order_goods (id, orderId, goodsId, goodsNums, goodsPrice, goodsAttrId, 
+      goodsAttrName, goodsName, goodsThums, commission)
+    values (#{id}, #{orderid}, #{goodsid}, #{goodsnums}, #{goodsprice}, #{goodsattrid}, 
+      #{goodsattrname}, #{goodsname}, #{goodsthums}, #{commission})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.OrderGood" >
+    insert into cs_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsnums != null" >
+        goodsNums,
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice,
+      </if>
+      <if test="goodsattrid != null" >
+        goodsAttrId,
+      </if>
+      <if test="goodsattrname != null" >
+        goodsAttrName,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="goodsthums != null" >
+        goodsThums,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="goodsnums != null" >
+        #{goodsnums},
+      </if>
+      <if test="goodsprice != null" >
+        #{goodsprice},
+      </if>
+      <if test="goodsattrid != null" >
+        #{goodsattrid},
+      </if>
+      <if test="goodsattrname != null" >
+        #{goodsattrname},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname},
+      </if>
+      <if test="goodsthums != null" >
+        #{goodsthums},
+      </if>
+      <if test="commission != null" >
+        #{commission},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_order_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_order_goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.goodsnums != null" >
+        goodsNums = #{record.goodsnums},
+      </if>
+      <if test="record.goodsprice != null" >
+        goodsPrice = #{record.goodsprice},
+      </if>
+      <if test="record.goodsattrid != null" >
+        goodsAttrId = #{record.goodsattrid},
+      </if>
+      <if test="record.goodsattrname != null" >
+        goodsAttrName = #{record.goodsattrname},
+      </if>
+      <if test="record.goodsname != null" >
+        goodsName = #{record.goodsname},
+      </if>
+      <if test="record.goodsthums != null" >
+        goodsThums = #{record.goodsthums},
+      </if>
+      <if test="record.commission != null" >
+        commission = #{record.commission},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_order_goods
+    set id = #{record.id},
+      orderId = #{record.orderid},
+      goodsId = #{record.goodsid},
+      goodsNums = #{record.goodsnums},
+      goodsPrice = #{record.goodsprice},
+      goodsAttrId = #{record.goodsattrid},
+      goodsAttrName = #{record.goodsattrname},
+      goodsName = #{record.goodsname},
+      goodsThums = #{record.goodsthums},
+      commission = #{record.commission}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.OrderGood" >
+    update cs_order_goods
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="goodsnums != null" >
+        goodsNums = #{goodsnums},
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice = #{goodsprice},
+      </if>
+      <if test="goodsattrid != null" >
+        goodsAttrId = #{goodsattrid},
+      </if>
+      <if test="goodsattrname != null" >
+        goodsAttrName = #{goodsattrname},
+      </if>
+      <if test="goodsname != null" >
+        goodsName = #{goodsname},
+      </if>
+      <if test="goodsthums != null" >
+        goodsThums = #{goodsthums},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.OrderGood" >
+    update cs_order_goods
+    set orderId = #{orderid},
+      goodsId = #{goodsid},
+      goodsNums = #{goodsnums},
+      goodsPrice = #{goodsprice},
+      goodsAttrId = #{goodsattrid},
+      goodsAttrName = #{goodsattrname},
+      goodsName = #{goodsname},
+      goodsThums = #{goodsthums},
+      commission = #{commission}
+    where id = #{id}
+  </update>
+</mapper>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.PanicsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Panics" >
+    <id column="panicId" property="panicid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="panicName" property="panicname" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+    <result column="panicStatus" property="panicstatus" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Panics" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.panicname != null" >
+         and panicName = #{condition.panicname}
+      </if>
+      <if test="condition.starttime != null" >
+         and startTime = #{condition.starttime}
+      </if>
+      <if test="condition.endtime != null" >
+         and endTime = #{condition.endtime}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+      <if test="condition.panicstatus != null" >
+         and panicStatus = #{condition.panicstatus}
+      </if>
+      <if test="condition.panicdes != null" >
+         and panicDes = #{condition.panicdes}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    panicId, shopId, panicName, startTime, endTime, createTime, dataFlag, panicStatus
+  </sql>
+  <sql id="Blob_Column_List" >
+    panicDes
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_panics
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_panics
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_panics
+    where panicId = #{panicid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_panics
+    where panicId = #{panicid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_panics
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Panics" >
+    insert into cs_panics (panicId, shopId, panicName, startTime, endTime, createTime, 
+      dataFlag, panicStatus, panicDes)
+    values (#{panicid}, #{shopid}, #{panicname}, #{starttime}, #{endtime}, #{createtime}, 
+      #{dataflag}, #{panicstatus}, #{panicdes})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Panics" >
+    insert into cs_panics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="panicid != null" >
+        panicId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="panicname != null" >
+        panicName,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+      <if test="panicstatus != null" >
+        panicStatus,
+      </if>
+      <if test="panicdes != null" >
+        panicDes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="panicid != null" >
+        #{panicid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="panicname != null" >
+        #{panicname},
+      </if>
+      <if test="starttime != null" >
+        #{starttime},
+      </if>
+      <if test="endtime != null" >
+        #{endtime},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+      <if test="panicstatus != null" >
+        #{panicstatus},
+      </if>
+      <if test="panicdes != null" >
+        #{panicdes},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_panics
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_panics
+    <set >
+      <if test="record.panicid != null" >
+        panicId = #{record.panicid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.panicname != null" >
+        panicName = #{record.panicname},
+      </if>
+      <if test="record.starttime != null" >
+        startTime = #{record.starttime},
+      </if>
+      <if test="record.endtime != null" >
+        endTime = #{record.endtime},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+      <if test="record.panicstatus != null" >
+        panicStatus = #{record.panicstatus},
+      </if>
+      <if test="record.panicdes != null" >
+        panicDes = #{record.panicdes},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_panics
+    set panicId = #{record.panicid},
+      shopId = #{record.shopid},
+      panicName = #{record.panicname},
+      startTime = #{record.starttime},
+      endTime = #{record.endtime},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      panicStatus = #{record.panicstatus},
+      panicDes = #{record.panicdes}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_panics
+    set panicId = #{record.panicid},
+      shopId = #{record.shopid},
+      panicName = #{record.panicname},
+      startTime = #{record.starttime},
+      endTime = #{record.endtime},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      panicStatus = #{record.panicstatus}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Panics" >
+    update cs_panics
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="panicname != null" >
+        panicName = #{panicname},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+      <if test="panicstatus != null" >
+        panicStatus = #{panicstatus},
+      </if>
+      <if test="panicdes != null" >
+        panicDes = #{panicdes},
+      </if>
+    </set>
+    where panicId = #{panicid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Panics" >
+    update cs_panics
+    set shopId = #{shopid},
+      panicName = #{panicname},
+      startTime = #{starttime},
+      endTime = #{endtime},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      panicStatus = #{panicstatus},
+      panicDes = #{panicdes}
+    where panicId = #{panicid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Panics" >
+    update cs_panics
+    set shopId = #{shopid},
+      panicName = #{panicname},
+      startTime = #{starttime},
+      endTime = #{endtime},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      panicStatus = #{panicstatus}
+    where panicId = #{panicid}
+  </update>
+</mapper>

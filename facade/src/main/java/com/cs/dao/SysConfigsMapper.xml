@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.SysConfigsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.SysConfigs" >
+    <id column="configId" property="configid" jdbcType="INTEGER" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="fieldName" property="fieldname" jdbcType="VARCHAR" />
+    <result column="fieldCode" property="fieldcode" jdbcType="VARCHAR" />
+    <result column="fieldType" property="fieldtype" jdbcType="CHAR" />
+    <result column="valueRangeTxt" property="valuerangetxt" jdbcType="VARCHAR" />
+    <result column="valueRange" property="valuerange" jdbcType="VARCHAR" />
+    <result column="fieldTips" property="fieldtips" jdbcType="VARCHAR" />
+    <result column="fieldSort" property="fieldsort" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.SysConfigs" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.parentid != null" >
+         and parentId = #{condition.parentid}
+      </if>
+      <if test="condition.fieldname != null" >
+         and fieldName = #{condition.fieldname}
+      </if>
+      <if test="condition.fieldcode != null" >
+         and fieldCode = #{condition.fieldcode}
+      </if>
+      <if test="condition.fieldtype != null" >
+         and fieldType = #{condition.fieldtype}
+      </if>
+      <if test="condition.valuerangetxt != null" >
+         and valueRangeTxt = #{condition.valuerangetxt}
+      </if>
+      <if test="condition.valuerange != null" >
+         and valueRange = #{condition.valuerange}
+      </if>
+      <if test="condition.fieldtips != null" >
+         and fieldTips = #{condition.fieldtips}
+      </if>
+      <if test="condition.fieldsort != null" >
+         and fieldSort = #{condition.fieldsort}
+      </if>
+      <if test="condition.fieldvalue != null" >
+         and fieldValue = #{condition.fieldvalue}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    configId, parentId, fieldName, fieldCode, fieldType, valueRangeTxt, valueRange, fieldTips, 
+    fieldSort
+  </sql>
+  <sql id="Blob_Column_List" >
+    fieldValue
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_sys_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_sys_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_sys_configs
+    where configId = #{configid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_sys_configs
+    where configId = #{configid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_sys_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.SysConfigs" >
+    insert into cs_sys_configs (configId, parentId, fieldName, fieldCode, fieldType, valueRangeTxt, 
+      valueRange, fieldTips, fieldSort, fieldValue)
+    values (#{configid}, #{parentid}, #{fieldname}, #{fieldcode}, #{fieldtype}, #{valuerangetxt}, 
+      #{valuerange}, #{fieldtips}, #{fieldsort}, #{fieldvalue})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.SysConfigs" >
+    insert into cs_sys_configs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="configid != null" >
+        configId,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="fieldname != null" >
+        fieldName,
+      </if>
+      <if test="fieldcode != null" >
+        fieldCode,
+      </if>
+      <if test="fieldtype != null" >
+        fieldType,
+      </if>
+      <if test="valuerangetxt != null" >
+        valueRangeTxt,
+      </if>
+      <if test="valuerange != null" >
+        valueRange,
+      </if>
+      <if test="fieldtips != null" >
+        fieldTips,
+      </if>
+      <if test="fieldsort != null" >
+        fieldSort,
+      </if>
+      <if test="fieldvalue != null" >
+        fieldValue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="configid != null" >
+        #{configid},
+      </if>
+      <if test="parentid != null" >
+        #{parentid},
+      </if>
+      <if test="fieldname != null" >
+        #{fieldname},
+      </if>
+      <if test="fieldcode != null" >
+        #{fieldcode},
+      </if>
+      <if test="fieldtype != null" >
+        #{fieldtype},
+      </if>
+      <if test="valuerangetxt != null" >
+        #{valuerangetxt},
+      </if>
+      <if test="valuerange != null" >
+        #{valuerange},
+      </if>
+      <if test="fieldtips != null" >
+        #{fieldtips},
+      </if>
+      <if test="fieldsort != null" >
+        #{fieldsort},
+      </if>
+      <if test="fieldvalue != null" >
+        #{fieldvalue},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_sys_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_sys_configs
+    <set >
+      <if test="record.configid != null" >
+        configId = #{record.configid},
+      </if>
+      <if test="record.parentid != null" >
+        parentId = #{record.parentid},
+      </if>
+      <if test="record.fieldname != null" >
+        fieldName = #{record.fieldname},
+      </if>
+      <if test="record.fieldcode != null" >
+        fieldCode = #{record.fieldcode},
+      </if>
+      <if test="record.fieldtype != null" >
+        fieldType = #{record.fieldtype},
+      </if>
+      <if test="record.valuerangetxt != null" >
+        valueRangeTxt = #{record.valuerangetxt},
+      </if>
+      <if test="record.valuerange != null" >
+        valueRange = #{record.valuerange},
+      </if>
+      <if test="record.fieldtips != null" >
+        fieldTips = #{record.fieldtips},
+      </if>
+      <if test="record.fieldsort != null" >
+        fieldSort = #{record.fieldsort},
+      </if>
+      <if test="record.fieldvalue != null" >
+        fieldValue = #{record.fieldvalue},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_sys_configs
+    set configId = #{record.configid},
+      parentId = #{record.parentid},
+      fieldName = #{record.fieldname},
+      fieldCode = #{record.fieldcode},
+      fieldType = #{record.fieldtype},
+      valueRangeTxt = #{record.valuerangetxt},
+      valueRange = #{record.valuerange},
+      fieldTips = #{record.fieldtips},
+      fieldSort = #{record.fieldsort},
+      fieldValue = #{record.fieldvalue}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_sys_configs
+    set configId = #{record.configid},
+      parentId = #{record.parentid},
+      fieldName = #{record.fieldname},
+      fieldCode = #{record.fieldcode},
+      fieldType = #{record.fieldtype},
+      valueRangeTxt = #{record.valuerangetxt},
+      valueRange = #{record.valuerange},
+      fieldTips = #{record.fieldtips},
+      fieldSort = #{record.fieldsort}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.SysConfigs" >
+    update cs_sys_configs
+    <set >
+      <if test="parentid != null" >
+        parentId = #{parentid},
+      </if>
+      <if test="fieldname != null" >
+        fieldName = #{fieldname},
+      </if>
+      <if test="fieldcode != null" >
+        fieldCode = #{fieldcode},
+      </if>
+      <if test="fieldtype != null" >
+        fieldType = #{fieldtype},
+      </if>
+      <if test="valuerangetxt != null" >
+        valueRangeTxt = #{valuerangetxt},
+      </if>
+      <if test="valuerange != null" >
+        valueRange = #{valuerange},
+      </if>
+      <if test="fieldtips != null" >
+        fieldTips = #{fieldtips},
+      </if>
+      <if test="fieldsort != null" >
+        fieldSort = #{fieldsort},
+      </if>
+      <if test="fieldvalue != null" >
+        fieldValue = #{fieldvalue},
+      </if>
+    </set>
+    where configId = #{configid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.SysConfigs" >
+    update cs_sys_configs
+    set parentId = #{parentid},
+      fieldName = #{fieldname},
+      fieldCode = #{fieldcode},
+      fieldType = #{fieldtype},
+      valueRangeTxt = #{valuerangetxt},
+      valueRange = #{valuerange},
+      fieldTips = #{fieldtips},
+      fieldSort = #{fieldsort},
+      fieldValue = #{fieldvalue}
+    where configId = #{configid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.SysConfigs" >
+    update cs_sys_configs
+    set parentId = #{parentid},
+      fieldName = #{fieldname},
+      fieldCode = #{fieldcode},
+      fieldType = #{fieldtype},
+      valueRangeTxt = #{valuerangetxt},
+      valueRange = #{valuerange},
+      fieldTips = #{fieldtips},
+      fieldSort = #{fieldsort}
+    where configId = #{configid}
+  </update>
+</mapper>

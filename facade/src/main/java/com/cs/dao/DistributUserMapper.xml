@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.DistributUserMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.DistributUser" >
+    <id column="distributId" property="distributid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="buyerId" property="buyerid" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.buyerid != null" >
+         and buyerId = #{condition.buyerid}
+      </if>
+      <if test="condition.ip != null" >
+         and ip = #{condition.ip}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    distributId, userId, buyerId, ip, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_distribut_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_distribut_users
+    where distributId = #{distributid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_distribut_users
+    where distributId = #{distributid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_distribut_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.DistributUser" >
+    insert into cs_distribut_users (distributId, userId, buyerId, ip, createTime)
+    values (#{distributid}, #{userid}, #{buyerid}, #{ip}, #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.DistributUser" >
+    insert into cs_distribut_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="distributid != null" >
+        distributId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="buyerid != null" >
+        buyerId,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="distributid != null" >
+        #{distributid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="buyerid != null" >
+        #{buyerid},
+      </if>
+      <if test="ip != null" >
+        #{ip},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_distribut_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_distribut_users
+    <set >
+      <if test="record.distributid != null" >
+        distributId = #{record.distributid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.buyerid != null" >
+        buyerId = #{record.buyerid},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_distribut_users
+    set distributId = #{record.distributid},
+      userId = #{record.userid},
+      buyerId = #{record.buyerid},
+      ip = #{record.ip},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.DistributUser" >
+    update cs_distribut_users
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="buyerid != null" >
+        buyerId = #{buyerid},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where distributId = #{distributid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.DistributUser" >
+    update cs_distribut_users
+    set userId = #{userid},
+      buyerId = #{buyerid},
+      ip = #{ip},
+      createTime = #{createtime}
+    where distributId = #{distributid}
+  </update>
+</mapper>

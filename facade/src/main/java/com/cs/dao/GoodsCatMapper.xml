@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsCatMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsCat" >
+    <id column="catId" property="catid" jdbcType="INTEGER" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="catName" property="catname" jdbcType="VARCHAR" />
+    <result column="catSort" property="catsort" jdbcType="INTEGER" />
+    <result column="catFlag" property="catflag" jdbcType="TINYINT" />
+    <result column="isFloor" property="isfloor" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.GoodsCat" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.parentid != null" >
+         and parentId = #{condition.parentid}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.catname != null" >
+         and catName = #{condition.catname}
+      </if>
+      <if test="condition.catsort != null" >
+         and catSort = #{condition.catsort}
+      </if>
+      <if test="condition.catflag != null" >
+         and catFlag = #{condition.catflag}
+      </if>
+      <if test="condition.isfloor != null" >
+         and isFloor = #{condition.isfloor}
+      </if>
+      <if test="condition.pricesection != null" >
+         and priceSection = #{condition.pricesection}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    catId, parentId, isShow, catName, catSort, catFlag, isFloor
+  </sql>
+  <sql id="Blob_Column_List" >
+    priceSection
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods_cats
+    where catId = #{catid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_cats
+    where catId = #{catid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsCat" >
+    insert into cs_goods_cats (catId, parentId, isShow, catName, catSort, catFlag, isFloor, 
+      priceSection)
+    values (#{catid}, #{parentid}, #{isshow}, #{catname}, #{catsort}, #{catflag}, #{isfloor}, 
+      #{pricesection})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsCat" >
+    insert into cs_goods_cats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        catId,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="catname != null" >
+        catName,
+      </if>
+      <if test="catsort != null" >
+        catSort,
+      </if>
+      <if test="catflag != null" >
+        catFlag,
+      </if>
+      <if test="isfloor != null" >
+        isFloor,
+      </if>
+      <if test="pricesection != null" >
+        priceSection,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        #{catid},
+      </if>
+      <if test="parentid != null" >
+        #{parentid},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="catname != null" >
+        #{catname},
+      </if>
+      <if test="catsort != null" >
+        #{catsort},
+      </if>
+      <if test="catflag != null" >
+        #{catflag},
+      </if>
+      <if test="isfloor != null" >
+        #{isfloor},
+      </if>
+      <if test="pricesection != null" >
+        #{pricesection},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_cats
+    <set >
+      <if test="record.catid != null" >
+        catId = #{record.catid},
+      </if>
+      <if test="record.parentid != null" >
+        parentId = #{record.parentid},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.catname != null" >
+        catName = #{record.catname},
+      </if>
+      <if test="record.catsort != null" >
+        catSort = #{record.catsort},
+      </if>
+      <if test="record.catflag != null" >
+        catFlag = #{record.catflag},
+      </if>
+      <if test="record.isfloor != null" >
+        isFloor = #{record.isfloor},
+      </if>
+      <if test="record.pricesection != null" >
+        priceSection = #{record.pricesection},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_goods_cats
+    set catId = #{record.catid},
+      parentId = #{record.parentid},
+      isShow = #{record.isshow},
+      catName = #{record.catname},
+      catSort = #{record.catsort},
+      catFlag = #{record.catflag},
+      isFloor = #{record.isfloor},
+      priceSection = #{record.pricesection}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_cats
+    set catId = #{record.catid},
+      parentId = #{record.parentid},
+      isShow = #{record.isshow},
+      catName = #{record.catname},
+      catSort = #{record.catsort},
+      catFlag = #{record.catflag},
+      isFloor = #{record.isfloor}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsCat" >
+    update cs_goods_cats
+    <set >
+      <if test="parentid != null" >
+        parentId = #{parentid},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="catname != null" >
+        catName = #{catname},
+      </if>
+      <if test="catsort != null" >
+        catSort = #{catsort},
+      </if>
+      <if test="catflag != null" >
+        catFlag = #{catflag},
+      </if>
+      <if test="isfloor != null" >
+        isFloor = #{isfloor},
+      </if>
+      <if test="pricesection != null" >
+        priceSection = #{pricesection},
+      </if>
+    </set>
+    where catId = #{catid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.GoodsCat" >
+    update cs_goods_cats
+    set parentId = #{parentid},
+      isShow = #{isshow},
+      catName = #{catname},
+      catSort = #{catsort},
+      catFlag = #{catflag},
+      isFloor = #{isfloor},
+      priceSection = #{pricesection}
+    where catId = #{catid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsCat" >
+    update cs_goods_cats
+    set parentId = #{parentid},
+      isShow = #{isshow},
+      catName = #{catname},
+      catSort = #{catsort},
+      catFlag = #{catflag},
+      isFloor = #{isfloor}
+    where catId = #{catid}
+  </update>
+</mapper>

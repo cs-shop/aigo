@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Orders" >
+    <id column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="areaId3" property="areaid3" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="orderStatus" property="orderstatus" jdbcType="TINYINT" />
+    <result column="totalMoney" property="totalmoney" jdbcType="DECIMAL" />
+    <result column="deliverMoney" property="delivermoney" jdbcType="DECIMAL" />
+    <result column="payType" property="paytype" jdbcType="TINYINT" />
+    <result column="payFrom" property="payfrom" jdbcType="INTEGER" />
+    <result column="isSelf" property="isself" jdbcType="TINYINT" />
+    <result column="isPay" property="ispay" jdbcType="TINYINT" />
+    <result column="deliverType" property="delivertype" jdbcType="TINYINT" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="communityId" property="communityid" jdbcType="INTEGER" />
+    <result column="userAddress" property="useraddress" jdbcType="VARCHAR" />
+    <result column="userTel" property="usertel" jdbcType="VARCHAR" />
+    <result column="userPhone" property="userphone" jdbcType="CHAR" />
+    <result column="userPostCode" property="userpostcode" jdbcType="CHAR" />
+    <result column="orderScore" property="orderscore" jdbcType="INTEGER" />
+    <result column="isInvoice" property="isinvoice" jdbcType="TINYINT" />
+    <result column="invoiceClient" property="invoiceclient" jdbcType="VARCHAR" />
+    <result column="orderRemarks" property="orderremarks" jdbcType="VARCHAR" />
+    <result column="requireTime" property="requiretime" jdbcType="TIMESTAMP" />
+    <result column="isAppraises" property="isappraises" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="isClosed" property="isclosed" jdbcType="TINYINT" />
+    <result column="isRefund" property="isrefund" jdbcType="TINYINT" />
+    <result column="refundRemark" property="refundremark" jdbcType="VARCHAR" />
+    <result column="orderunique" property="orderunique" jdbcType="VARCHAR" />
+    <result column="orderSrc" property="ordersrc" jdbcType="TINYINT" />
+    <result column="orderFlag" property="orderflag" jdbcType="TINYINT" />
+    <result column="needPay" property="needpay" jdbcType="DECIMAL" />
+    <result column="tradeNo" property="tradeno" jdbcType="VARCHAR" />
+    <result column="settlementId" property="settlementid" jdbcType="INTEGER" />
+    <result column="realTotalMoney" property="realtotalmoney" jdbcType="DECIMAL" />
+    <result column="poundageRate" property="poundagerate" jdbcType="REAL" />
+    <result column="poundageMoney" property="poundagemoney" jdbcType="DECIMAL" />
+    <result column="useScore" property="usescore" jdbcType="INTEGER" />
+    <result column="scoreMoney" property="scoremoney" jdbcType="DECIMAL" />
+    <result column="receiveTime" property="receivetime" jdbcType="TIMESTAMP" />
+    <result column="deliveryTime" property="deliverytime" jdbcType="TIMESTAMP" />
+    <result column="distributType" property="distributtype" jdbcType="TINYINT" />
+    <result column="distributOrderRate" property="distributorderrate" jdbcType="INTEGER" />
+    <result column="promoterRate" property="promoterrate" jdbcType="INTEGER" />
+    <result column="buyerRate" property="buyerrate" jdbcType="INTEGER" />
+    <result column="totalCommission" property="totalcommission" jdbcType="DECIMAL" />
+    <result column="couponMoney" property="couponmoney" jdbcType="INTEGER" />
+    <result column="backMoney" property="backmoney" jdbcType="DECIMAL" />
+    <result column="refundSrcStatus" property="refundsrcstatus" jdbcType="TINYINT" />
+    <result column="orderFrom" property="orderfrom" jdbcType="TINYINT" />
+    <result column="orderFromId" property="orderfromid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.orderno != null" >
+         and orderNo = #{condition.orderno}
+      </if>
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.areaid3 != null" >
+         and areaId3 = #{condition.areaid3}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.orderstatus != null" >
+         and orderStatus = #{condition.orderstatus}
+      </if>
+      <if test="condition.totalmoney != null" >
+         and totalMoney = #{condition.totalmoney}
+      </if>
+      <if test="condition.delivermoney != null" >
+         and deliverMoney = #{condition.delivermoney}
+      </if>
+      <if test="condition.paytype != null" >
+         and payType = #{condition.paytype}
+      </if>
+      <if test="condition.payfrom != null" >
+         and payFrom = #{condition.payfrom}
+      </if>
+      <if test="condition.isself != null" >
+         and isSelf = #{condition.isself}
+      </if>
+      <if test="condition.ispay != null" >
+         and isPay = #{condition.ispay}
+      </if>
+      <if test="condition.delivertype != null" >
+         and deliverType = #{condition.delivertype}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.username != null" >
+         and userName = #{condition.username}
+      </if>
+      <if test="condition.communityid != null" >
+         and communityId = #{condition.communityid}
+      </if>
+      <if test="condition.useraddress != null" >
+         and userAddress = #{condition.useraddress}
+      </if>
+      <if test="condition.usertel != null" >
+         and userTel = #{condition.usertel}
+      </if>
+      <if test="condition.userphone != null" >
+         and userPhone = #{condition.userphone}
+      </if>
+      <if test="condition.userpostcode != null" >
+         and userPostCode = #{condition.userpostcode}
+      </if>
+      <if test="condition.orderscore != null" >
+         and orderScore = #{condition.orderscore}
+      </if>
+      <if test="condition.isinvoice != null" >
+         and isInvoice = #{condition.isinvoice}
+      </if>
+      <if test="condition.invoiceclient != null" >
+         and invoiceClient = #{condition.invoiceclient}
+      </if>
+      <if test="condition.orderremarks != null" >
+         and orderRemarks = #{condition.orderremarks}
+      </if>
+      <if test="condition.requiretime != null" >
+         and requireTime = #{condition.requiretime}
+      </if>
+      <if test="condition.isappraises != null" >
+         and isAppraises = #{condition.isappraises}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.isclosed != null" >
+         and isClosed = #{condition.isclosed}
+      </if>
+      <if test="condition.isrefund != null" >
+         and isRefund = #{condition.isrefund}
+      </if>
+      <if test="condition.refundremark != null" >
+         and refundRemark = #{condition.refundremark}
+      </if>
+      <if test="condition.orderunique != null" >
+         and orderunique = #{condition.orderunique}
+      </if>
+      <if test="condition.ordersrc != null" >
+         and orderSrc = #{condition.ordersrc}
+      </if>
+      <if test="condition.orderflag != null" >
+         and orderFlag = #{condition.orderflag}
+      </if>
+      <if test="condition.needpay != null" >
+         and needPay = #{condition.needpay}
+      </if>
+      <if test="condition.tradeno != null" >
+         and tradeNo = #{condition.tradeno}
+      </if>
+      <if test="condition.settlementid != null" >
+         and settlementId = #{condition.settlementid}
+      </if>
+      <if test="condition.realtotalmoney != null" >
+         and realTotalMoney = #{condition.realtotalmoney}
+      </if>
+      <if test="condition.poundagerate != null" >
+         and poundageRate = #{condition.poundagerate}
+      </if>
+      <if test="condition.poundagemoney != null" >
+         and poundageMoney = #{condition.poundagemoney}
+      </if>
+      <if test="condition.usescore != null" >
+         and useScore = #{condition.usescore}
+      </if>
+      <if test="condition.scoremoney != null" >
+         and scoreMoney = #{condition.scoremoney}
+      </if>
+      <if test="condition.receivetime != null" >
+         and receiveTime = #{condition.receivetime}
+      </if>
+      <if test="condition.deliverytime != null" >
+         and deliveryTime = #{condition.deliverytime}
+      </if>
+      <if test="condition.distributtype != null" >
+         and distributType = #{condition.distributtype}
+      </if>
+      <if test="condition.distributorderrate != null" >
+         and distributOrderRate = #{condition.distributorderrate}
+      </if>
+      <if test="condition.promoterrate != null" >
+         and promoterRate = #{condition.promoterrate}
+      </if>
+      <if test="condition.buyerrate != null" >
+         and buyerRate = #{condition.buyerrate}
+      </if>
+      <if test="condition.totalcommission != null" >
+         and totalCommission = #{condition.totalcommission}
+      </if>
+      <if test="condition.couponmoney != null" >
+         and couponMoney = #{condition.couponmoney}
+      </if>
+      <if test="condition.backmoney != null" >
+         and backMoney = #{condition.backmoney}
+      </if>
+      <if test="condition.refundsrcstatus != null" >
+         and refundSrcStatus = #{condition.refundsrcstatus}
+      </if>
+      <if test="condition.orderfrom != null" >
+         and orderFrom = #{condition.orderfrom}
+      </if>
+      <if test="condition.orderfromid != null" >
+         and orderFromId = #{condition.orderfromid}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    orderId, orderNo, areaId1, areaId2, areaId3, shopId, orderStatus, totalMoney, deliverMoney, 
+    payType, payFrom, isSelf, isPay, deliverType, userId, userName, communityId, userAddress, 
+    userTel, userPhone, userPostCode, orderScore, isInvoice, invoiceClient, orderRemarks, 
+    requireTime, isAppraises, createTime, isClosed, isRefund, refundRemark, orderunique, 
+    orderSrc, orderFlag, needPay, tradeNo, settlementId, realTotalMoney, poundageRate, 
+    poundageMoney, useScore, scoreMoney, receiveTime, deliveryTime, distributType, distributOrderRate, 
+    promoterRate, buyerRate, totalCommission, couponMoney, backMoney, refundSrcStatus, 
+    orderFrom, orderFromId
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_orders
+    where orderId = #{orderid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_orders
+    where orderId = #{orderid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Orders" >
+    insert into cs_orders (orderId, orderNo, areaId1, areaId2, areaId3, shopId, orderStatus, 
+      totalMoney, deliverMoney, payType, payFrom, isSelf, isPay, deliverType, 
+      userId, userName, communityId, userAddress, userTel, userPhone, 
+      userPostCode, orderScore, isInvoice, invoiceClient, orderRemarks, 
+      requireTime, isAppraises, createTime, isClosed, isRefund, refundRemark, 
+      orderunique, orderSrc, orderFlag, needPay, tradeNo, settlementId, 
+      realTotalMoney, poundageRate, poundageMoney, useScore, scoreMoney, 
+      receiveTime, deliveryTime, distributType, distributOrderRate, promoterRate, 
+      buyerRate, totalCommission, couponMoney, backMoney, refundSrcStatus, 
+      orderFrom, orderFromId)
+    values (#{orderid}, #{orderno}, #{areaid1}, #{areaid2}, #{areaid3}, #{shopid}, #{orderstatus}, 
+      #{totalmoney}, #{delivermoney}, #{paytype}, #{payfrom}, #{isself}, #{ispay}, #{delivertype}, 
+      #{userid}, #{username}, #{communityid}, #{useraddress}, #{usertel}, #{userphone}, 
+      #{userpostcode}, #{orderscore}, #{isinvoice}, #{invoiceclient}, #{orderremarks}, 
+      #{requiretime}, #{isappraises}, #{createtime}, #{isclosed}, #{isrefund}, #{refundremark}, 
+      #{orderunique}, #{ordersrc}, #{orderflag}, #{needpay}, #{tradeno}, #{settlementid}, 
+      #{realtotalmoney}, #{poundagerate}, #{poundagemoney}, #{usescore}, #{scoremoney}, 
+      #{receivetime}, #{deliverytime}, #{distributtype}, #{distributorderrate}, #{promoterrate}, 
+      #{buyerrate}, #{totalcommission}, #{couponmoney}, #{backmoney}, #{refundsrcstatus}, 
+      #{orderfrom}, #{orderfromid})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Orders" >
+    insert into cs_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="areaid3 != null" >
+        areaId3,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus,
+      </if>
+      <if test="totalmoney != null" >
+        totalMoney,
+      </if>
+      <if test="delivermoney != null" >
+        deliverMoney,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="payfrom != null" >
+        payFrom,
+      </if>
+      <if test="isself != null" >
+        isSelf,
+      </if>
+      <if test="ispay != null" >
+        isPay,
+      </if>
+      <if test="delivertype != null" >
+        deliverType,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="communityid != null" >
+        communityId,
+      </if>
+      <if test="useraddress != null" >
+        userAddress,
+      </if>
+      <if test="usertel != null" >
+        userTel,
+      </if>
+      <if test="userphone != null" >
+        userPhone,
+      </if>
+      <if test="userpostcode != null" >
+        userPostCode,
+      </if>
+      <if test="orderscore != null" >
+        orderScore,
+      </if>
+      <if test="isinvoice != null" >
+        isInvoice,
+      </if>
+      <if test="invoiceclient != null" >
+        invoiceClient,
+      </if>
+      <if test="orderremarks != null" >
+        orderRemarks,
+      </if>
+      <if test="requiretime != null" >
+        requireTime,
+      </if>
+      <if test="isappraises != null" >
+        isAppraises,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="isclosed != null" >
+        isClosed,
+      </if>
+      <if test="isrefund != null" >
+        isRefund,
+      </if>
+      <if test="refundremark != null" >
+        refundRemark,
+      </if>
+      <if test="orderunique != null" >
+        orderunique,
+      </if>
+      <if test="ordersrc != null" >
+        orderSrc,
+      </if>
+      <if test="orderflag != null" >
+        orderFlag,
+      </if>
+      <if test="needpay != null" >
+        needPay,
+      </if>
+      <if test="tradeno != null" >
+        tradeNo,
+      </if>
+      <if test="settlementid != null" >
+        settlementId,
+      </if>
+      <if test="realtotalmoney != null" >
+        realTotalMoney,
+      </if>
+      <if test="poundagerate != null" >
+        poundageRate,
+      </if>
+      <if test="poundagemoney != null" >
+        poundageMoney,
+      </if>
+      <if test="usescore != null" >
+        useScore,
+      </if>
+      <if test="scoremoney != null" >
+        scoreMoney,
+      </if>
+      <if test="receivetime != null" >
+        receiveTime,
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime,
+      </if>
+      <if test="distributtype != null" >
+        distributType,
+      </if>
+      <if test="distributorderrate != null" >
+        distributOrderRate,
+      </if>
+      <if test="promoterrate != null" >
+        promoterRate,
+      </if>
+      <if test="buyerrate != null" >
+        buyerRate,
+      </if>
+      <if test="totalcommission != null" >
+        totalCommission,
+      </if>
+      <if test="couponmoney != null" >
+        couponMoney,
+      </if>
+      <if test="backmoney != null" >
+        backMoney,
+      </if>
+      <if test="refundsrcstatus != null" >
+        refundSrcStatus,
+      </if>
+      <if test="orderfrom != null" >
+        orderFrom,
+      </if>
+      <if test="orderfromid != null" >
+        orderFromId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="orderno != null" >
+        #{orderno},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="orderstatus != null" >
+        #{orderstatus},
+      </if>
+      <if test="totalmoney != null" >
+        #{totalmoney},
+      </if>
+      <if test="delivermoney != null" >
+        #{delivermoney},
+      </if>
+      <if test="paytype != null" >
+        #{paytype},
+      </if>
+      <if test="payfrom != null" >
+        #{payfrom},
+      </if>
+      <if test="isself != null" >
+        #{isself},
+      </if>
+      <if test="ispay != null" >
+        #{ispay},
+      </if>
+      <if test="delivertype != null" >
+        #{delivertype},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="username != null" >
+        #{username},
+      </if>
+      <if test="communityid != null" >
+        #{communityid},
+      </if>
+      <if test="useraddress != null" >
+        #{useraddress},
+      </if>
+      <if test="usertel != null" >
+        #{usertel},
+      </if>
+      <if test="userphone != null" >
+        #{userphone},
+      </if>
+      <if test="userpostcode != null" >
+        #{userpostcode},
+      </if>
+      <if test="orderscore != null" >
+        #{orderscore},
+      </if>
+      <if test="isinvoice != null" >
+        #{isinvoice},
+      </if>
+      <if test="invoiceclient != null" >
+        #{invoiceclient},
+      </if>
+      <if test="orderremarks != null" >
+        #{orderremarks},
+      </if>
+      <if test="requiretime != null" >
+        #{requiretime},
+      </if>
+      <if test="isappraises != null" >
+        #{isappraises},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="isclosed != null" >
+        #{isclosed},
+      </if>
+      <if test="isrefund != null" >
+        #{isrefund},
+      </if>
+      <if test="refundremark != null" >
+        #{refundremark},
+      </if>
+      <if test="orderunique != null" >
+        #{orderunique},
+      </if>
+      <if test="ordersrc != null" >
+        #{ordersrc},
+      </if>
+      <if test="orderflag != null" >
+        #{orderflag},
+      </if>
+      <if test="needpay != null" >
+        #{needpay},
+      </if>
+      <if test="tradeno != null" >
+        #{tradeno},
+      </if>
+      <if test="settlementid != null" >
+        #{settlementid},
+      </if>
+      <if test="realtotalmoney != null" >
+        #{realtotalmoney},
+      </if>
+      <if test="poundagerate != null" >
+        #{poundagerate},
+      </if>
+      <if test="poundagemoney != null" >
+        #{poundagemoney},
+      </if>
+      <if test="usescore != null" >
+        #{usescore},
+      </if>
+      <if test="scoremoney != null" >
+        #{scoremoney},
+      </if>
+      <if test="receivetime != null" >
+        #{receivetime},
+      </if>
+      <if test="deliverytime != null" >
+        #{deliverytime},
+      </if>
+      <if test="distributtype != null" >
+        #{distributtype},
+      </if>
+      <if test="distributorderrate != null" >
+        #{distributorderrate},
+      </if>
+      <if test="promoterrate != null" >
+        #{promoterrate},
+      </if>
+      <if test="buyerrate != null" >
+        #{buyerrate},
+      </if>
+      <if test="totalcommission != null" >
+        #{totalcommission},
+      </if>
+      <if test="couponmoney != null" >
+        #{couponmoney},
+      </if>
+      <if test="backmoney != null" >
+        #{backmoney},
+      </if>
+      <if test="refundsrcstatus != null" >
+        #{refundsrcstatus},
+      </if>
+      <if test="orderfrom != null" >
+        #{orderfrom},
+      </if>
+      <if test="orderfromid != null" >
+        #{orderfromid},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_orders
+    <set >
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.orderno != null" >
+        orderNo = #{record.orderno},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaId3 = #{record.areaid3},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.orderstatus != null" >
+        orderStatus = #{record.orderstatus},
+      </if>
+      <if test="record.totalmoney != null" >
+        totalMoney = #{record.totalmoney},
+      </if>
+      <if test="record.delivermoney != null" >
+        deliverMoney = #{record.delivermoney},
+      </if>
+      <if test="record.paytype != null" >
+        payType = #{record.paytype},
+      </if>
+      <if test="record.payfrom != null" >
+        payFrom = #{record.payfrom},
+      </if>
+      <if test="record.isself != null" >
+        isSelf = #{record.isself},
+      </if>
+      <if test="record.ispay != null" >
+        isPay = #{record.ispay},
+      </if>
+      <if test="record.delivertype != null" >
+        deliverType = #{record.delivertype},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username},
+      </if>
+      <if test="record.communityid != null" >
+        communityId = #{record.communityid},
+      </if>
+      <if test="record.useraddress != null" >
+        userAddress = #{record.useraddress},
+      </if>
+      <if test="record.usertel != null" >
+        userTel = #{record.usertel},
+      </if>
+      <if test="record.userphone != null" >
+        userPhone = #{record.userphone},
+      </if>
+      <if test="record.userpostcode != null" >
+        userPostCode = #{record.userpostcode},
+      </if>
+      <if test="record.orderscore != null" >
+        orderScore = #{record.orderscore},
+      </if>
+      <if test="record.isinvoice != null" >
+        isInvoice = #{record.isinvoice},
+      </if>
+      <if test="record.invoiceclient != null" >
+        invoiceClient = #{record.invoiceclient},
+      </if>
+      <if test="record.orderremarks != null" >
+        orderRemarks = #{record.orderremarks},
+      </if>
+      <if test="record.requiretime != null" >
+        requireTime = #{record.requiretime},
+      </if>
+      <if test="record.isappraises != null" >
+        isAppraises = #{record.isappraises},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.isclosed != null" >
+        isClosed = #{record.isclosed},
+      </if>
+      <if test="record.isrefund != null" >
+        isRefund = #{record.isrefund},
+      </if>
+      <if test="record.refundremark != null" >
+        refundRemark = #{record.refundremark},
+      </if>
+      <if test="record.orderunique != null" >
+        orderunique = #{record.orderunique},
+      </if>
+      <if test="record.ordersrc != null" >
+        orderSrc = #{record.ordersrc},
+      </if>
+      <if test="record.orderflag != null" >
+        orderFlag = #{record.orderflag},
+      </if>
+      <if test="record.needpay != null" >
+        needPay = #{record.needpay},
+      </if>
+      <if test="record.tradeno != null" >
+        tradeNo = #{record.tradeno},
+      </if>
+      <if test="record.settlementid != null" >
+        settlementId = #{record.settlementid},
+      </if>
+      <if test="record.realtotalmoney != null" >
+        realTotalMoney = #{record.realtotalmoney},
+      </if>
+      <if test="record.poundagerate != null" >
+        poundageRate = #{record.poundagerate},
+      </if>
+      <if test="record.poundagemoney != null" >
+        poundageMoney = #{record.poundagemoney},
+      </if>
+      <if test="record.usescore != null" >
+        useScore = #{record.usescore},
+      </if>
+      <if test="record.scoremoney != null" >
+        scoreMoney = #{record.scoremoney},
+      </if>
+      <if test="record.receivetime != null" >
+        receiveTime = #{record.receivetime},
+      </if>
+      <if test="record.deliverytime != null" >
+        deliveryTime = #{record.deliverytime},
+      </if>
+      <if test="record.distributtype != null" >
+        distributType = #{record.distributtype},
+      </if>
+      <if test="record.distributorderrate != null" >
+        distributOrderRate = #{record.distributorderrate},
+      </if>
+      <if test="record.promoterrate != null" >
+        promoterRate = #{record.promoterrate},
+      </if>
+      <if test="record.buyerrate != null" >
+        buyerRate = #{record.buyerrate},
+      </if>
+      <if test="record.totalcommission != null" >
+        totalCommission = #{record.totalcommission},
+      </if>
+      <if test="record.couponmoney != null" >
+        couponMoney = #{record.couponmoney},
+      </if>
+      <if test="record.backmoney != null" >
+        backMoney = #{record.backmoney},
+      </if>
+      <if test="record.refundsrcstatus != null" >
+        refundSrcStatus = #{record.refundsrcstatus},
+      </if>
+      <if test="record.orderfrom != null" >
+        orderFrom = #{record.orderfrom},
+      </if>
+      <if test="record.orderfromid != null" >
+        orderFromId = #{record.orderfromid},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_orders
+    set orderId = #{record.orderid},
+      orderNo = #{record.orderno},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      areaId3 = #{record.areaid3},
+      shopId = #{record.shopid},
+      orderStatus = #{record.orderstatus},
+      totalMoney = #{record.totalmoney},
+      deliverMoney = #{record.delivermoney},
+      payType = #{record.paytype},
+      payFrom = #{record.payfrom},
+      isSelf = #{record.isself},
+      isPay = #{record.ispay},
+      deliverType = #{record.delivertype},
+      userId = #{record.userid},
+      userName = #{record.username},
+      communityId = #{record.communityid},
+      userAddress = #{record.useraddress},
+      userTel = #{record.usertel},
+      userPhone = #{record.userphone},
+      userPostCode = #{record.userpostcode},
+      orderScore = #{record.orderscore},
+      isInvoice = #{record.isinvoice},
+      invoiceClient = #{record.invoiceclient},
+      orderRemarks = #{record.orderremarks},
+      requireTime = #{record.requiretime},
+      isAppraises = #{record.isappraises},
+      createTime = #{record.createtime},
+      isClosed = #{record.isclosed},
+      isRefund = #{record.isrefund},
+      refundRemark = #{record.refundremark},
+      orderunique = #{record.orderunique},
+      orderSrc = #{record.ordersrc},
+      orderFlag = #{record.orderflag},
+      needPay = #{record.needpay},
+      tradeNo = #{record.tradeno},
+      settlementId = #{record.settlementid},
+      realTotalMoney = #{record.realtotalmoney},
+      poundageRate = #{record.poundagerate},
+      poundageMoney = #{record.poundagemoney},
+      useScore = #{record.usescore},
+      scoreMoney = #{record.scoremoney},
+      receiveTime = #{record.receivetime},
+      deliveryTime = #{record.deliverytime},
+      distributType = #{record.distributtype},
+      distributOrderRate = #{record.distributorderrate},
+      promoterRate = #{record.promoterrate},
+      buyerRate = #{record.buyerrate},
+      totalCommission = #{record.totalcommission},
+      couponMoney = #{record.couponmoney},
+      backMoney = #{record.backmoney},
+      refundSrcStatus = #{record.refundsrcstatus},
+      orderFrom = #{record.orderfrom},
+      orderFromId = #{record.orderfromid}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Orders" >
+    update cs_orders
+    <set >
+      <if test="orderno != null" >
+        orderNo = #{orderno},
+      </if>
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        areaId3 = #{areaid3},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus = #{orderstatus},
+      </if>
+      <if test="totalmoney != null" >
+        totalMoney = #{totalmoney},
+      </if>
+      <if test="delivermoney != null" >
+        deliverMoney = #{delivermoney},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype},
+      </if>
+      <if test="payfrom != null" >
+        payFrom = #{payfrom},
+      </if>
+      <if test="isself != null" >
+        isSelf = #{isself},
+      </if>
+      <if test="ispay != null" >
+        isPay = #{ispay},
+      </if>
+      <if test="delivertype != null" >
+        deliverType = #{delivertype},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="username != null" >
+        userName = #{username},
+      </if>
+      <if test="communityid != null" >
+        communityId = #{communityid},
+      </if>
+      <if test="useraddress != null" >
+        userAddress = #{useraddress},
+      </if>
+      <if test="usertel != null" >
+        userTel = #{usertel},
+      </if>
+      <if test="userphone != null" >
+        userPhone = #{userphone},
+      </if>
+      <if test="userpostcode != null" >
+        userPostCode = #{userpostcode},
+      </if>
+      <if test="orderscore != null" >
+        orderScore = #{orderscore},
+      </if>
+      <if test="isinvoice != null" >
+        isInvoice = #{isinvoice},
+      </if>
+      <if test="invoiceclient != null" >
+        invoiceClient = #{invoiceclient},
+      </if>
+      <if test="orderremarks != null" >
+        orderRemarks = #{orderremarks},
+      </if>
+      <if test="requiretime != null" >
+        requireTime = #{requiretime},
+      </if>
+      <if test="isappraises != null" >
+        isAppraises = #{isappraises},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="isclosed != null" >
+        isClosed = #{isclosed},
+      </if>
+      <if test="isrefund != null" >
+        isRefund = #{isrefund},
+      </if>
+      <if test="refundremark != null" >
+        refundRemark = #{refundremark},
+      </if>
+      <if test="orderunique != null" >
+        orderunique = #{orderunique},
+      </if>
+      <if test="ordersrc != null" >
+        orderSrc = #{ordersrc},
+      </if>
+      <if test="orderflag != null" >
+        orderFlag = #{orderflag},
+      </if>
+      <if test="needpay != null" >
+        needPay = #{needpay},
+      </if>
+      <if test="tradeno != null" >
+        tradeNo = #{tradeno},
+      </if>
+      <if test="settlementid != null" >
+        settlementId = #{settlementid},
+      </if>
+      <if test="realtotalmoney != null" >
+        realTotalMoney = #{realtotalmoney},
+      </if>
+      <if test="poundagerate != null" >
+        poundageRate = #{poundagerate},
+      </if>
+      <if test="poundagemoney != null" >
+        poundageMoney = #{poundagemoney},
+      </if>
+      <if test="usescore != null" >
+        useScore = #{usescore},
+      </if>
+      <if test="scoremoney != null" >
+        scoreMoney = #{scoremoney},
+      </if>
+      <if test="receivetime != null" >
+        receiveTime = #{receivetime},
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime = #{deliverytime},
+      </if>
+      <if test="distributtype != null" >
+        distributType = #{distributtype},
+      </if>
+      <if test="distributorderrate != null" >
+        distributOrderRate = #{distributorderrate},
+      </if>
+      <if test="promoterrate != null" >
+        promoterRate = #{promoterrate},
+      </if>
+      <if test="buyerrate != null" >
+        buyerRate = #{buyerrate},
+      </if>
+      <if test="totalcommission != null" >
+        totalCommission = #{totalcommission},
+      </if>
+      <if test="couponmoney != null" >
+        couponMoney = #{couponmoney},
+      </if>
+      <if test="backmoney != null" >
+        backMoney = #{backmoney},
+      </if>
+      <if test="refundsrcstatus != null" >
+        refundSrcStatus = #{refundsrcstatus},
+      </if>
+      <if test="orderfrom != null" >
+        orderFrom = #{orderfrom},
+      </if>
+      <if test="orderfromid != null" >
+        orderFromId = #{orderfromid},
+      </if>
+    </set>
+    where orderId = #{orderid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Orders" >
+    update cs_orders
+    set orderNo = #{orderno},
+      areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      areaId3 = #{areaid3},
+      shopId = #{shopid},
+      orderStatus = #{orderstatus},
+      totalMoney = #{totalmoney},
+      deliverMoney = #{delivermoney},
+      payType = #{paytype},
+      payFrom = #{payfrom},
+      isSelf = #{isself},
+      isPay = #{ispay},
+      deliverType = #{delivertype},
+      userId = #{userid},
+      userName = #{username},
+      communityId = #{communityid},
+      userAddress = #{useraddress},
+      userTel = #{usertel},
+      userPhone = #{userphone},
+      userPostCode = #{userpostcode},
+      orderScore = #{orderscore},
+      isInvoice = #{isinvoice},
+      invoiceClient = #{invoiceclient},
+      orderRemarks = #{orderremarks},
+      requireTime = #{requiretime},
+      isAppraises = #{isappraises},
+      createTime = #{createtime},
+      isClosed = #{isclosed},
+      isRefund = #{isrefund},
+      refundRemark = #{refundremark},
+      orderunique = #{orderunique},
+      orderSrc = #{ordersrc},
+      orderFlag = #{orderflag},
+      needPay = #{needpay},
+      tradeNo = #{tradeno},
+      settlementId = #{settlementid},
+      realTotalMoney = #{realtotalmoney},
+      poundageRate = #{poundagerate},
+      poundageMoney = #{poundagemoney},
+      useScore = #{usescore},
+      scoreMoney = #{scoremoney},
+      receiveTime = #{receivetime},
+      deliveryTime = #{deliverytime},
+      distributType = #{distributtype},
+      distributOrderRate = #{distributorderrate},
+      promoterRate = #{promoterrate},
+      buyerRate = #{buyerrate},
+      totalCommission = #{totalcommission},
+      couponMoney = #{couponmoney},
+      backMoney = #{backmoney},
+      refundSrcStatus = #{refundsrcstatus},
+      orderFrom = #{orderfrom},
+      orderFromId = #{orderfromid}
+    where orderId = #{orderid}
+  </update>
+</mapper>

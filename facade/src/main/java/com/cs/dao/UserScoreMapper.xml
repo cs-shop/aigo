@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.UserScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.UserScore" >
+    <id column="scoreId" property="scoreid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="dataSrc" property="datasrc" jdbcType="INTEGER" />
+    <result column="dataId" property="dataid" jdbcType="INTEGER" />
+    <result column="scoreType" property="scoretype" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.UserScore" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.score != null" >
+         and score = #{condition.score}
+      </if>
+      <if test="condition.datasrc != null" >
+         and dataSrc = #{condition.datasrc}
+      </if>
+      <if test="condition.dataid != null" >
+         and dataId = #{condition.dataid}
+      </if>
+      <if test="condition.scoretype != null" >
+         and scoreType = #{condition.scoretype}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataremarks != null" >
+         and dataRemarks = #{condition.dataremarks}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    scoreId, userId, score, dataSrc, dataId, scoreType, createTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    dataRemarks
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_user_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_user_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_user_score
+    where scoreId = #{scoreid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_user_score
+    where scoreId = #{scoreid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_user_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.UserScore" >
+    insert into cs_user_score (scoreId, userId, score, dataSrc, dataId, scoreType, createTime, 
+      dataRemarks)
+    values (#{scoreid}, #{userid}, #{score}, #{datasrc}, #{dataid}, #{scoretype}, #{createtime}, 
+      #{dataremarks})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.UserScore" >
+    insert into cs_user_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scoreid != null" >
+        scoreId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="datasrc != null" >
+        dataSrc,
+      </if>
+      <if test="dataid != null" >
+        dataId,
+      </if>
+      <if test="scoretype != null" >
+        scoreType,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataremarks != null" >
+        dataRemarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scoreid != null" >
+        #{scoreid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="score != null" >
+        #{score},
+      </if>
+      <if test="datasrc != null" >
+        #{datasrc},
+      </if>
+      <if test="dataid != null" >
+        #{dataid},
+      </if>
+      <if test="scoretype != null" >
+        #{scoretype},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataremarks != null" >
+        #{dataremarks},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_user_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_user_score
+    <set >
+      <if test="record.scoreid != null" >
+        scoreId = #{record.scoreid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score},
+      </if>
+      <if test="record.datasrc != null" >
+        dataSrc = #{record.datasrc},
+      </if>
+      <if test="record.dataid != null" >
+        dataId = #{record.dataid},
+      </if>
+      <if test="record.scoretype != null" >
+        scoreType = #{record.scoretype},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataremarks != null" >
+        dataRemarks = #{record.dataremarks},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_user_score
+    set scoreId = #{record.scoreid},
+      userId = #{record.userid},
+      score = #{record.score},
+      dataSrc = #{record.datasrc},
+      dataId = #{record.dataid},
+      scoreType = #{record.scoretype},
+      createTime = #{record.createtime},
+      dataRemarks = #{record.dataremarks}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_user_score
+    set scoreId = #{record.scoreid},
+      userId = #{record.userid},
+      score = #{record.score},
+      dataSrc = #{record.datasrc},
+      dataId = #{record.dataid},
+      scoreType = #{record.scoretype},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.UserScore" >
+    update cs_user_score
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="score != null" >
+        score = #{score},
+      </if>
+      <if test="datasrc != null" >
+        dataSrc = #{datasrc},
+      </if>
+      <if test="dataid != null" >
+        dataId = #{dataid},
+      </if>
+      <if test="scoretype != null" >
+        scoreType = #{scoretype},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataremarks != null" >
+        dataRemarks = #{dataremarks},
+      </if>
+    </set>
+    where scoreId = #{scoreid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.UserScore" >
+    update cs_user_score
+    set userId = #{userid},
+      score = #{score},
+      dataSrc = #{datasrc},
+      dataId = #{dataid},
+      scoreType = #{scoretype},
+      createTime = #{createtime},
+      dataRemarks = #{dataremarks}
+    where scoreId = #{scoreid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.UserScore" >
+    update cs_user_score
+    set userId = #{userid},
+      score = #{score},
+      dataSrc = #{datasrc},
+      dataId = #{dataid},
+      scoreType = #{scoretype},
+      createTime = #{createtime}
+    where scoreId = #{scoreid}
+  </update>
+</mapper>

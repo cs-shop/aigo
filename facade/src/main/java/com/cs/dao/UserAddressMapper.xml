@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.UserAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.UserAddress" >
+    <id column="addressId" property="addressid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPhone" property="userphone" jdbcType="VARCHAR" />
+    <result column="userTel" property="usertel" jdbcType="VARCHAR" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="areaId3" property="areaid3" jdbcType="INTEGER" />
+    <result column="communityId" property="communityid" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="postCode" property="postcode" jdbcType="CHAR" />
+    <result column="isDefault" property="isdefault" jdbcType="TINYINT" />
+    <result column="addressFlag" property="addressflag" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.username != null" >
+         and userName = #{condition.username}
+      </if>
+      <if test="condition.userphone != null" >
+         and userPhone = #{condition.userphone}
+      </if>
+      <if test="condition.usertel != null" >
+         and userTel = #{condition.usertel}
+      </if>
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.areaid3 != null" >
+         and areaId3 = #{condition.areaid3}
+      </if>
+      <if test="condition.communityid != null" >
+         and communityId = #{condition.communityid}
+      </if>
+      <if test="condition.address != null" >
+         and address = #{condition.address}
+      </if>
+      <if test="condition.postcode != null" >
+         and postCode = #{condition.postcode}
+      </if>
+      <if test="condition.isdefault != null" >
+         and isDefault = #{condition.isdefault}
+      </if>
+      <if test="condition.addressflag != null" >
+         and addressFlag = #{condition.addressflag}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    addressId, userId, userName, userPhone, userTel, areaId1, areaId2, areaId3, communityId, 
+    address, postCode, isDefault, addressFlag, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_user_address
+    where addressId = #{addressid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_user_address
+    where addressId = #{addressid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.UserAddress" >
+    insert into cs_user_address (addressId, userId, userName, userPhone, userTel, areaId1, 
+      areaId2, areaId3, communityId, address, postCode, isDefault, 
+      addressFlag, createTime)
+    values (#{addressid}, #{userid}, #{username}, #{userphone}, #{usertel}, #{areaid1}, 
+      #{areaid2}, #{areaid3}, #{communityid}, #{address}, #{postcode}, #{isdefault}, 
+      #{addressflag}, #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.UserAddress" >
+    insert into cs_user_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userphone != null" >
+        userPhone,
+      </if>
+      <if test="usertel != null" >
+        userTel,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="areaid3 != null" >
+        areaId3,
+      </if>
+      <if test="communityid != null" >
+        communityId,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postcode != null" >
+        postCode,
+      </if>
+      <if test="isdefault != null" >
+        isDefault,
+      </if>
+      <if test="addressflag != null" >
+        addressFlag,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        #{addressid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="username != null" >
+        #{username},
+      </if>
+      <if test="userphone != null" >
+        #{userphone},
+      </if>
+      <if test="usertel != null" >
+        #{usertel},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3},
+      </if>
+      <if test="communityid != null" >
+        #{communityid},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="postcode != null" >
+        #{postcode},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault},
+      </if>
+      <if test="addressflag != null" >
+        #{addressflag},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_user_address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_user_address
+    <set >
+      <if test="record.addressid != null" >
+        addressId = #{record.addressid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username},
+      </if>
+      <if test="record.userphone != null" >
+        userPhone = #{record.userphone},
+      </if>
+      <if test="record.usertel != null" >
+        userTel = #{record.usertel},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaId3 = #{record.areaid3},
+      </if>
+      <if test="record.communityid != null" >
+        communityId = #{record.communityid},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address},
+      </if>
+      <if test="record.postcode != null" >
+        postCode = #{record.postcode},
+      </if>
+      <if test="record.isdefault != null" >
+        isDefault = #{record.isdefault},
+      </if>
+      <if test="record.addressflag != null" >
+        addressFlag = #{record.addressflag},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_user_address
+    set addressId = #{record.addressid},
+      userId = #{record.userid},
+      userName = #{record.username},
+      userPhone = #{record.userphone},
+      userTel = #{record.usertel},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      areaId3 = #{record.areaid3},
+      communityId = #{record.communityid},
+      address = #{record.address},
+      postCode = #{record.postcode},
+      isDefault = #{record.isdefault},
+      addressFlag = #{record.addressflag},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.UserAddress" >
+    update cs_user_address
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="username != null" >
+        userName = #{username},
+      </if>
+      <if test="userphone != null" >
+        userPhone = #{userphone},
+      </if>
+      <if test="usertel != null" >
+        userTel = #{usertel},
+      </if>
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        areaId3 = #{areaid3},
+      </if>
+      <if test="communityid != null" >
+        communityId = #{communityid},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="postcode != null" >
+        postCode = #{postcode},
+      </if>
+      <if test="isdefault != null" >
+        isDefault = #{isdefault},
+      </if>
+      <if test="addressflag != null" >
+        addressFlag = #{addressflag},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where addressId = #{addressid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.UserAddress" >
+    update cs_user_address
+    set userId = #{userid},
+      userName = #{username},
+      userPhone = #{userphone},
+      userTel = #{usertel},
+      areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      areaId3 = #{areaid3},
+      communityId = #{communityid},
+      address = #{address},
+      postCode = #{postcode},
+      isDefault = #{isdefault},
+      addressFlag = #{addressflag},
+      createTime = #{createtime}
+    where addressId = #{addressid}
+  </update>
+</mapper>

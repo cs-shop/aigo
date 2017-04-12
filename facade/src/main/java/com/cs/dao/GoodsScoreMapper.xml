@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsScore" >
+    <id column="scoreId" property="scoreid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="totalScore" property="totalscore" jdbcType="INTEGER" />
+    <result column="totalUsers" property="totalusers" jdbcType="INTEGER" />
+    <result column="goodsScore" property="goodsscore" jdbcType="INTEGER" />
+    <result column="goodsUsers" property="goodsusers" jdbcType="INTEGER" />
+    <result column="serviceScore" property="servicescore" jdbcType="INTEGER" />
+    <result column="serviceUsers" property="serviceusers" jdbcType="INTEGER" />
+    <result column="timeScore" property="timescore" jdbcType="INTEGER" />
+    <result column="timeUsers" property="timeusers" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.totalscore != null" >
+         and totalScore = #{condition.totalscore}
+      </if>
+      <if test="condition.totalusers != null" >
+         and totalUsers = #{condition.totalusers}
+      </if>
+      <if test="condition.goodsscore != null" >
+         and goodsScore = #{condition.goodsscore}
+      </if>
+      <if test="condition.goodsusers != null" >
+         and goodsUsers = #{condition.goodsusers}
+      </if>
+      <if test="condition.servicescore != null" >
+         and serviceScore = #{condition.servicescore}
+      </if>
+      <if test="condition.serviceusers != null" >
+         and serviceUsers = #{condition.serviceusers}
+      </if>
+      <if test="condition.timescore != null" >
+         and timeScore = #{condition.timescore}
+      </if>
+      <if test="condition.timeusers != null" >
+         and timeUsers = #{condition.timeusers}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    scoreId, goodsId, shopId, totalScore, totalUsers, goodsScore, goodsUsers, serviceScore, 
+    serviceUsers, timeScore, timeUsers
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_goods_scores
+    where scoreId = #{scoreid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_scores
+    where scoreId = #{scoreid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsScore" >
+    insert into cs_goods_scores (scoreId, goodsId, shopId, totalScore, totalUsers, goodsScore, 
+      goodsUsers, serviceScore, serviceUsers, timeScore, timeUsers)
+    values (#{scoreid}, #{goodsid}, #{shopid}, #{totalscore}, #{totalusers}, #{goodsscore}, 
+      #{goodsusers}, #{servicescore}, #{serviceusers}, #{timescore}, #{timeusers})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsScore" >
+    insert into cs_goods_scores
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scoreid != null" >
+        scoreId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="totalscore != null" >
+        totalScore,
+      </if>
+      <if test="totalusers != null" >
+        totalUsers,
+      </if>
+      <if test="goodsscore != null" >
+        goodsScore,
+      </if>
+      <if test="goodsusers != null" >
+        goodsUsers,
+      </if>
+      <if test="servicescore != null" >
+        serviceScore,
+      </if>
+      <if test="serviceusers != null" >
+        serviceUsers,
+      </if>
+      <if test="timescore != null" >
+        timeScore,
+      </if>
+      <if test="timeusers != null" >
+        timeUsers,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scoreid != null" >
+        #{scoreid},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="totalscore != null" >
+        #{totalscore},
+      </if>
+      <if test="totalusers != null" >
+        #{totalusers},
+      </if>
+      <if test="goodsscore != null" >
+        #{goodsscore},
+      </if>
+      <if test="goodsusers != null" >
+        #{goodsusers},
+      </if>
+      <if test="servicescore != null" >
+        #{servicescore},
+      </if>
+      <if test="serviceusers != null" >
+        #{serviceusers},
+      </if>
+      <if test="timescore != null" >
+        #{timescore},
+      </if>
+      <if test="timeusers != null" >
+        #{timeusers},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_scores
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_scores
+    <set >
+      <if test="record.scoreid != null" >
+        scoreId = #{record.scoreid},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.totalscore != null" >
+        totalScore = #{record.totalscore},
+      </if>
+      <if test="record.totalusers != null" >
+        totalUsers = #{record.totalusers},
+      </if>
+      <if test="record.goodsscore != null" >
+        goodsScore = #{record.goodsscore},
+      </if>
+      <if test="record.goodsusers != null" >
+        goodsUsers = #{record.goodsusers},
+      </if>
+      <if test="record.servicescore != null" >
+        serviceScore = #{record.servicescore},
+      </if>
+      <if test="record.serviceusers != null" >
+        serviceUsers = #{record.serviceusers},
+      </if>
+      <if test="record.timescore != null" >
+        timeScore = #{record.timescore},
+      </if>
+      <if test="record.timeusers != null" >
+        timeUsers = #{record.timeusers},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_scores
+    set scoreId = #{record.scoreid},
+      goodsId = #{record.goodsid},
+      shopId = #{record.shopid},
+      totalScore = #{record.totalscore},
+      totalUsers = #{record.totalusers},
+      goodsScore = #{record.goodsscore},
+      goodsUsers = #{record.goodsusers},
+      serviceScore = #{record.servicescore},
+      serviceUsers = #{record.serviceusers},
+      timeScore = #{record.timescore},
+      timeUsers = #{record.timeusers}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsScore" >
+    update cs_goods_scores
+    <set >
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="totalscore != null" >
+        totalScore = #{totalscore},
+      </if>
+      <if test="totalusers != null" >
+        totalUsers = #{totalusers},
+      </if>
+      <if test="goodsscore != null" >
+        goodsScore = #{goodsscore},
+      </if>
+      <if test="goodsusers != null" >
+        goodsUsers = #{goodsusers},
+      </if>
+      <if test="servicescore != null" >
+        serviceScore = #{servicescore},
+      </if>
+      <if test="serviceusers != null" >
+        serviceUsers = #{serviceusers},
+      </if>
+      <if test="timescore != null" >
+        timeScore = #{timescore},
+      </if>
+      <if test="timeusers != null" >
+        timeUsers = #{timeusers},
+      </if>
+    </set>
+    where scoreId = #{scoreid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsScore" >
+    update cs_goods_scores
+    set goodsId = #{goodsid},
+      shopId = #{shopid},
+      totalScore = #{totalscore},
+      totalUsers = #{totalusers},
+      goodsScore = #{goodsscore},
+      goodsUsers = #{goodsusers},
+      serviceScore = #{servicescore},
+      serviceUsers = #{serviceusers},
+      timeScore = #{timescore},
+      timeUsers = #{timeusers}
+    where scoreId = #{scoreid}
+  </update>
+</mapper>

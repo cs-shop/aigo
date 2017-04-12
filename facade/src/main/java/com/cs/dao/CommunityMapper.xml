@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Community" >
+    <id column="communityId" property="communityid" jdbcType="INTEGER" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="areaId3" property="areaid3" jdbcType="INTEGER" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="isService" property="isservice" jdbcType="TINYINT" />
+    <result column="communityName" property="communityname" jdbcType="VARCHAR" />
+    <result column="communitySort" property="communitysort" jdbcType="INTEGER" />
+    <result column="communityKey" property="communitykey" jdbcType="CHAR" />
+    <result column="communityFlag" property="communityflag" jdbcType="TINYINT" />
+    <result column="latitude" property="latitude" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="CHAR" />
+    <result column="mapLevel" property="maplevel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.areaid3 != null" >
+         and areaId3 = #{condition.areaid3}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.isservice != null" >
+         and isService = #{condition.isservice}
+      </if>
+      <if test="condition.communityname != null" >
+         and communityName = #{condition.communityname}
+      </if>
+      <if test="condition.communitysort != null" >
+         and communitySort = #{condition.communitysort}
+      </if>
+      <if test="condition.communitykey != null" >
+         and communityKey = #{condition.communitykey}
+      </if>
+      <if test="condition.communityflag != null" >
+         and communityFlag = #{condition.communityflag}
+      </if>
+      <if test="condition.latitude != null" >
+         and latitude = #{condition.latitude}
+      </if>
+      <if test="condition.longitude != null" >
+         and longitude = #{condition.longitude}
+      </if>
+      <if test="condition.maplevel != null" >
+         and mapLevel = #{condition.maplevel}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    communityId, areaId1, areaId2, areaId3, isShow, isService, communityName, communitySort, 
+    communityKey, communityFlag, latitude, longitude, mapLevel
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_communitys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_communitys
+    where communityId = #{communityid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_communitys
+    where communityId = #{communityid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_communitys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Community" >
+    insert into cs_communitys (communityId, areaId1, areaId2, areaId3, isShow, isService, 
+      communityName, communitySort, communityKey, communityFlag, latitude, 
+      longitude, mapLevel)
+    values (#{communityid}, #{areaid1}, #{areaid2}, #{areaid3}, #{isshow}, #{isservice}, 
+      #{communityname}, #{communitysort}, #{communitykey}, #{communityflag}, #{latitude}, 
+      #{longitude}, #{maplevel})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Community" >
+    insert into cs_communitys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="communityid != null" >
+        communityId,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="areaid3 != null" >
+        areaId3,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="isservice != null" >
+        isService,
+      </if>
+      <if test="communityname != null" >
+        communityName,
+      </if>
+      <if test="communitysort != null" >
+        communitySort,
+      </if>
+      <if test="communitykey != null" >
+        communityKey,
+      </if>
+      <if test="communityflag != null" >
+        communityFlag,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="maplevel != null" >
+        mapLevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="communityid != null" >
+        #{communityid},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="isservice != null" >
+        #{isservice},
+      </if>
+      <if test="communityname != null" >
+        #{communityname},
+      </if>
+      <if test="communitysort != null" >
+        #{communitysort},
+      </if>
+      <if test="communitykey != null" >
+        #{communitykey},
+      </if>
+      <if test="communityflag != null" >
+        #{communityflag},
+      </if>
+      <if test="latitude != null" >
+        #{latitude},
+      </if>
+      <if test="longitude != null" >
+        #{longitude},
+      </if>
+      <if test="maplevel != null" >
+        #{maplevel},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_communitys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_communitys
+    <set >
+      <if test="record.communityid != null" >
+        communityId = #{record.communityid},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaId3 = #{record.areaid3},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.isservice != null" >
+        isService = #{record.isservice},
+      </if>
+      <if test="record.communityname != null" >
+        communityName = #{record.communityname},
+      </if>
+      <if test="record.communitysort != null" >
+        communitySort = #{record.communitysort},
+      </if>
+      <if test="record.communitykey != null" >
+        communityKey = #{record.communitykey},
+      </if>
+      <if test="record.communityflag != null" >
+        communityFlag = #{record.communityflag},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude},
+      </if>
+      <if test="record.maplevel != null" >
+        mapLevel = #{record.maplevel},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_communitys
+    set communityId = #{record.communityid},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      areaId3 = #{record.areaid3},
+      isShow = #{record.isshow},
+      isService = #{record.isservice},
+      communityName = #{record.communityname},
+      communitySort = #{record.communitysort},
+      communityKey = #{record.communitykey},
+      communityFlag = #{record.communityflag},
+      latitude = #{record.latitude},
+      longitude = #{record.longitude},
+      mapLevel = #{record.maplevel}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Community" >
+    update cs_communitys
+    <set >
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        areaId3 = #{areaid3},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="isservice != null" >
+        isService = #{isservice},
+      </if>
+      <if test="communityname != null" >
+        communityName = #{communityname},
+      </if>
+      <if test="communitysort != null" >
+        communitySort = #{communitysort},
+      </if>
+      <if test="communitykey != null" >
+        communityKey = #{communitykey},
+      </if>
+      <if test="communityflag != null" >
+        communityFlag = #{communityflag},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude},
+      </if>
+      <if test="maplevel != null" >
+        mapLevel = #{maplevel},
+      </if>
+    </set>
+    where communityId = #{communityid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Community" >
+    update cs_communitys
+    set areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      areaId3 = #{areaid3},
+      isShow = #{isshow},
+      isService = #{isservice},
+      communityName = #{communityname},
+      communitySort = #{communitysort},
+      communityKey = #{communitykey},
+      communityFlag = #{communityflag},
+      latitude = #{latitude},
+      longitude = #{longitude},
+      mapLevel = #{maplevel}
+    where communityId = #{communityid}
+  </update>
+</mapper>

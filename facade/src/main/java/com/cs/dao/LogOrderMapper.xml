@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogOrder" >
+    <id column="logId" property="logid" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="logContent" property="logcontent" jdbcType="VARCHAR" />
+    <result column="logUserId" property="loguserid" jdbcType="INTEGER" />
+    <result column="logType" property="logtype" jdbcType="TINYINT" />
+    <result column="logTime" property="logtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.orderid != null" >
+         and orderId = #{condition.orderid}
+      </if>
+      <if test="condition.logcontent != null" >
+         and logContent = #{condition.logcontent}
+      </if>
+      <if test="condition.loguserid != null" >
+         and logUserId = #{condition.loguserid}
+      </if>
+      <if test="condition.logtype != null" >
+         and logType = #{condition.logtype}
+      </if>
+      <if test="condition.logtime != null" >
+         and logTime = #{condition.logtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    logId, orderId, logContent, logUserId, logType, logTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_log_orders
+    where logId = #{logid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_orders
+    where logId = #{logid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogOrder" >
+    insert into cs_log_orders (logId, orderId, logContent, logUserId, logType, logTime
+      )
+    values (#{logid}, #{orderid}, #{logcontent}, #{loguserid}, #{logtype}, #{logtime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogOrder" >
+    insert into cs_log_orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logId,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="logcontent != null" >
+        logContent,
+      </if>
+      <if test="loguserid != null" >
+        logUserId,
+      </if>
+      <if test="logtype != null" >
+        logType,
+      </if>
+      <if test="logtime != null" >
+        logTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="logcontent != null" >
+        #{logcontent},
+      </if>
+      <if test="loguserid != null" >
+        #{loguserid},
+      </if>
+      <if test="logtype != null" >
+        #{logtype},
+      </if>
+      <if test="logtime != null" >
+        #{logtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_orders
+    <set >
+      <if test="record.logid != null" >
+        logId = #{record.logid},
+      </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.logcontent != null" >
+        logContent = #{record.logcontent},
+      </if>
+      <if test="record.loguserid != null" >
+        logUserId = #{record.loguserid},
+      </if>
+      <if test="record.logtype != null" >
+        logType = #{record.logtype},
+      </if>
+      <if test="record.logtime != null" >
+        logTime = #{record.logtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_orders
+    set logId = #{record.logid},
+      orderId = #{record.orderid},
+      logContent = #{record.logcontent},
+      logUserId = #{record.loguserid},
+      logType = #{record.logtype},
+      logTime = #{record.logtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogOrder" >
+    update cs_log_orders
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid},
+      </if>
+      <if test="logcontent != null" >
+        logContent = #{logcontent},
+      </if>
+      <if test="loguserid != null" >
+        logUserId = #{loguserid},
+      </if>
+      <if test="logtype != null" >
+        logType = #{logtype},
+      </if>
+      <if test="logtime != null" >
+        logTime = #{logtime},
+      </if>
+    </set>
+    where logId = #{logid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogOrder" >
+    update cs_log_orders
+    set orderId = #{orderid},
+      logContent = #{logcontent},
+      logUserId = #{loguserid},
+      logType = #{logtype},
+      logTime = #{logtime}
+    where logId = #{logid}
+  </update>
+</mapper>

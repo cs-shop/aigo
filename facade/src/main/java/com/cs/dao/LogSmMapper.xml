@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogSmMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogSm" >
+    <id column="smsId" property="smsid" jdbcType="INTEGER" />
+    <result column="smsSrc" property="smssrc" jdbcType="TINYINT" />
+    <result column="smsUserId" property="smsuserid" jdbcType="INTEGER" />
+    <result column="smsContent" property="smscontent" jdbcType="VARCHAR" />
+    <result column="smsPhoneNumber" property="smsphonenumber" jdbcType="VARCHAR" />
+    <result column="smsReturnCode" property="smsreturncode" jdbcType="VARCHAR" />
+    <result column="smsFunc" property="smsfunc" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="smsCode" property="smscode" jdbcType="VARCHAR" />
+    <result column="smsIP" property="smsip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.smssrc != null" >
+         and smsSrc = #{condition.smssrc}
+      </if>
+      <if test="condition.smsuserid != null" >
+         and smsUserId = #{condition.smsuserid}
+      </if>
+      <if test="condition.smscontent != null" >
+         and smsContent = #{condition.smscontent}
+      </if>
+      <if test="condition.smsphonenumber != null" >
+         and smsPhoneNumber = #{condition.smsphonenumber}
+      </if>
+      <if test="condition.smsreturncode != null" >
+         and smsReturnCode = #{condition.smsreturncode}
+      </if>
+      <if test="condition.smsfunc != null" >
+         and smsFunc = #{condition.smsfunc}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.smscode != null" >
+         and smsCode = #{condition.smscode}
+      </if>
+      <if test="condition.smsip != null" >
+         and smsIP = #{condition.smsip}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    smsId, smsSrc, smsUserId, smsContent, smsPhoneNumber, smsReturnCode, smsFunc, createTime, 
+    smsCode, smsIP
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_sms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_log_sms
+    where smsId = #{smsid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_sms
+    where smsId = #{smsid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_sms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogSm" >
+    insert into cs_log_sms (smsId, smsSrc, smsUserId, smsContent, smsPhoneNumber, smsReturnCode, 
+      smsFunc, createTime, smsCode, smsIP)
+    values (#{smsid}, #{smssrc}, #{smsuserid}, #{smscontent}, #{smsphonenumber}, #{smsreturncode}, 
+      #{smsfunc}, #{createtime}, #{smscode}, #{smsip})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogSm" >
+    insert into cs_log_sms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smsid != null" >
+        smsId,
+      </if>
+      <if test="smssrc != null" >
+        smsSrc,
+      </if>
+      <if test="smsuserid != null" >
+        smsUserId,
+      </if>
+      <if test="smscontent != null" >
+        smsContent,
+      </if>
+      <if test="smsphonenumber != null" >
+        smsPhoneNumber,
+      </if>
+      <if test="smsreturncode != null" >
+        smsReturnCode,
+      </if>
+      <if test="smsfunc != null" >
+        smsFunc,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="smscode != null" >
+        smsCode,
+      </if>
+      <if test="smsip != null" >
+        smsIP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smsid != null" >
+        #{smsid},
+      </if>
+      <if test="smssrc != null" >
+        #{smssrc},
+      </if>
+      <if test="smsuserid != null" >
+        #{smsuserid},
+      </if>
+      <if test="smscontent != null" >
+        #{smscontent},
+      </if>
+      <if test="smsphonenumber != null" >
+        #{smsphonenumber},
+      </if>
+      <if test="smsreturncode != null" >
+        #{smsreturncode},
+      </if>
+      <if test="smsfunc != null" >
+        #{smsfunc},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="smscode != null" >
+        #{smscode},
+      </if>
+      <if test="smsip != null" >
+        #{smsip},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_sms
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_sms
+    <set >
+      <if test="record.smsid != null" >
+        smsId = #{record.smsid},
+      </if>
+      <if test="record.smssrc != null" >
+        smsSrc = #{record.smssrc},
+      </if>
+      <if test="record.smsuserid != null" >
+        smsUserId = #{record.smsuserid},
+      </if>
+      <if test="record.smscontent != null" >
+        smsContent = #{record.smscontent},
+      </if>
+      <if test="record.smsphonenumber != null" >
+        smsPhoneNumber = #{record.smsphonenumber},
+      </if>
+      <if test="record.smsreturncode != null" >
+        smsReturnCode = #{record.smsreturncode},
+      </if>
+      <if test="record.smsfunc != null" >
+        smsFunc = #{record.smsfunc},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.smscode != null" >
+        smsCode = #{record.smscode},
+      </if>
+      <if test="record.smsip != null" >
+        smsIP = #{record.smsip},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_sms
+    set smsId = #{record.smsid},
+      smsSrc = #{record.smssrc},
+      smsUserId = #{record.smsuserid},
+      smsContent = #{record.smscontent},
+      smsPhoneNumber = #{record.smsphonenumber},
+      smsReturnCode = #{record.smsreturncode},
+      smsFunc = #{record.smsfunc},
+      createTime = #{record.createtime},
+      smsCode = #{record.smscode},
+      smsIP = #{record.smsip}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogSm" >
+    update cs_log_sms
+    <set >
+      <if test="smssrc != null" >
+        smsSrc = #{smssrc},
+      </if>
+      <if test="smsuserid != null" >
+        smsUserId = #{smsuserid},
+      </if>
+      <if test="smscontent != null" >
+        smsContent = #{smscontent},
+      </if>
+      <if test="smsphonenumber != null" >
+        smsPhoneNumber = #{smsphonenumber},
+      </if>
+      <if test="smsreturncode != null" >
+        smsReturnCode = #{smsreturncode},
+      </if>
+      <if test="smsfunc != null" >
+        smsFunc = #{smsfunc},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="smscode != null" >
+        smsCode = #{smscode},
+      </if>
+      <if test="smsip != null" >
+        smsIP = #{smsip},
+      </if>
+    </set>
+    where smsId = #{smsid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogSm" >
+    update cs_log_sms
+    set smsSrc = #{smssrc},
+      smsUserId = #{smsuserid},
+      smsContent = #{smscontent},
+      smsPhoneNumber = #{smsphonenumber},
+      smsReturnCode = #{smsreturncode},
+      smsFunc = #{smsfunc},
+      createTime = #{createtime},
+      smsCode = #{smscode},
+      smsIP = #{smsip}
+    where smsId = #{smsid}
+  </update>
+</mapper>

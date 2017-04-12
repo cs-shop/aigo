@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsAttribute" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="attrId" property="attrid" jdbcType="INTEGER" />
+    <result column="attrPrice" property="attrprice" jdbcType="DECIMAL" />
+    <result column="attrStock" property="attrstock" jdbcType="INTEGER" />
+    <result column="isRecomm" property="isrecomm" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.GoodsAttribute" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.attrid != null" >
+         and attrId = #{condition.attrid}
+      </if>
+      <if test="condition.attrprice != null" >
+         and attrPrice = #{condition.attrprice}
+      </if>
+      <if test="condition.attrstock != null" >
+         and attrStock = #{condition.attrstock}
+      </if>
+      <if test="condition.isrecomm != null" >
+         and isRecomm = #{condition.isrecomm}
+      </if>
+      <if test="condition.attrval != null" >
+         and attrVal = #{condition.attrval}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shopId, goodsId, attrId, attrPrice, attrStock, isRecomm
+  </sql>
+  <sql id="Blob_Column_List" >
+    attrVal
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods_attributes
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_attributes
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsAttribute" >
+    insert into cs_goods_attributes (id, shopId, goodsId, attrId, attrPrice, attrStock, isRecomm, 
+      attrVal)
+    values (#{id}, #{shopid}, #{goodsid}, #{attrid}, #{attrprice}, #{attrstock}, #{isrecomm}, 
+      #{attrval})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsAttribute" >
+    insert into cs_goods_attributes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="attrid != null" >
+        attrId,
+      </if>
+      <if test="attrprice != null" >
+        attrPrice,
+      </if>
+      <if test="attrstock != null" >
+        attrStock,
+      </if>
+      <if test="isrecomm != null" >
+        isRecomm,
+      </if>
+      <if test="attrval != null" >
+        attrVal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="attrid != null" >
+        #{attrid},
+      </if>
+      <if test="attrprice != null" >
+        #{attrprice},
+      </if>
+      <if test="attrstock != null" >
+        #{attrstock},
+      </if>
+      <if test="isrecomm != null" >
+        #{isrecomm},
+      </if>
+      <if test="attrval != null" >
+        #{attrval},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_attributes
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.attrid != null" >
+        attrId = #{record.attrid},
+      </if>
+      <if test="record.attrprice != null" >
+        attrPrice = #{record.attrprice},
+      </if>
+      <if test="record.attrstock != null" >
+        attrStock = #{record.attrstock},
+      </if>
+      <if test="record.isrecomm != null" >
+        isRecomm = #{record.isrecomm},
+      </if>
+      <if test="record.attrval != null" >
+        attrVal = #{record.attrval},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_goods_attributes
+    set id = #{record.id},
+      shopId = #{record.shopid},
+      goodsId = #{record.goodsid},
+      attrId = #{record.attrid},
+      attrPrice = #{record.attrprice},
+      attrStock = #{record.attrstock},
+      isRecomm = #{record.isrecomm},
+      attrVal = #{record.attrval}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_attributes
+    set id = #{record.id},
+      shopId = #{record.shopid},
+      goodsId = #{record.goodsid},
+      attrId = #{record.attrid},
+      attrPrice = #{record.attrprice},
+      attrStock = #{record.attrstock},
+      isRecomm = #{record.isrecomm}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsAttribute" >
+    update cs_goods_attributes
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="attrid != null" >
+        attrId = #{attrid},
+      </if>
+      <if test="attrprice != null" >
+        attrPrice = #{attrprice},
+      </if>
+      <if test="attrstock != null" >
+        attrStock = #{attrstock},
+      </if>
+      <if test="isrecomm != null" >
+        isRecomm = #{isrecomm},
+      </if>
+      <if test="attrval != null" >
+        attrVal = #{attrval},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.GoodsAttribute" >
+    update cs_goods_attributes
+    set shopId = #{shopid},
+      goodsId = #{goodsid},
+      attrId = #{attrid},
+      attrPrice = #{attrprice},
+      attrStock = #{attrstock},
+      isRecomm = #{isrecomm},
+      attrVal = #{attrval}
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsAttribute" >
+    update cs_goods_attributes
+    set shopId = #{shopid},
+      goodsId = #{goodsid},
+      attrId = #{attrid},
+      attrPrice = #{attrprice},
+      attrStock = #{attrstock},
+      isRecomm = #{isrecomm}
+    where id = #{id}
+  </update>
+</mapper>

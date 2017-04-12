@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.OrderComplainMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.OrderComplain" >
+    <id column="complainId" property="complainid" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="complainType" property="complaintype" jdbcType="TINYINT" />
+    <result column="complainTargetId" property="complaintargetid" jdbcType="INTEGER" />
+    <result column="respondTargetId" property="respondtargetid" jdbcType="INTEGER" />
+    <result column="needRespond" property="needrespond" jdbcType="TINYINT" />
+    <result column="deliverRespondTime" property="deliverrespondtime" jdbcType="TIMESTAMP" />
+    <result column="complainAnnex" property="complainannex" jdbcType="VARCHAR" />
+    <result column="complainStatus" property="complainstatus" jdbcType="TINYINT" />
+    <result column="complainTime" property="complaintime" jdbcType="TIMESTAMP" />
+    <result column="respondAnnex" property="respondannex" jdbcType="VARCHAR" />
+    <result column="respondTime" property="respondtime" jdbcType="TIMESTAMP" />
+    <result column="finalResultTime" property="finalresulttime" jdbcType="TIMESTAMP" />
+    <result column="finalHandleStaffId" property="finalhandlestaffid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.OrderComplainWithBLOBs" extends="BaseResultMap" >
+    <result column="respondContent" property="respondcontent" jdbcType="LONGVARCHAR" />
+    <result column="finalResult" property="finalresult" jdbcType="LONGVARCHAR" />
+      </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.orderid != null" >
+         and orderId = #{condition.orderid}
+      </if>
+      <if test="condition.complaintype != null" >
+         and complainType = #{condition.complaintype}
+      </if>
+      <if test="condition.complaintargetid != null" >
+         and complainTargetId = #{condition.complaintargetid}
+      </if>
+      <if test="condition.respondtargetid != null" >
+         and respondTargetId = #{condition.respondtargetid}
+      </if>
+      <if test="condition.needrespond != null" >
+         and needRespond = #{condition.needrespond}
+      </if>
+      <if test="condition.deliverrespondtime != null" >
+         and deliverRespondTime = #{condition.deliverrespondtime}
+      </if>
+      <if test="condition.complainannex != null" >
+         and complainAnnex = #{condition.complainannex}
+      </if>
+      <if test="condition.complainstatus != null" >
+         and complainStatus = #{condition.complainstatus}
+      </if>
+      <if test="condition.complaintime != null" >
+         and complainTime = #{condition.complaintime}
+      </if>
+      <if test="condition.respondannex != null" >
+         and respondAnnex = #{condition.respondannex}
+      </if>
+      <if test="condition.respondtime != null" >
+         and respondTime = #{condition.respondtime}
+      </if>
+      <if test="condition.finalresulttime != null" >
+         and finalResultTime = #{condition.finalresulttime}
+      </if>
+      <if test="condition.finalhandlestaffid != null" >
+         and finalHandleStaffId = #{condition.finalhandlestaffid}
+      </if>
+      <if test="condition.complaincontent != null" >
+         and complainContent = #{condition.complaincontent}
+      </if>
+      <if test="condition.respondcontent != null" >
+         and respondContent = #{condition.respondcontent}
+      </if>
+      <if test="condition.finalresult != null" >
+         and finalResult = #{condition.finalresult}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    complainId, orderId, complainType, complainTargetId, respondTargetId, needRespond, 
+    deliverRespondTime, complainAnnex, complainStatus, complainTime, respondAnnex, respondTime, 
+    finalResultTime, finalHandleStaffId
+  </sql>
+  <sql id="Blob_Column_List" >
+    complainContent, respondContent, finalResult
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_order_complains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_order_complains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_order_complains
+    where complainId = #{complainid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_order_complains
+    where complainId = #{complainid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_order_complains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.OrderComplainWithBLOBs" >
+    insert into cs_order_complains (complainId, orderId, complainType, complainTargetId, respondTargetId, 
+      needRespond, deliverRespondTime, complainAnnex, complainStatus, complainTime, 
+      respondAnnex, respondTime, finalResultTime, finalHandleStaffId, complainContent, 
+      respondContent, finalResult)
+    values (#{complainid}, #{orderid}, #{complaintype}, #{complaintargetid}, #{respondtargetid}, 
+      #{needrespond}, #{deliverrespondtime}, #{complainannex}, #{complainstatus}, #{complaintime}, 
+      #{respondannex}, #{respondtime}, #{finalresulttime}, #{finalhandlestaffid}, #{complaincontent}, 
+      #{respondcontent}, #{finalresult})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.OrderComplainWithBLOBs" >
+    insert into cs_order_complains
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="complainid != null" >
+        complainId,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="complaintype != null" >
+        complainType,
+      </if>
+      <if test="complaintargetid != null" >
+        complainTargetId,
+      </if>
+      <if test="respondtargetid != null" >
+        respondTargetId,
+      </if>
+      <if test="needrespond != null" >
+        needRespond,
+      </if>
+      <if test="deliverrespondtime != null" >
+        deliverRespondTime,
+      </if>
+      <if test="complainannex != null" >
+        complainAnnex,
+      </if>
+      <if test="complainstatus != null" >
+        complainStatus,
+      </if>
+      <if test="complaintime != null" >
+        complainTime,
+      </if>
+      <if test="respondannex != null" >
+        respondAnnex,
+      </if>
+      <if test="respondtime != null" >
+        respondTime,
+      </if>
+      <if test="finalresulttime != null" >
+        finalResultTime,
+      </if>
+      <if test="finalhandlestaffid != null" >
+        finalHandleStaffId,
+      </if>
+      <if test="complaincontent != null" >
+        complainContent,
+      </if>
+      <if test="respondcontent != null" >
+        respondContent,
+      </if>
+      <if test="finalresult != null" >
+        finalResult,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="complainid != null" >
+        #{complainid},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="complaintype != null" >
+        #{complaintype},
+      </if>
+      <if test="complaintargetid != null" >
+        #{complaintargetid},
+      </if>
+      <if test="respondtargetid != null" >
+        #{respondtargetid},
+      </if>
+      <if test="needrespond != null" >
+        #{needrespond},
+      </if>
+      <if test="deliverrespondtime != null" >
+        #{deliverrespondtime},
+      </if>
+      <if test="complainannex != null" >
+        #{complainannex},
+      </if>
+      <if test="complainstatus != null" >
+        #{complainstatus},
+      </if>
+      <if test="complaintime != null" >
+        #{complaintime},
+      </if>
+      <if test="respondannex != null" >
+        #{respondannex},
+      </if>
+      <if test="respondtime != null" >
+        #{respondtime},
+      </if>
+      <if test="finalresulttime != null" >
+        #{finalresulttime},
+      </if>
+      <if test="finalhandlestaffid != null" >
+        #{finalhandlestaffid},
+      </if>
+      <if test="complaincontent != null" >
+        #{complaincontent},
+      </if>
+      <if test="respondcontent != null" >
+        #{respondcontent},
+      </if>
+      <if test="finalresult != null" >
+        #{finalresult},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_order_complains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_order_complains
+    <set >
+      <if test="record.complainid != null" >
+        complainId = #{record.complainid},
+      </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.complaintype != null" >
+        complainType = #{record.complaintype},
+      </if>
+      <if test="record.complaintargetid != null" >
+        complainTargetId = #{record.complaintargetid},
+      </if>
+      <if test="record.respondtargetid != null" >
+        respondTargetId = #{record.respondtargetid},
+      </if>
+      <if test="record.needrespond != null" >
+        needRespond = #{record.needrespond},
+      </if>
+      <if test="record.deliverrespondtime != null" >
+        deliverRespondTime = #{record.deliverrespondtime},
+      </if>
+      <if test="record.complainannex != null" >
+        complainAnnex = #{record.complainannex},
+      </if>
+      <if test="record.complainstatus != null" >
+        complainStatus = #{record.complainstatus},
+      </if>
+      <if test="record.complaintime != null" >
+        complainTime = #{record.complaintime},
+      </if>
+      <if test="record.respondannex != null" >
+        respondAnnex = #{record.respondannex},
+      </if>
+      <if test="record.respondtime != null" >
+        respondTime = #{record.respondtime},
+      </if>
+      <if test="record.finalresulttime != null" >
+        finalResultTime = #{record.finalresulttime},
+      </if>
+      <if test="record.finalhandlestaffid != null" >
+        finalHandleStaffId = #{record.finalhandlestaffid},
+      </if>
+      <if test="record.complaincontent != null" >
+        complainContent = #{record.complaincontent},
+      </if>
+      <if test="record.respondcontent != null" >
+        respondContent = #{record.respondcontent},
+      </if>
+      <if test="record.finalresult != null" >
+        finalResult = #{record.finalresult},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_order_complains
+    set complainId = #{record.complainid},
+      orderId = #{record.orderid},
+      complainType = #{record.complaintype},
+      complainTargetId = #{record.complaintargetid},
+      respondTargetId = #{record.respondtargetid},
+      needRespond = #{record.needrespond},
+      deliverRespondTime = #{record.deliverrespondtime},
+      complainAnnex = #{record.complainannex},
+      complainStatus = #{record.complainstatus},
+      complainTime = #{record.complaintime},
+      respondAnnex = #{record.respondannex},
+      respondTime = #{record.respondtime},
+      finalResultTime = #{record.finalresulttime},
+      finalHandleStaffId = #{record.finalhandlestaffid},
+      complainContent = #{record.complaincontent},
+      respondContent = #{record.respondcontent},
+      finalResult = #{record.finalresult}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_order_complains
+    set complainId = #{record.complainid},
+      orderId = #{record.orderid},
+      complainType = #{record.complaintype},
+      complainTargetId = #{record.complaintargetid},
+      respondTargetId = #{record.respondtargetid},
+      needRespond = #{record.needrespond},
+      deliverRespondTime = #{record.deliverrespondtime},
+      complainAnnex = #{record.complainannex},
+      complainStatus = #{record.complainstatus},
+      complainTime = #{record.complaintime},
+      respondAnnex = #{record.respondannex},
+      respondTime = #{record.respondtime},
+      finalResultTime = #{record.finalresulttime},
+      finalHandleStaffId = #{record.finalhandlestaffid}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.OrderComplainWithBLOBs" >
+    update cs_order_complains
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid},
+      </if>
+      <if test="complaintype != null" >
+        complainType = #{complaintype},
+      </if>
+      <if test="complaintargetid != null" >
+        complainTargetId = #{complaintargetid},
+      </if>
+      <if test="respondtargetid != null" >
+        respondTargetId = #{respondtargetid},
+      </if>
+      <if test="needrespond != null" >
+        needRespond = #{needrespond},
+      </if>
+      <if test="deliverrespondtime != null" >
+        deliverRespondTime = #{deliverrespondtime},
+      </if>
+      <if test="complainannex != null" >
+        complainAnnex = #{complainannex},
+      </if>
+      <if test="complainstatus != null" >
+        complainStatus = #{complainstatus},
+      </if>
+      <if test="complaintime != null" >
+        complainTime = #{complaintime},
+      </if>
+      <if test="respondannex != null" >
+        respondAnnex = #{respondannex},
+      </if>
+      <if test="respondtime != null" >
+        respondTime = #{respondtime},
+      </if>
+      <if test="finalresulttime != null" >
+        finalResultTime = #{finalresulttime},
+      </if>
+      <if test="finalhandlestaffid != null" >
+        finalHandleStaffId = #{finalhandlestaffid},
+      </if>
+      <if test="complaincontent != null" >
+        complainContent = #{complaincontent},
+      </if>
+      <if test="respondcontent != null" >
+        respondContent = #{respondcontent},
+      </if>
+      <if test="finalresult != null" >
+        finalResult = #{finalresult},
+      </if>
+    </set>
+    where complainId = #{complainid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.OrderComplainWithBLOBs" >
+    update cs_order_complains
+    set orderId = #{orderid},
+      complainType = #{complaintype},
+      complainTargetId = #{complaintargetid},
+      respondTargetId = #{respondtargetid},
+      needRespond = #{needrespond},
+      deliverRespondTime = #{deliverrespondtime},
+      complainAnnex = #{complainannex},
+      complainStatus = #{complainstatus},
+      complainTime = #{complaintime},
+      respondAnnex = #{respondannex},
+      respondTime = #{respondtime},
+      finalResultTime = #{finalresulttime},
+      finalHandleStaffId = #{finalhandlestaffid},
+      complainContent = #{complaincontent},
+      respondContent = #{respondcontent},
+      finalResult = #{finalresult}
+    where complainId = #{complainid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.OrderComplain" >
+    update cs_order_complains
+    set orderId = #{orderid},
+      complainType = #{complaintype},
+      complainTargetId = #{complaintargetid},
+      respondTargetId = #{respondtargetid},
+      needRespond = #{needrespond},
+      deliverRespondTime = #{deliverrespondtime},
+      complainAnnex = #{complainannex},
+      complainStatus = #{complainstatus},
+      complainTime = #{complaintime},
+      respondAnnex = #{respondannex},
+      respondTime = #{respondtime},
+      finalResultTime = #{finalresulttime},
+      finalHandleStaffId = #{finalhandlestaffid}
+    where complainId = #{complainid}
+  </update>
+</mapper>

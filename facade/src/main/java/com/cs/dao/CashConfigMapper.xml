@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CashConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.CashConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="accType" property="acctype" jdbcType="TINYINT" />
+    <result column="accTargetId" property="acctargetid" jdbcType="INTEGER" />
+    <result column="accNo" property="accno" jdbcType="VARCHAR" />
+    <result column="accUser" property="accuser" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.acctype != null" >
+         and accType = #{condition.acctype}
+      </if>
+      <if test="condition.acctargetid != null" >
+         and accTargetId = #{condition.acctargetid}
+      </if>
+      <if test="condition.accno != null" >
+         and accNo = #{condition.accno}
+      </if>
+      <if test="condition.accuser != null" >
+         and accUser = #{condition.accuser}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, accType, accTargetId, accNo, accUser, createTime, dataFlag, areaId2
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_cash_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_cash_configs
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_cash_configs
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_cash_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.CashConfig" >
+    insert into cs_cash_configs (id, userId, accType, accTargetId, accNo, accUser, createTime, 
+      dataFlag, areaId2)
+    values (#{id}, #{userid}, #{acctype}, #{acctargetid}, #{accno}, #{accuser}, #{createtime}, 
+      #{dataflag}, #{areaid2})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.CashConfig" >
+    insert into cs_cash_configs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="acctype != null" >
+        accType,
+      </if>
+      <if test="acctargetid != null" >
+        accTargetId,
+      </if>
+      <if test="accno != null" >
+        accNo,
+      </if>
+      <if test="accuser != null" >
+        accUser,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="acctype != null" >
+        #{acctype},
+      </if>
+      <if test="acctargetid != null" >
+        #{acctargetid},
+      </if>
+      <if test="accno != null" >
+        #{accno},
+      </if>
+      <if test="accuser != null" >
+        #{accuser},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_cash_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_cash_configs
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.acctype != null" >
+        accType = #{record.acctype},
+      </if>
+      <if test="record.acctargetid != null" >
+        accTargetId = #{record.acctargetid},
+      </if>
+      <if test="record.accno != null" >
+        accNo = #{record.accno},
+      </if>
+      <if test="record.accuser != null" >
+        accUser = #{record.accuser},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_cash_configs
+    set id = #{record.id},
+      userId = #{record.userid},
+      accType = #{record.acctype},
+      accTargetId = #{record.acctargetid},
+      accNo = #{record.accno},
+      accUser = #{record.accuser},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      areaId2 = #{record.areaid2}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.CashConfig" >
+    update cs_cash_configs
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="acctype != null" >
+        accType = #{acctype},
+      </if>
+      <if test="acctargetid != null" >
+        accTargetId = #{acctargetid},
+      </if>
+      <if test="accno != null" >
+        accNo = #{accno},
+      </if>
+      <if test="accuser != null" >
+        accUser = #{accuser},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.CashConfig" >
+    update cs_cash_configs
+    set userId = #{userid},
+      accType = #{acctype},
+      accTargetId = #{acctargetid},
+      accNo = #{accno},
+      accUser = #{accuser},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      areaId2 = #{areaid2}
+    where id = #{id}
+  </update>
+</mapper>

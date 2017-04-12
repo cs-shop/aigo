@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.ShopsCatsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.ShopsCats" >
+    <id column="catId" property="catid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="catName" property="catname" jdbcType="VARCHAR" />
+    <result column="catSort" property="catsort" jdbcType="INTEGER" />
+    <result column="catFlag" property="catflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.parentid != null" >
+         and parentId = #{condition.parentid}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.catname != null" >
+         and catName = #{condition.catname}
+      </if>
+      <if test="condition.catsort != null" >
+         and catSort = #{condition.catsort}
+      </if>
+      <if test="condition.catflag != null" >
+         and catFlag = #{condition.catflag}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    catId, shopId, parentId, isShow, catName, catSort, catFlag
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_shops_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_shops_cats
+    where catId = #{catid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_shops_cats
+    where catId = #{catid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_shops_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.ShopsCats" >
+    insert into cs_shops_cats (catId, shopId, parentId, isShow, catName, catSort, catFlag
+      )
+    values (#{catid}, #{shopid}, #{parentid}, #{isshow}, #{catname}, #{catsort}, #{catflag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.ShopsCats" >
+    insert into cs_shops_cats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        catId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="catname != null" >
+        catName,
+      </if>
+      <if test="catsort != null" >
+        catSort,
+      </if>
+      <if test="catflag != null" >
+        catFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        #{catid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="parentid != null" >
+        #{parentid},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="catname != null" >
+        #{catname},
+      </if>
+      <if test="catsort != null" >
+        #{catsort},
+      </if>
+      <if test="catflag != null" >
+        #{catflag},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_shops_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_shops_cats
+    <set >
+      <if test="record.catid != null" >
+        catId = #{record.catid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.parentid != null" >
+        parentId = #{record.parentid},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.catname != null" >
+        catName = #{record.catname},
+      </if>
+      <if test="record.catsort != null" >
+        catSort = #{record.catsort},
+      </if>
+      <if test="record.catflag != null" >
+        catFlag = #{record.catflag},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_shops_cats
+    set catId = #{record.catid},
+      shopId = #{record.shopid},
+      parentId = #{record.parentid},
+      isShow = #{record.isshow},
+      catName = #{record.catname},
+      catSort = #{record.catsort},
+      catFlag = #{record.catflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.ShopsCats" >
+    update cs_shops_cats
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="catname != null" >
+        catName = #{catname},
+      </if>
+      <if test="catsort != null" >
+        catSort = #{catsort},
+      </if>
+      <if test="catflag != null" >
+        catFlag = #{catflag},
+      </if>
+    </set>
+    where catId = #{catid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.ShopsCats" >
+    update cs_shops_cats
+    set shopId = #{shopid},
+      parentId = #{parentid},
+      isShow = #{isshow},
+      catName = #{catname},
+      catSort = #{catsort},
+      catFlag = #{catflag}
+    where catId = #{catid}
+  </update>
+</mapper>

@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Good" >
+    <id column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsSn" property="goodssn" jdbcType="VARCHAR" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodsImg" property="goodsimg" jdbcType="VARCHAR" />
+    <result column="goodsThums" property="goodsthums" jdbcType="VARCHAR" />
+    <result column="brandId" property="brandid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="marketPrice" property="marketprice" jdbcType="DECIMAL" />
+    <result column="shopPrice" property="shopprice" jdbcType="DECIMAL" />
+    <result column="goodsStock" property="goodsstock" jdbcType="INTEGER" />
+    <result column="saleCount" property="salecount" jdbcType="INTEGER" />
+    <result column="isBook" property="isbook" jdbcType="TINYINT" />
+    <result column="bookQuantity" property="bookquantity" jdbcType="INTEGER" />
+    <result column="warnStock" property="warnstock" jdbcType="INTEGER" />
+    <result column="goodsUnit" property="goodsunit" jdbcType="CHAR" />
+    <result column="isSale" property="issale" jdbcType="TINYINT" />
+    <result column="isBest" property="isbest" jdbcType="TINYINT" />
+    <result column="isHot" property="ishot" jdbcType="TINYINT" />
+    <result column="isRecomm" property="isrecomm" jdbcType="TINYINT" />
+    <result column="isNew" property="isnew" jdbcType="TINYINT" />
+    <result column="isAdminBest" property="isadminbest" jdbcType="TINYINT" />
+    <result column="isAdminRecom" property="isadminrecom" jdbcType="TINYINT" />
+    <result column="recommDesc" property="recommdesc" jdbcType="VARCHAR" />
+    <result column="goodsCatId1" property="goodscatid1" jdbcType="INTEGER" />
+    <result column="goodsCatId2" property="goodscatid2" jdbcType="INTEGER" />
+    <result column="goodsCatId3" property="goodscatid3" jdbcType="INTEGER" />
+    <result column="shopCatId1" property="shopcatid1" jdbcType="INTEGER" />
+    <result column="shopCatId2" property="shopcatid2" jdbcType="INTEGER" />
+    <result column="isShopRecomm" property="isshoprecomm" jdbcType="TINYINT" />
+    <result column="isIndexRecomm" property="isindexrecomm" jdbcType="TINYINT" />
+    <result column="isActivityRecomm" property="isactivityrecomm" jdbcType="TINYINT" />
+    <result column="isInnerRecomm" property="isinnerrecomm" jdbcType="TINYINT" />
+    <result column="goodsStatus" property="goodsstatus" jdbcType="TINYINT" />
+    <result column="saleTime" property="saletime" jdbcType="TIMESTAMP" />
+    <result column="attrCatId" property="attrcatid" jdbcType="INTEGER" />
+    <result column="goodsKeywords" property="goodskeywords" jdbcType="VARCHAR" />
+    <result column="goodsFlag" property="goodsflag" jdbcType="TINYINT" />
+    <result column="statusRemarks" property="statusremarks" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="isDistribut" property="isdistribut" jdbcType="INTEGER" />
+    <result column="commission" property="commission" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.GoodWithBLOBs" extends="BaseResultMap" >
+    <result column="goodsDesc" property="goodsdesc" jdbcType="LONGVARCHAR" />
+      </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.goodssn != null" >
+         and goodsSn = #{condition.goodssn}
+      </if>
+      <if test="condition.goodsname != null" >
+         and goodsName = #{condition.goodsname}
+      </if>
+      <if test="condition.goodsimg != null" >
+         and goodsImg = #{condition.goodsimg}
+      </if>
+      <if test="condition.goodsthums != null" >
+         and goodsThums = #{condition.goodsthums}
+      </if>
+      <if test="condition.brandid != null" >
+         and brandId = #{condition.brandid}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.marketprice != null" >
+         and marketPrice = #{condition.marketprice}
+      </if>
+      <if test="condition.shopprice != null" >
+         and shopPrice = #{condition.shopprice}
+      </if>
+      <if test="condition.goodsstock != null" >
+         and goodsStock = #{condition.goodsstock}
+      </if>
+      <if test="condition.salecount != null" >
+         and saleCount = #{condition.salecount}
+      </if>
+      <if test="condition.isbook != null" >
+         and isBook = #{condition.isbook}
+      </if>
+      <if test="condition.bookquantity != null" >
+         and bookQuantity = #{condition.bookquantity}
+      </if>
+      <if test="condition.warnstock != null" >
+         and warnStock = #{condition.warnstock}
+      </if>
+      <if test="condition.goodsunit != null" >
+         and goodsUnit = #{condition.goodsunit}
+      </if>
+      <if test="condition.issale != null" >
+         and isSale = #{condition.issale}
+      </if>
+      <if test="condition.isbest != null" >
+         and isBest = #{condition.isbest}
+      </if>
+      <if test="condition.ishot != null" >
+         and isHot = #{condition.ishot}
+      </if>
+      <if test="condition.isrecomm != null" >
+         and isRecomm = #{condition.isrecomm}
+      </if>
+      <if test="condition.isnew != null" >
+         and isNew = #{condition.isnew}
+      </if>
+      <if test="condition.isadminbest != null" >
+         and isAdminBest = #{condition.isadminbest}
+      </if>
+      <if test="condition.isadminrecom != null" >
+         and isAdminRecom = #{condition.isadminrecom}
+      </if>
+      <if test="condition.recommdesc != null" >
+         and recommDesc = #{condition.recommdesc}
+      </if>
+      <if test="condition.goodscatid1 != null" >
+         and goodsCatId1 = #{condition.goodscatid1}
+      </if>
+      <if test="condition.goodscatid2 != null" >
+         and goodsCatId2 = #{condition.goodscatid2}
+      </if>
+      <if test="condition.goodscatid3 != null" >
+         and goodsCatId3 = #{condition.goodscatid3}
+      </if>
+      <if test="condition.shopcatid1 != null" >
+         and shopCatId1 = #{condition.shopcatid1}
+      </if>
+      <if test="condition.shopcatid2 != null" >
+         and shopCatId2 = #{condition.shopcatid2}
+      </if>
+      <if test="condition.isshoprecomm != null" >
+         and isShopRecomm = #{condition.isshoprecomm}
+      </if>
+      <if test="condition.isindexrecomm != null" >
+         and isIndexRecomm = #{condition.isindexrecomm}
+      </if>
+      <if test="condition.isactivityrecomm != null" >
+         and isActivityRecomm = #{condition.isactivityrecomm}
+      </if>
+      <if test="condition.isinnerrecomm != null" >
+         and isInnerRecomm = #{condition.isinnerrecomm}
+      </if>
+      <if test="condition.goodsstatus != null" >
+         and goodsStatus = #{condition.goodsstatus}
+      </if>
+      <if test="condition.saletime != null" >
+         and saleTime = #{condition.saletime}
+      </if>
+      <if test="condition.attrcatid != null" >
+         and attrCatId = #{condition.attrcatid}
+      </if>
+      <if test="condition.goodskeywords != null" >
+         and goodsKeywords = #{condition.goodskeywords}
+      </if>
+      <if test="condition.goodsflag != null" >
+         and goodsFlag = #{condition.goodsflag}
+      </if>
+      <if test="condition.statusremarks != null" >
+         and statusRemarks = #{condition.statusremarks}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.isdistribut != null" >
+         and isDistribut = #{condition.isdistribut}
+      </if>
+      <if test="condition.commission != null" >
+         and commission = #{condition.commission}
+      </if>
+      <if test="condition.goodsspec != null" >
+         and goodsSpec = #{condition.goodsspec}
+      </if>
+      <if test="condition.goodsdesc != null" >
+         and goodsDesc = #{condition.goodsdesc}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goodsId, goodsSn, goodsName, goodsImg, goodsThums, brandId, shopId, marketPrice, 
+    shopPrice, goodsStock, saleCount, isBook, bookQuantity, warnStock, goodsUnit, isSale, 
+    isBest, isHot, isRecomm, isNew, isAdminBest, isAdminRecom, recommDesc, goodsCatId1, 
+    goodsCatId2, goodsCatId3, shopCatId1, shopCatId2, isShopRecomm, isIndexRecomm, isActivityRecomm, 
+    isInnerRecomm, goodsStatus, saleTime, attrCatId, goodsKeywords, goodsFlag, statusRemarks, 
+    createTime, isDistribut, commission
+  </sql>
+  <sql id="Blob_Column_List" >
+    goodsSpec, goodsDesc
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_goods
+    where goodsId = #{goodsid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods
+    where goodsId = #{goodsid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodWithBLOBs" >
+    insert into cs_goods (goodsId, goodsSn, goodsName, goodsImg, goodsThums, brandId, 
+      shopId, marketPrice, shopPrice, goodsStock, saleCount, isBook, 
+      bookQuantity, warnStock, goodsUnit, isSale, isBest, isHot, isRecomm, 
+      isNew, isAdminBest, isAdminRecom, recommDesc, goodsCatId1, goodsCatId2, 
+      goodsCatId3, shopCatId1, shopCatId2, isShopRecomm, isIndexRecomm, 
+      isActivityRecomm, isInnerRecomm, goodsStatus, saleTime, attrCatId, 
+      goodsKeywords, goodsFlag, statusRemarks, createTime, isDistribut, 
+      commission, goodsSpec, goodsDesc)
+    values (#{goodsid}, #{goodssn}, #{goodsname}, #{goodsimg}, #{goodsthums}, #{brandid}, 
+      #{shopid}, #{marketprice}, #{shopprice}, #{goodsstock}, #{salecount}, #{isbook}, 
+      #{bookquantity}, #{warnstock}, #{goodsunit}, #{issale}, #{isbest}, #{ishot}, #{isrecomm}, 
+      #{isnew}, #{isadminbest}, #{isadminrecom}, #{recommdesc}, #{goodscatid1}, #{goodscatid2}, 
+      #{goodscatid3}, #{shopcatid1}, #{shopcatid2}, #{isshoprecomm}, #{isindexrecomm}, 
+      #{isactivityrecomm}, #{isinnerrecomm}, #{goodsstatus}, #{saletime}, #{attrcatid}, 
+      #{goodskeywords}, #{goodsflag}, #{statusremarks}, #{createtime}, #{isdistribut}, 
+      #{commission}, #{goodsspec}, #{goodsdesc})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodWithBLOBs" >
+    insert into cs_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodssn != null" >
+        goodsSn,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="goodsimg != null" >
+        goodsImg,
+      </if>
+      <if test="goodsthums != null" >
+        goodsThums,
+      </if>
+      <if test="brandid != null" >
+        brandId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="marketprice != null" >
+        marketPrice,
+      </if>
+      <if test="shopprice != null" >
+        shopPrice,
+      </if>
+      <if test="goodsstock != null" >
+        goodsStock,
+      </if>
+      <if test="salecount != null" >
+        saleCount,
+      </if>
+      <if test="isbook != null" >
+        isBook,
+      </if>
+      <if test="bookquantity != null" >
+        bookQuantity,
+      </if>
+      <if test="warnstock != null" >
+        warnStock,
+      </if>
+      <if test="goodsunit != null" >
+        goodsUnit,
+      </if>
+      <if test="issale != null" >
+        isSale,
+      </if>
+      <if test="isbest != null" >
+        isBest,
+      </if>
+      <if test="ishot != null" >
+        isHot,
+      </if>
+      <if test="isrecomm != null" >
+        isRecomm,
+      </if>
+      <if test="isnew != null" >
+        isNew,
+      </if>
+      <if test="isadminbest != null" >
+        isAdminBest,
+      </if>
+      <if test="isadminrecom != null" >
+        isAdminRecom,
+      </if>
+      <if test="recommdesc != null" >
+        recommDesc,
+      </if>
+      <if test="goodscatid1 != null" >
+        goodsCatId1,
+      </if>
+      <if test="goodscatid2 != null" >
+        goodsCatId2,
+      </if>
+      <if test="goodscatid3 != null" >
+        goodsCatId3,
+      </if>
+      <if test="shopcatid1 != null" >
+        shopCatId1,
+      </if>
+      <if test="shopcatid2 != null" >
+        shopCatId2,
+      </if>
+      <if test="isshoprecomm != null" >
+        isShopRecomm,
+      </if>
+      <if test="isindexrecomm != null" >
+        isIndexRecomm,
+      </if>
+      <if test="isactivityrecomm != null" >
+        isActivityRecomm,
+      </if>
+      <if test="isinnerrecomm != null" >
+        isInnerRecomm,
+      </if>
+      <if test="goodsstatus != null" >
+        goodsStatus,
+      </if>
+      <if test="saletime != null" >
+        saleTime,
+      </if>
+      <if test="attrcatid != null" >
+        attrCatId,
+      </if>
+      <if test="goodskeywords != null" >
+        goodsKeywords,
+      </if>
+      <if test="goodsflag != null" >
+        goodsFlag,
+      </if>
+      <if test="statusremarks != null" >
+        statusRemarks,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="isdistribut != null" >
+        isDistribut,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="goodsspec != null" >
+        goodsSpec,
+      </if>
+      <if test="goodsdesc != null" >
+        goodsDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="goodssn != null" >
+        #{goodssn},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname},
+      </if>
+      <if test="goodsimg != null" >
+        #{goodsimg},
+      </if>
+      <if test="goodsthums != null" >
+        #{goodsthums},
+      </if>
+      <if test="brandid != null" >
+        #{brandid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="marketprice != null" >
+        #{marketprice},
+      </if>
+      <if test="shopprice != null" >
+        #{shopprice},
+      </if>
+      <if test="goodsstock != null" >
+        #{goodsstock},
+      </if>
+      <if test="salecount != null" >
+        #{salecount},
+      </if>
+      <if test="isbook != null" >
+        #{isbook},
+      </if>
+      <if test="bookquantity != null" >
+        #{bookquantity},
+      </if>
+      <if test="warnstock != null" >
+        #{warnstock},
+      </if>
+      <if test="goodsunit != null" >
+        #{goodsunit},
+      </if>
+      <if test="issale != null" >
+        #{issale},
+      </if>
+      <if test="isbest != null" >
+        #{isbest},
+      </if>
+      <if test="ishot != null" >
+        #{ishot},
+      </if>
+      <if test="isrecomm != null" >
+        #{isrecomm},
+      </if>
+      <if test="isnew != null" >
+        #{isnew},
+      </if>
+      <if test="isadminbest != null" >
+        #{isadminbest},
+      </if>
+      <if test="isadminrecom != null" >
+        #{isadminrecom},
+      </if>
+      <if test="recommdesc != null" >
+        #{recommdesc},
+      </if>
+      <if test="goodscatid1 != null" >
+        #{goodscatid1},
+      </if>
+      <if test="goodscatid2 != null" >
+        #{goodscatid2},
+      </if>
+      <if test="goodscatid3 != null" >
+        #{goodscatid3},
+      </if>
+      <if test="shopcatid1 != null" >
+        #{shopcatid1},
+      </if>
+      <if test="shopcatid2 != null" >
+        #{shopcatid2},
+      </if>
+      <if test="isshoprecomm != null" >
+        #{isshoprecomm},
+      </if>
+      <if test="isindexrecomm != null" >
+        #{isindexrecomm},
+      </if>
+      <if test="isactivityrecomm != null" >
+        #{isactivityrecomm},
+      </if>
+      <if test="isinnerrecomm != null" >
+        #{isinnerrecomm},
+      </if>
+      <if test="goodsstatus != null" >
+        #{goodsstatus},
+      </if>
+      <if test="saletime != null" >
+        #{saletime},
+      </if>
+      <if test="attrcatid != null" >
+        #{attrcatid},
+      </if>
+      <if test="goodskeywords != null" >
+        #{goodskeywords},
+      </if>
+      <if test="goodsflag != null" >
+        #{goodsflag},
+      </if>
+      <if test="statusremarks != null" >
+        #{statusremarks},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="isdistribut != null" >
+        #{isdistribut},
+      </if>
+      <if test="commission != null" >
+        #{commission},
+      </if>
+      <if test="goodsspec != null" >
+        #{goodsspec},
+      </if>
+      <if test="goodsdesc != null" >
+        #{goodsdesc},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods
+    <set >
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.goodssn != null" >
+        goodsSn = #{record.goodssn},
+      </if>
+      <if test="record.goodsname != null" >
+        goodsName = #{record.goodsname},
+      </if>
+      <if test="record.goodsimg != null" >
+        goodsImg = #{record.goodsimg},
+      </if>
+      <if test="record.goodsthums != null" >
+        goodsThums = #{record.goodsthums},
+      </if>
+      <if test="record.brandid != null" >
+        brandId = #{record.brandid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.marketprice != null" >
+        marketPrice = #{record.marketprice},
+      </if>
+      <if test="record.shopprice != null" >
+        shopPrice = #{record.shopprice},
+      </if>
+      <if test="record.goodsstock != null" >
+        goodsStock = #{record.goodsstock},
+      </if>
+      <if test="record.salecount != null" >
+        saleCount = #{record.salecount},
+      </if>
+      <if test="record.isbook != null" >
+        isBook = #{record.isbook},
+      </if>
+      <if test="record.bookquantity != null" >
+        bookQuantity = #{record.bookquantity},
+      </if>
+      <if test="record.warnstock != null" >
+        warnStock = #{record.warnstock},
+      </if>
+      <if test="record.goodsunit != null" >
+        goodsUnit = #{record.goodsunit},
+      </if>
+      <if test="record.issale != null" >
+        isSale = #{record.issale},
+      </if>
+      <if test="record.isbest != null" >
+        isBest = #{record.isbest},
+      </if>
+      <if test="record.ishot != null" >
+        isHot = #{record.ishot},
+      </if>
+      <if test="record.isrecomm != null" >
+        isRecomm = #{record.isrecomm},
+      </if>
+      <if test="record.isnew != null" >
+        isNew = #{record.isnew},
+      </if>
+      <if test="record.isadminbest != null" >
+        isAdminBest = #{record.isadminbest},
+      </if>
+      <if test="record.isadminrecom != null" >
+        isAdminRecom = #{record.isadminrecom},
+      </if>
+      <if test="record.recommdesc != null" >
+        recommDesc = #{record.recommdesc},
+      </if>
+      <if test="record.goodscatid1 != null" >
+        goodsCatId1 = #{record.goodscatid1},
+      </if>
+      <if test="record.goodscatid2 != null" >
+        goodsCatId2 = #{record.goodscatid2},
+      </if>
+      <if test="record.goodscatid3 != null" >
+        goodsCatId3 = #{record.goodscatid3},
+      </if>
+      <if test="record.shopcatid1 != null" >
+        shopCatId1 = #{record.shopcatid1},
+      </if>
+      <if test="record.shopcatid2 != null" >
+        shopCatId2 = #{record.shopcatid2},
+      </if>
+      <if test="record.isshoprecomm != null" >
+        isShopRecomm = #{record.isshoprecomm},
+      </if>
+      <if test="record.isindexrecomm != null" >
+        isIndexRecomm = #{record.isindexrecomm},
+      </if>
+      <if test="record.isactivityrecomm != null" >
+        isActivityRecomm = #{record.isactivityrecomm},
+      </if>
+      <if test="record.isinnerrecomm != null" >
+        isInnerRecomm = #{record.isinnerrecomm},
+      </if>
+      <if test="record.goodsstatus != null" >
+        goodsStatus = #{record.goodsstatus},
+      </if>
+      <if test="record.saletime != null" >
+        saleTime = #{record.saletime},
+      </if>
+      <if test="record.attrcatid != null" >
+        attrCatId = #{record.attrcatid},
+      </if>
+      <if test="record.goodskeywords != null" >
+        goodsKeywords = #{record.goodskeywords},
+      </if>
+      <if test="record.goodsflag != null" >
+        goodsFlag = #{record.goodsflag},
+      </if>
+      <if test="record.statusremarks != null" >
+        statusRemarks = #{record.statusremarks},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.isdistribut != null" >
+        isDistribut = #{record.isdistribut},
+      </if>
+      <if test="record.commission != null" >
+        commission = #{record.commission},
+      </if>
+      <if test="record.goodsspec != null" >
+        goodsSpec = #{record.goodsspec},
+      </if>
+      <if test="record.goodsdesc != null" >
+        goodsDesc = #{record.goodsdesc},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_goods
+    set goodsId = #{record.goodsid},
+      goodsSn = #{record.goodssn},
+      goodsName = #{record.goodsname},
+      goodsImg = #{record.goodsimg},
+      goodsThums = #{record.goodsthums},
+      brandId = #{record.brandid},
+      shopId = #{record.shopid},
+      marketPrice = #{record.marketprice},
+      shopPrice = #{record.shopprice},
+      goodsStock = #{record.goodsstock},
+      saleCount = #{record.salecount},
+      isBook = #{record.isbook},
+      bookQuantity = #{record.bookquantity},
+      warnStock = #{record.warnstock},
+      goodsUnit = #{record.goodsunit},
+      isSale = #{record.issale},
+      isBest = #{record.isbest},
+      isHot = #{record.ishot},
+      isRecomm = #{record.isrecomm},
+      isNew = #{record.isnew},
+      isAdminBest = #{record.isadminbest},
+      isAdminRecom = #{record.isadminrecom},
+      recommDesc = #{record.recommdesc},
+      goodsCatId1 = #{record.goodscatid1},
+      goodsCatId2 = #{record.goodscatid2},
+      goodsCatId3 = #{record.goodscatid3},
+      shopCatId1 = #{record.shopcatid1},
+      shopCatId2 = #{record.shopcatid2},
+      isShopRecomm = #{record.isshoprecomm},
+      isIndexRecomm = #{record.isindexrecomm},
+      isActivityRecomm = #{record.isactivityrecomm},
+      isInnerRecomm = #{record.isinnerrecomm},
+      goodsStatus = #{record.goodsstatus},
+      saleTime = #{record.saletime},
+      attrCatId = #{record.attrcatid},
+      goodsKeywords = #{record.goodskeywords},
+      goodsFlag = #{record.goodsflag},
+      statusRemarks = #{record.statusremarks},
+      createTime = #{record.createtime},
+      isDistribut = #{record.isdistribut},
+      commission = #{record.commission},
+      goodsSpec = #{record.goodsspec},
+      goodsDesc = #{record.goodsdesc}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods
+    set goodsId = #{record.goodsid},
+      goodsSn = #{record.goodssn},
+      goodsName = #{record.goodsname},
+      goodsImg = #{record.goodsimg},
+      goodsThums = #{record.goodsthums},
+      brandId = #{record.brandid},
+      shopId = #{record.shopid},
+      marketPrice = #{record.marketprice},
+      shopPrice = #{record.shopprice},
+      goodsStock = #{record.goodsstock},
+      saleCount = #{record.salecount},
+      isBook = #{record.isbook},
+      bookQuantity = #{record.bookquantity},
+      warnStock = #{record.warnstock},
+      goodsUnit = #{record.goodsunit},
+      isSale = #{record.issale},
+      isBest = #{record.isbest},
+      isHot = #{record.ishot},
+      isRecomm = #{record.isrecomm},
+      isNew = #{record.isnew},
+      isAdminBest = #{record.isadminbest},
+      isAdminRecom = #{record.isadminrecom},
+      recommDesc = #{record.recommdesc},
+      goodsCatId1 = #{record.goodscatid1},
+      goodsCatId2 = #{record.goodscatid2},
+      goodsCatId3 = #{record.goodscatid3},
+      shopCatId1 = #{record.shopcatid1},
+      shopCatId2 = #{record.shopcatid2},
+      isShopRecomm = #{record.isshoprecomm},
+      isIndexRecomm = #{record.isindexrecomm},
+      isActivityRecomm = #{record.isactivityrecomm},
+      isInnerRecomm = #{record.isinnerrecomm},
+      goodsStatus = #{record.goodsstatus},
+      saleTime = #{record.saletime},
+      attrCatId = #{record.attrcatid},
+      goodsKeywords = #{record.goodskeywords},
+      goodsFlag = #{record.goodsflag},
+      statusRemarks = #{record.statusremarks},
+      createTime = #{record.createtime},
+      isDistribut = #{record.isdistribut},
+      commission = #{record.commission}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodWithBLOBs" >
+    update cs_goods
+    <set >
+      <if test="goodssn != null" >
+        goodsSn = #{goodssn},
+      </if>
+      <if test="goodsname != null" >
+        goodsName = #{goodsname},
+      </if>
+      <if test="goodsimg != null" >
+        goodsImg = #{goodsimg},
+      </if>
+      <if test="goodsthums != null" >
+        goodsThums = #{goodsthums},
+      </if>
+      <if test="brandid != null" >
+        brandId = #{brandid},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="marketprice != null" >
+        marketPrice = #{marketprice},
+      </if>
+      <if test="shopprice != null" >
+        shopPrice = #{shopprice},
+      </if>
+      <if test="goodsstock != null" >
+        goodsStock = #{goodsstock},
+      </if>
+      <if test="salecount != null" >
+        saleCount = #{salecount},
+      </if>
+      <if test="isbook != null" >
+        isBook = #{isbook},
+      </if>
+      <if test="bookquantity != null" >
+        bookQuantity = #{bookquantity},
+      </if>
+      <if test="warnstock != null" >
+        warnStock = #{warnstock},
+      </if>
+      <if test="goodsunit != null" >
+        goodsUnit = #{goodsunit},
+      </if>
+      <if test="issale != null" >
+        isSale = #{issale},
+      </if>
+      <if test="isbest != null" >
+        isBest = #{isbest},
+      </if>
+      <if test="ishot != null" >
+        isHot = #{ishot},
+      </if>
+      <if test="isrecomm != null" >
+        isRecomm = #{isrecomm},
+      </if>
+      <if test="isnew != null" >
+        isNew = #{isnew},
+      </if>
+      <if test="isadminbest != null" >
+        isAdminBest = #{isadminbest},
+      </if>
+      <if test="isadminrecom != null" >
+        isAdminRecom = #{isadminrecom},
+      </if>
+      <if test="recommdesc != null" >
+        recommDesc = #{recommdesc},
+      </if>
+      <if test="goodscatid1 != null" >
+        goodsCatId1 = #{goodscatid1},
+      </if>
+      <if test="goodscatid2 != null" >
+        goodsCatId2 = #{goodscatid2},
+      </if>
+      <if test="goodscatid3 != null" >
+        goodsCatId3 = #{goodscatid3},
+      </if>
+      <if test="shopcatid1 != null" >
+        shopCatId1 = #{shopcatid1},
+      </if>
+      <if test="shopcatid2 != null" >
+        shopCatId2 = #{shopcatid2},
+      </if>
+      <if test="isshoprecomm != null" >
+        isShopRecomm = #{isshoprecomm},
+      </if>
+      <if test="isindexrecomm != null" >
+        isIndexRecomm = #{isindexrecomm},
+      </if>
+      <if test="isactivityrecomm != null" >
+        isActivityRecomm = #{isactivityrecomm},
+      </if>
+      <if test="isinnerrecomm != null" >
+        isInnerRecomm = #{isinnerrecomm},
+      </if>
+      <if test="goodsstatus != null" >
+        goodsStatus = #{goodsstatus},
+      </if>
+      <if test="saletime != null" >
+        saleTime = #{saletime},
+      </if>
+      <if test="attrcatid != null" >
+        attrCatId = #{attrcatid},
+      </if>
+      <if test="goodskeywords != null" >
+        goodsKeywords = #{goodskeywords},
+      </if>
+      <if test="goodsflag != null" >
+        goodsFlag = #{goodsflag},
+      </if>
+      <if test="statusremarks != null" >
+        statusRemarks = #{statusremarks},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="isdistribut != null" >
+        isDistribut = #{isdistribut},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission},
+      </if>
+      <if test="goodsspec != null" >
+        goodsSpec = #{goodsspec},
+      </if>
+      <if test="goodsdesc != null" >
+        goodsDesc = #{goodsdesc},
+      </if>
+    </set>
+    where goodsId = #{goodsid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.GoodWithBLOBs" >
+    update cs_goods
+    set goodsSn = #{goodssn},
+      goodsName = #{goodsname},
+      goodsImg = #{goodsimg},
+      goodsThums = #{goodsthums},
+      brandId = #{brandid},
+      shopId = #{shopid},
+      marketPrice = #{marketprice},
+      shopPrice = #{shopprice},
+      goodsStock = #{goodsstock},
+      saleCount = #{salecount},
+      isBook = #{isbook},
+      bookQuantity = #{bookquantity},
+      warnStock = #{warnstock},
+      goodsUnit = #{goodsunit},
+      isSale = #{issale},
+      isBest = #{isbest},
+      isHot = #{ishot},
+      isRecomm = #{isrecomm},
+      isNew = #{isnew},
+      isAdminBest = #{isadminbest},
+      isAdminRecom = #{isadminrecom},
+      recommDesc = #{recommdesc},
+      goodsCatId1 = #{goodscatid1},
+      goodsCatId2 = #{goodscatid2},
+      goodsCatId3 = #{goodscatid3},
+      shopCatId1 = #{shopcatid1},
+      shopCatId2 = #{shopcatid2},
+      isShopRecomm = #{isshoprecomm},
+      isIndexRecomm = #{isindexrecomm},
+      isActivityRecomm = #{isactivityrecomm},
+      isInnerRecomm = #{isinnerrecomm},
+      goodsStatus = #{goodsstatus},
+      saleTime = #{saletime},
+      attrCatId = #{attrcatid},
+      goodsKeywords = #{goodskeywords},
+      goodsFlag = #{goodsflag},
+      statusRemarks = #{statusremarks},
+      createTime = #{createtime},
+      isDistribut = #{isdistribut},
+      commission = #{commission},
+      goodsSpec = #{goodsspec},
+      goodsDesc = #{goodsdesc}
+    where goodsId = #{goodsid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Good" >
+    update cs_goods
+    set goodsSn = #{goodssn},
+      goodsName = #{goodsname},
+      goodsImg = #{goodsimg},
+      goodsThums = #{goodsthums},
+      brandId = #{brandid},
+      shopId = #{shopid},
+      marketPrice = #{marketprice},
+      shopPrice = #{shopprice},
+      goodsStock = #{goodsstock},
+      saleCount = #{salecount},
+      isBook = #{isbook},
+      bookQuantity = #{bookquantity},
+      warnStock = #{warnstock},
+      goodsUnit = #{goodsunit},
+      isSale = #{issale},
+      isBest = #{isbest},
+      isHot = #{ishot},
+      isRecomm = #{isrecomm},
+      isNew = #{isnew},
+      isAdminBest = #{isadminbest},
+      isAdminRecom = #{isadminrecom},
+      recommDesc = #{recommdesc},
+      goodsCatId1 = #{goodscatid1},
+      goodsCatId2 = #{goodscatid2},
+      goodsCatId3 = #{goodscatid3},
+      shopCatId1 = #{shopcatid1},
+      shopCatId2 = #{shopcatid2},
+      isShopRecomm = #{isshoprecomm},
+      isIndexRecomm = #{isindexrecomm},
+      isActivityRecomm = #{isactivityrecomm},
+      isInnerRecomm = #{isinnerrecomm},
+      goodsStatus = #{goodsstatus},
+      saleTime = #{saletime},
+      attrCatId = #{attrcatid},
+      goodsKeywords = #{goodskeywords},
+      goodsFlag = #{goodsflag},
+      statusRemarks = #{statusremarks},
+      createTime = #{createtime},
+      isDistribut = #{isdistribut},
+      commission = #{commission}
+    where goodsId = #{goodsid}
+  </update>
+</mapper>

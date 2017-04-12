@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsGalleryMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsGallery" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="goodsImg" property="goodsimg" jdbcType="VARCHAR" />
+    <result column="goodsThumbs" property="goodsthumbs" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.goodsimg != null" >
+         and goodsImg = #{condition.goodsimg}
+      </if>
+      <if test="condition.goodsthumbs != null" >
+         and goodsThumbs = #{condition.goodsthumbs}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goodsId, shopId, goodsImg, goodsThumbs
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_gallerys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_goods_gallerys
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_gallerys
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_gallerys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsGallery" >
+    insert into cs_goods_gallerys (id, goodsId, shopId, goodsImg, goodsThumbs)
+    values (#{id}, #{goodsid}, #{shopid}, #{goodsimg}, #{goodsthumbs})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsGallery" >
+    insert into cs_goods_gallerys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="goodsimg != null" >
+        goodsImg,
+      </if>
+      <if test="goodsthumbs != null" >
+        goodsThumbs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="goodsimg != null" >
+        #{goodsimg},
+      </if>
+      <if test="goodsthumbs != null" >
+        #{goodsthumbs},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_gallerys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_gallerys
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.goodsimg != null" >
+        goodsImg = #{record.goodsimg},
+      </if>
+      <if test="record.goodsthumbs != null" >
+        goodsThumbs = #{record.goodsthumbs},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_gallerys
+    set id = #{record.id},
+      goodsId = #{record.goodsid},
+      shopId = #{record.shopid},
+      goodsImg = #{record.goodsimg},
+      goodsThumbs = #{record.goodsthumbs}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsGallery" >
+    update cs_goods_gallerys
+    <set >
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="goodsimg != null" >
+        goodsImg = #{goodsimg},
+      </if>
+      <if test="goodsthumbs != null" >
+        goodsThumbs = #{goodsthumbs},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsGallery" >
+    update cs_goods_gallerys
+    set goodsId = #{goodsid},
+      shopId = #{shopid},
+      goodsImg = #{goodsimg},
+      goodsThumbs = #{goodsthumbs}
+    where id = #{id}
+  </update>
+</mapper>

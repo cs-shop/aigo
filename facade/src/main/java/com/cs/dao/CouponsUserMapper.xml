@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CouponsUserMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.CouponsUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="couponId" property="couponid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="receiveTime" property="receivetime" jdbcType="TIMESTAMP" />
+    <result column="couponStatus" property="couponstatus" jdbcType="TINYINT" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.couponid != null" >
+         and couponId = #{condition.couponid}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.receivetime != null" >
+         and receiveTime = #{condition.receivetime}
+      </if>
+      <if test="condition.couponstatus != null" >
+         and couponStatus = #{condition.couponstatus}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, couponId, userId, receiveTime, couponStatus, dataFlag
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_coupons_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_coupons_users
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_coupons_users
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_coupons_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.CouponsUser" >
+    insert into cs_coupons_users (id, couponId, userId, receiveTime, couponStatus, dataFlag
+      )
+    values (#{id}, #{couponid}, #{userid}, #{receivetime}, #{couponstatus}, #{dataflag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.CouponsUser" >
+    insert into cs_coupons_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="couponid != null" >
+        couponId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="receivetime != null" >
+        receiveTime,
+      </if>
+      <if test="couponstatus != null" >
+        couponStatus,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="couponid != null" >
+        #{couponid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="receivetime != null" >
+        #{receivetime},
+      </if>
+      <if test="couponstatus != null" >
+        #{couponstatus},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_coupons_users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_coupons_users
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.couponid != null" >
+        couponId = #{record.couponid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.receivetime != null" >
+        receiveTime = #{record.receivetime},
+      </if>
+      <if test="record.couponstatus != null" >
+        couponStatus = #{record.couponstatus},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_coupons_users
+    set id = #{record.id},
+      couponId = #{record.couponid},
+      userId = #{record.userid},
+      receiveTime = #{record.receivetime},
+      couponStatus = #{record.couponstatus},
+      dataFlag = #{record.dataflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.CouponsUser" >
+    update cs_coupons_users
+    <set >
+      <if test="couponid != null" >
+        couponId = #{couponid},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="receivetime != null" >
+        receiveTime = #{receivetime},
+      </if>
+      <if test="couponstatus != null" >
+        couponStatus = #{couponstatus},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.CouponsUser" >
+    update cs_coupons_users
+    set couponId = #{couponid},
+      userId = #{userid},
+      receiveTime = #{receivetime},
+      couponStatus = #{couponstatus},
+      dataFlag = #{dataflag}
+    where id = #{id}
+  </update>
+</mapper>

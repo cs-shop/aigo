@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.FeedbackMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Feedback" >
+    <id column="feedbackId" property="feedbackid" jdbcType="INTEGER" />
+    <result column="feedbackType" property="feedbacktype" jdbcType="TINYINT" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPhone" property="userphone" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="adminId" property="adminid" jdbcType="INTEGER" />
+    <result column="replyTime" property="replytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.FeedbackWithBLOBs" extends="BaseResultMap" >
+    <result column="adminReply" property="adminreply" jdbcType="LONGVARCHAR" />
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.feedbacktype != null" >
+         and feedbackType = #{condition.feedbacktype}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.username != null" >
+         and userName = #{condition.username}
+      </if>
+      <if test="condition.userphone != null" >
+         and userPhone = #{condition.userphone}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.adminid != null" >
+         and adminId = #{condition.adminid}
+      </if>
+      <if test="condition.replytime != null" >
+         and replyTime = #{condition.replytime}
+      </if>
+      <if test="condition.content != null" >
+         and content = #{condition.content}
+      </if>
+      <if test="condition.adminreply != null" >
+         and adminReply = #{condition.adminreply}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    feedbackId, feedbackType, userId, userName, userPhone, createTime, adminId, replyTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, adminReply
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_feedbacks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_feedbacks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_feedbacks
+    where feedbackId = #{feedbackid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_feedbacks
+    where feedbackId = #{feedbackid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_feedbacks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.FeedbackWithBLOBs" >
+    insert into cs_feedbacks (feedbackId, feedbackType, userId, userName, userPhone, createTime, 
+      adminId, replyTime, content, adminReply)
+    values (#{feedbackid}, #{feedbacktype}, #{userid}, #{username}, #{userphone}, #{createtime}, 
+      #{adminid}, #{replytime}, #{content}, #{adminreply})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.FeedbackWithBLOBs" >
+    insert into cs_feedbacks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feedbackid != null" >
+        feedbackId,
+      </if>
+      <if test="feedbacktype != null" >
+        feedbackType,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userphone != null" >
+        userPhone,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="adminid != null" >
+        adminId,
+      </if>
+      <if test="replytime != null" >
+        replyTime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="adminreply != null" >
+        adminReply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feedbackid != null" >
+        #{feedbackid},
+      </if>
+      <if test="feedbacktype != null" >
+        #{feedbacktype},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="username != null" >
+        #{username},
+      </if>
+      <if test="userphone != null" >
+        #{userphone},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="adminid != null" >
+        #{adminid},
+      </if>
+      <if test="replytime != null" >
+        #{replytime},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="adminreply != null" >
+        #{adminreply},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_feedbacks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_feedbacks
+    <set >
+      <if test="record.feedbackid != null" >
+        feedbackId = #{record.feedbackid},
+      </if>
+      <if test="record.feedbacktype != null" >
+        feedbackType = #{record.feedbacktype},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username},
+      </if>
+      <if test="record.userphone != null" >
+        userPhone = #{record.userphone},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.adminid != null" >
+        adminId = #{record.adminid},
+      </if>
+      <if test="record.replytime != null" >
+        replyTime = #{record.replytime},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content},
+      </if>
+      <if test="record.adminreply != null" >
+        adminReply = #{record.adminreply},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_feedbacks
+    set feedbackId = #{record.feedbackid},
+      feedbackType = #{record.feedbacktype},
+      userId = #{record.userid},
+      userName = #{record.username},
+      userPhone = #{record.userphone},
+      createTime = #{record.createtime},
+      adminId = #{record.adminid},
+      replyTime = #{record.replytime},
+      content = #{record.content},
+      adminReply = #{record.adminreply}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_feedbacks
+    set feedbackId = #{record.feedbackid},
+      feedbackType = #{record.feedbacktype},
+      userId = #{record.userid},
+      userName = #{record.username},
+      userPhone = #{record.userphone},
+      createTime = #{record.createtime},
+      adminId = #{record.adminid},
+      replyTime = #{record.replytime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.FeedbackWithBLOBs" >
+    update cs_feedbacks
+    <set >
+      <if test="feedbacktype != null" >
+        feedbackType = #{feedbacktype},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="username != null" >
+        userName = #{username},
+      </if>
+      <if test="userphone != null" >
+        userPhone = #{userphone},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="adminid != null" >
+        adminId = #{adminid},
+      </if>
+      <if test="replytime != null" >
+        replyTime = #{replytime},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="adminreply != null" >
+        adminReply = #{adminreply},
+      </if>
+    </set>
+    where feedbackId = #{feedbackid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.FeedbackWithBLOBs" >
+    update cs_feedbacks
+    set feedbackType = #{feedbacktype},
+      userId = #{userid},
+      userName = #{username},
+      userPhone = #{userphone},
+      createTime = #{createtime},
+      adminId = #{adminid},
+      replyTime = #{replytime},
+      content = #{content},
+      adminReply = #{adminreply}
+    where feedbackId = #{feedbackid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Feedback" >
+    update cs_feedbacks
+    set feedbackType = #{feedbacktype},
+      userId = #{userid},
+      userName = #{username},
+      userPhone = #{userphone},
+      createTime = #{createtime},
+      adminId = #{adminid},
+      replyTime = #{replytime}
+    where feedbackId = #{feedbackid}
+  </update>
+</mapper>

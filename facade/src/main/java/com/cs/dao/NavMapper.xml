@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.NavMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Nav" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="navType" property="navtype" jdbcType="TINYINT" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="navTitle" property="navtitle" jdbcType="VARCHAR" />
+    <result column="navUrl" property="navurl" jdbcType="VARCHAR" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="isOpen" property="isopen" jdbcType="TINYINT" />
+    <result column="navSort" property="navsort" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.navtype != null" >
+         and navType = #{condition.navtype}
+      </if>
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.navtitle != null" >
+         and navTitle = #{condition.navtitle}
+      </if>
+      <if test="condition.navurl != null" >
+         and navUrl = #{condition.navurl}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.isopen != null" >
+         and isOpen = #{condition.isopen}
+      </if>
+      <if test="condition.navsort != null" >
+         and navSort = #{condition.navsort}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, navType, areaId1, areaId2, navTitle, navUrl, isShow, isOpen, navSort, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_navs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_navs
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_navs
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_navs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Nav" >
+    insert into cs_navs (id, navType, areaId1, areaId2, navTitle, navUrl, isShow, 
+      isOpen, navSort, createTime)
+    values (#{id}, #{navtype}, #{areaid1}, #{areaid2}, #{navtitle}, #{navurl}, #{isshow}, 
+      #{isopen}, #{navsort}, #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Nav" >
+    insert into cs_navs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="navtype != null" >
+        navType,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="navtitle != null" >
+        navTitle,
+      </if>
+      <if test="navurl != null" >
+        navUrl,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="isopen != null" >
+        isOpen,
+      </if>
+      <if test="navsort != null" >
+        navSort,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="navtype != null" >
+        #{navtype},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="navtitle != null" >
+        #{navtitle},
+      </if>
+      <if test="navurl != null" >
+        #{navurl},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="isopen != null" >
+        #{isopen},
+      </if>
+      <if test="navsort != null" >
+        #{navsort},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_navs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_navs
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.navtype != null" >
+        navType = #{record.navtype},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.navtitle != null" >
+        navTitle = #{record.navtitle},
+      </if>
+      <if test="record.navurl != null" >
+        navUrl = #{record.navurl},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.isopen != null" >
+        isOpen = #{record.isopen},
+      </if>
+      <if test="record.navsort != null" >
+        navSort = #{record.navsort},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_navs
+    set id = #{record.id},
+      navType = #{record.navtype},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      navTitle = #{record.navtitle},
+      navUrl = #{record.navurl},
+      isShow = #{record.isshow},
+      isOpen = #{record.isopen},
+      navSort = #{record.navsort},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Nav" >
+    update cs_navs
+    <set >
+      <if test="navtype != null" >
+        navType = #{navtype},
+      </if>
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="navtitle != null" >
+        navTitle = #{navtitle},
+      </if>
+      <if test="navurl != null" >
+        navUrl = #{navurl},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="isopen != null" >
+        isOpen = #{isopen},
+      </if>
+      <if test="navsort != null" >
+        navSort = #{navsort},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Nav" >
+    update cs_navs
+    set navType = #{navtype},
+      areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      navTitle = #{navtitle},
+      navUrl = #{navurl},
+      isShow = #{isshow},
+      isOpen = #{isopen},
+      navSort = #{navsort},
+      createTime = #{createtime}
+    where id = #{id}
+  </update>
+</mapper>

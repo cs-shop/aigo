@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.DistributMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.DistributMoney" >
+    <id column="moneyId" property="moneyid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="promoterId" property="promoterid" jdbcType="INTEGER" />
+    <result column="buyerId" property="buyerid" jdbcType="INTEGER" />
+    <result column="moneyRemark" property="moneyremark" jdbcType="VARCHAR" />
+    <result column="distributType" property="distributtype" jdbcType="TINYINT" />
+    <result column="dataId" property="dataid" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="distributMoney" property="distributmoney" jdbcType="DECIMAL" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.orderid != null" >
+         and orderId = #{condition.orderid}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.promoterid != null" >
+         and promoterId = #{condition.promoterid}
+      </if>
+      <if test="condition.buyerid != null" >
+         and buyerId = #{condition.buyerid}
+      </if>
+      <if test="condition.moneyremark != null" >
+         and moneyRemark = #{condition.moneyremark}
+      </if>
+      <if test="condition.distributtype != null" >
+         and distributType = #{condition.distributtype}
+      </if>
+      <if test="condition.dataid != null" >
+         and dataId = #{condition.dataid}
+      </if>
+      <if test="condition.money != null" >
+         and money = #{condition.money}
+      </if>
+      <if test="condition.distributmoney != null" >
+         and distributMoney = #{condition.distributmoney}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    moneyId, shopId, orderId, userId, promoterId, buyerId, moneyRemark, distributType, 
+    dataId, money, distributMoney, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_distribut_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_distribut_moneys
+    where moneyId = #{moneyid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_distribut_moneys
+    where moneyId = #{moneyid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_distribut_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.DistributMoney" >
+    insert into cs_distribut_moneys (moneyId, shopId, orderId, userId, promoterId, buyerId, 
+      moneyRemark, distributType, dataId, money, distributMoney, createTime
+      )
+    values (#{moneyid}, #{shopid}, #{orderid}, #{userid}, #{promoterid}, #{buyerid}, 
+      #{moneyremark}, #{distributtype}, #{dataid}, #{money}, #{distributmoney}, #{createtime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.DistributMoney" >
+    insert into cs_distribut_moneys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moneyid != null" >
+        moneyId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="promoterid != null" >
+        promoterId,
+      </if>
+      <if test="buyerid != null" >
+        buyerId,
+      </if>
+      <if test="moneyremark != null" >
+        moneyRemark,
+      </if>
+      <if test="distributtype != null" >
+        distributType,
+      </if>
+      <if test="dataid != null" >
+        dataId,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="distributmoney != null" >
+        distributMoney,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moneyid != null" >
+        #{moneyid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="promoterid != null" >
+        #{promoterid},
+      </if>
+      <if test="buyerid != null" >
+        #{buyerid},
+      </if>
+      <if test="moneyremark != null" >
+        #{moneyremark},
+      </if>
+      <if test="distributtype != null" >
+        #{distributtype},
+      </if>
+      <if test="dataid != null" >
+        #{dataid},
+      </if>
+      <if test="money != null" >
+        #{money},
+      </if>
+      <if test="distributmoney != null" >
+        #{distributmoney},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_distribut_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_distribut_moneys
+    <set >
+      <if test="record.moneyid != null" >
+        moneyId = #{record.moneyid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.promoterid != null" >
+        promoterId = #{record.promoterid},
+      </if>
+      <if test="record.buyerid != null" >
+        buyerId = #{record.buyerid},
+      </if>
+      <if test="record.moneyremark != null" >
+        moneyRemark = #{record.moneyremark},
+      </if>
+      <if test="record.distributtype != null" >
+        distributType = #{record.distributtype},
+      </if>
+      <if test="record.dataid != null" >
+        dataId = #{record.dataid},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money},
+      </if>
+      <if test="record.distributmoney != null" >
+        distributMoney = #{record.distributmoney},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_distribut_moneys
+    set moneyId = #{record.moneyid},
+      shopId = #{record.shopid},
+      orderId = #{record.orderid},
+      userId = #{record.userid},
+      promoterId = #{record.promoterid},
+      buyerId = #{record.buyerid},
+      moneyRemark = #{record.moneyremark},
+      distributType = #{record.distributtype},
+      dataId = #{record.dataid},
+      money = #{record.money},
+      distributMoney = #{record.distributmoney},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.DistributMoney" >
+    update cs_distribut_moneys
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="orderid != null" >
+        orderId = #{orderid},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="promoterid != null" >
+        promoterId = #{promoterid},
+      </if>
+      <if test="buyerid != null" >
+        buyerId = #{buyerid},
+      </if>
+      <if test="moneyremark != null" >
+        moneyRemark = #{moneyremark},
+      </if>
+      <if test="distributtype != null" >
+        distributType = #{distributtype},
+      </if>
+      <if test="dataid != null" >
+        dataId = #{dataid},
+      </if>
+      <if test="money != null" >
+        money = #{money},
+      </if>
+      <if test="distributmoney != null" >
+        distributMoney = #{distributmoney},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where moneyId = #{moneyid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.DistributMoney" >
+    update cs_distribut_moneys
+    set shopId = #{shopid},
+      orderId = #{orderid},
+      userId = #{userid},
+      promoterId = #{promoterid},
+      buyerId = #{buyerid},
+      moneyRemark = #{moneyremark},
+      distributType = #{distributtype},
+      dataId = #{dataid},
+      money = #{money},
+      distributMoney = #{distributmoney},
+      createTime = #{createtime}
+    where moneyId = #{moneyid}
+  </update>
+</mapper>

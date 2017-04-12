@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Cart" >
+    <id column="cartId" property="cartid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="isCheck" property="ischeck" jdbcType="TINYINT" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsAttrId" property="goodsattrid" jdbcType="INTEGER" />
+    <result column="goodsCnt" property="goodscnt" jdbcType="INTEGER" />
+    <result column="packageId" property="packageid" jdbcType="INTEGER" />
+    <result column="batchNo" property="batchno" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.ischeck != null" >
+         and isCheck = #{condition.ischeck}
+      </if>
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.goodsattrid != null" >
+         and goodsAttrId = #{condition.goodsattrid}
+      </if>
+      <if test="condition.goodscnt != null" >
+         and goodsCnt = #{condition.goodscnt}
+      </if>
+      <if test="condition.packageid != null" >
+         and packageId = #{condition.packageid}
+      </if>
+      <if test="condition.batchno != null" >
+         and batchNo = #{condition.batchno}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    cartId, userId, isCheck, goodsId, goodsAttrId, goodsCnt, packageId, batchNo
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_cart
+    where cartId = #{cartid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_cart
+    where cartId = #{cartid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Cart" >
+    insert into cs_cart (cartId, userId, isCheck, goodsId, goodsAttrId, goodsCnt, 
+      packageId, batchNo)
+    values (#{cartid}, #{userid}, #{ischeck}, #{goodsid}, #{goodsattrid}, #{goodscnt}, 
+      #{packageid}, #{batchno})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Cart" >
+    insert into cs_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        cartId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="ischeck != null" >
+        isCheck,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsattrid != null" >
+        goodsAttrId,
+      </if>
+      <if test="goodscnt != null" >
+        goodsCnt,
+      </if>
+      <if test="packageid != null" >
+        packageId,
+      </if>
+      <if test="batchno != null" >
+        batchNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        #{cartid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="ischeck != null" >
+        #{ischeck},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="goodsattrid != null" >
+        #{goodsattrid},
+      </if>
+      <if test="goodscnt != null" >
+        #{goodscnt},
+      </if>
+      <if test="packageid != null" >
+        #{packageid},
+      </if>
+      <if test="batchno != null" >
+        #{batchno},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_cart
+    <set >
+      <if test="record.cartid != null" >
+        cartId = #{record.cartid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.ischeck != null" >
+        isCheck = #{record.ischeck},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.goodsattrid != null" >
+        goodsAttrId = #{record.goodsattrid},
+      </if>
+      <if test="record.goodscnt != null" >
+        goodsCnt = #{record.goodscnt},
+      </if>
+      <if test="record.packageid != null" >
+        packageId = #{record.packageid},
+      </if>
+      <if test="record.batchno != null" >
+        batchNo = #{record.batchno},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_cart
+    set cartId = #{record.cartid},
+      userId = #{record.userid},
+      isCheck = #{record.ischeck},
+      goodsId = #{record.goodsid},
+      goodsAttrId = #{record.goodsattrid},
+      goodsCnt = #{record.goodscnt},
+      packageId = #{record.packageid},
+      batchNo = #{record.batchno}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Cart" >
+    update cs_cart
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="ischeck != null" >
+        isCheck = #{ischeck},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="goodsattrid != null" >
+        goodsAttrId = #{goodsattrid},
+      </if>
+      <if test="goodscnt != null" >
+        goodsCnt = #{goodscnt},
+      </if>
+      <if test="packageid != null" >
+        packageId = #{packageid},
+      </if>
+      <if test="batchno != null" >
+        batchNo = #{batchno},
+      </if>
+    </set>
+    where cartId = #{cartid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Cart" >
+    update cs_cart
+    set userId = #{userid},
+      isCheck = #{ischeck},
+      goodsId = #{goodsid},
+      goodsAttrId = #{goodsattrid},
+      goodsCnt = #{goodscnt},
+      packageId = #{packageid},
+      batchNo = #{batchno}
+    where cartId = #{cartid}
+  </update>
+</mapper>

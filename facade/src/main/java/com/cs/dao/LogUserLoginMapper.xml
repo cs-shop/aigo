@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogUserLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogUserLogin" >
+    <id column="loginId" property="loginid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="loginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="loginIp" property="loginip" jdbcType="VARCHAR" />
+    <result column="loginSrc" property="loginsrc" jdbcType="TINYINT" />
+    <result column="loginRemark" property="loginremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.logintime != null" >
+         and loginTime = #{condition.logintime}
+      </if>
+      <if test="condition.loginip != null" >
+         and loginIp = #{condition.loginip}
+      </if>
+      <if test="condition.loginsrc != null" >
+         and loginSrc = #{condition.loginsrc}
+      </if>
+      <if test="condition.loginremark != null" >
+         and loginRemark = #{condition.loginremark}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    loginId, userId, loginTime, loginIp, loginSrc, loginRemark
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_user_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_log_user_logins
+    where loginId = #{loginid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_user_logins
+    where loginId = #{loginid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_user_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogUserLogin" >
+    insert into cs_log_user_logins (loginId, userId, loginTime, loginIp, loginSrc, loginRemark
+      )
+    values (#{loginid}, #{userid}, #{logintime}, #{loginip}, #{loginsrc}, #{loginremark}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogUserLogin" >
+    insert into cs_log_user_logins
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        loginId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="logintime != null" >
+        loginTime,
+      </if>
+      <if test="loginip != null" >
+        loginIp,
+      </if>
+      <if test="loginsrc != null" >
+        loginSrc,
+      </if>
+      <if test="loginremark != null" >
+        loginRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        #{loginid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="logintime != null" >
+        #{logintime},
+      </if>
+      <if test="loginip != null" >
+        #{loginip},
+      </if>
+      <if test="loginsrc != null" >
+        #{loginsrc},
+      </if>
+      <if test="loginremark != null" >
+        #{loginremark},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_user_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_user_logins
+    <set >
+      <if test="record.loginid != null" >
+        loginId = #{record.loginid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.logintime != null" >
+        loginTime = #{record.logintime},
+      </if>
+      <if test="record.loginip != null" >
+        loginIp = #{record.loginip},
+      </if>
+      <if test="record.loginsrc != null" >
+        loginSrc = #{record.loginsrc},
+      </if>
+      <if test="record.loginremark != null" >
+        loginRemark = #{record.loginremark},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_user_logins
+    set loginId = #{record.loginid},
+      userId = #{record.userid},
+      loginTime = #{record.logintime},
+      loginIp = #{record.loginip},
+      loginSrc = #{record.loginsrc},
+      loginRemark = #{record.loginremark}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogUserLogin" >
+    update cs_log_user_logins
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="logintime != null" >
+        loginTime = #{logintime},
+      </if>
+      <if test="loginip != null" >
+        loginIp = #{loginip},
+      </if>
+      <if test="loginsrc != null" >
+        loginSrc = #{loginsrc},
+      </if>
+      <if test="loginremark != null" >
+        loginRemark = #{loginremark},
+      </if>
+    </set>
+    where loginId = #{loginid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogUserLogin" >
+    update cs_log_user_logins
+    set userId = #{userid},
+      loginTime = #{logintime},
+      loginIp = #{loginip},
+      loginSrc = #{loginsrc},
+      loginRemark = #{loginremark}
+    where loginId = #{loginid}
+  </update>
+</mapper>

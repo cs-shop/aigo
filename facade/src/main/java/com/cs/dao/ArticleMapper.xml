@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Article" >
+    <id column="articleId" property="articleid" jdbcType="INTEGER" />
+    <result column="catId" property="catid" jdbcType="INTEGER" />
+    <result column="articleTitle" property="articletitle" jdbcType="VARCHAR" />
+    <result column="articleImg" property="articleimg" jdbcType="VARCHAR" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="articleKey" property="articlekey" jdbcType="VARCHAR" />
+    <result column="staffId" property="staffid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Article" extends="BaseResultMap" >
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.catid != null" >
+         and catId = #{condition.catid}
+      </if>
+      <if test="condition.articletitle != null" >
+         and articleTitle = #{condition.articletitle}
+      </if>
+      <if test="condition.articleimg != null" >
+         and articleImg = #{condition.articleimg}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.articlekey != null" >
+         and articleKey = #{condition.articlekey}
+      </if>
+      <if test="condition.staffid != null" >
+         and staffId = #{condition.staffid}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.articlecontent != null" >
+         and articleContent = #{condition.articlecontent}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    articleId, catId, articleTitle, articleImg, isShow, articleKey, staffId, createTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    articleContent
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_articles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_articles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_articles
+    where articleId = #{articleid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_articles
+    where articleId = #{articleid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_articles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Article" >
+    insert into cs_articles (articleId, catId, articleTitle, articleImg, isShow, articleKey, 
+      staffId, createTime, articleContent)
+    values (#{articleid}, #{catid}, #{articletitle}, #{articleimg}, #{isshow}, #{articlekey}, 
+      #{staffid}, #{createtime}, #{articlecontent})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Article" >
+    insert into cs_articles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleId,
+      </if>
+      <if test="catid != null" >
+        catId,
+      </if>
+      <if test="articletitle != null" >
+        articleTitle,
+      </if>
+      <if test="articleimg != null" >
+        articleImg,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="articlekey != null" >
+        articleKey,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="articlecontent != null" >
+        articleContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid},
+      </if>
+      <if test="catid != null" >
+        #{catid},
+      </if>
+      <if test="articletitle != null" >
+        #{articletitle},
+      </if>
+      <if test="articleimg != null" >
+        #{articleimg},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="articlekey != null" >
+        #{articlekey},
+      </if>
+      <if test="staffid != null" >
+        #{staffid},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="articlecontent != null" >
+        #{articlecontent},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_articles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_articles
+    <set >
+      <if test="record.articleid != null" >
+        articleId = #{record.articleid},
+      </if>
+      <if test="record.catid != null" >
+        catId = #{record.catid},
+      </if>
+      <if test="record.articletitle != null" >
+        articleTitle = #{record.articletitle},
+      </if>
+      <if test="record.articleimg != null" >
+        articleImg = #{record.articleimg},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.articlekey != null" >
+        articleKey = #{record.articlekey},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.articlecontent != null" >
+        articleContent = #{record.articlecontent},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_articles
+    set articleId = #{record.articleid},
+      catId = #{record.catid},
+      articleTitle = #{record.articletitle},
+      articleImg = #{record.articleimg},
+      isShow = #{record.isshow},
+      articleKey = #{record.articlekey},
+      staffId = #{record.staffid},
+      createTime = #{record.createtime},
+      articleContent = #{record.articlecontent}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_articles
+    set articleId = #{record.articleid},
+      catId = #{record.catid},
+      articleTitle = #{record.articletitle},
+      articleImg = #{record.articleimg},
+      isShow = #{record.isshow},
+      articleKey = #{record.articlekey},
+      staffId = #{record.staffid},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Article" >
+    update cs_articles
+    <set >
+      <if test="catid != null" >
+        catId = #{catid},
+      </if>
+      <if test="articletitle != null" >
+        articleTitle = #{articletitle},
+      </if>
+      <if test="articleimg != null" >
+        articleImg = #{articleimg},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="articlekey != null" >
+        articleKey = #{articlekey},
+      </if>
+      <if test="staffid != null" >
+        staffId = #{staffid},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="articlecontent != null" >
+        articleContent = #{articlecontent},
+      </if>
+    </set>
+    where articleId = #{articleid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Article" >
+    update cs_articles
+    set catId = #{catid},
+      articleTitle = #{articletitle},
+      articleImg = #{articleimg},
+      isShow = #{isshow},
+      articleKey = #{articlekey},
+      staffId = #{staffid},
+      createTime = #{createtime},
+      articleContent = #{articlecontent}
+    where articleId = #{articleid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Article" >
+    update cs_articles
+    set catId = #{catid},
+      articleTitle = #{articletitle},
+      articleImg = #{articleimg},
+      isShow = #{isshow},
+      articleKey = #{articlekey},
+      staffId = #{staffid},
+      createTime = #{createtime}
+    where articleId = #{articleid}
+  </update>
+</mapper>

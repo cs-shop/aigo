@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsPackageMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsPackage" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="packageId" property="packageid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="diffPrice" property="diffprice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.packageid != null" >
+         and packageId = #{condition.packageid}
+      </if>
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.diffprice != null" >
+         and diffPrice = #{condition.diffprice}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, packageId, goodsId, diffPrice
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_packages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_goods_packages
+    where Id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_packages
+    where Id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_packages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsPackage" >
+    insert into cs_goods_packages (Id, packageId, goodsId, diffPrice)
+    values (#{id}, #{packageid}, #{goodsid}, #{diffprice})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsPackage" >
+    insert into cs_goods_packages
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="packageid != null" >
+        packageId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="diffprice != null" >
+        diffPrice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="packageid != null" >
+        #{packageid},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="diffprice != null" >
+        #{diffprice},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_packages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_packages
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id},
+      </if>
+      <if test="record.packageid != null" >
+        packageId = #{record.packageid},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.diffprice != null" >
+        diffPrice = #{record.diffprice},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_packages
+    set Id = #{record.id},
+      packageId = #{record.packageid},
+      goodsId = #{record.goodsid},
+      diffPrice = #{record.diffprice}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsPackage" >
+    update cs_goods_packages
+    <set >
+      <if test="packageid != null" >
+        packageId = #{packageid},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="diffprice != null" >
+        diffPrice = #{diffprice},
+      </if>
+    </set>
+    where Id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsPackage" >
+    update cs_goods_packages
+    set packageId = #{packageid},
+      goodsId = #{goodsid},
+      diffPrice = #{diffprice}
+    where Id = #{id}
+  </update>
+</mapper>

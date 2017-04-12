@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.PaymentsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Payments" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="payCode" property="paycode" jdbcType="VARCHAR" />
+    <result column="payName" property="payname" jdbcType="VARCHAR" />
+    <result column="payOrder" property="payorder" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="TINYINT" />
+    <result column="isOnline" property="isonline" jdbcType="TINYINT" />
+    <result column="payFor" property="payfor" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.PaymentsWithBLOBs" extends="BaseResultMap" >
+    <result column="payConfig" property="payconfig" jdbcType="LONGVARCHAR" />
+      </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.paycode != null" >
+         and payCode = #{condition.paycode}
+      </if>
+      <if test="condition.payname != null" >
+         and payName = #{condition.payname}
+      </if>
+      <if test="condition.payorder != null" >
+         and payOrder = #{condition.payorder}
+      </if>
+      <if test="condition.enabled != null" >
+         and enabled = #{condition.enabled}
+      </if>
+      <if test="condition.isonline != null" >
+         and isOnline = #{condition.isonline}
+      </if>
+      <if test="condition.payfor != null" >
+         and payFor = #{condition.payfor}
+      </if>
+      <if test="condition.paydesc != null" >
+         and payDesc = #{condition.paydesc}
+      </if>
+      <if test="condition.payconfig != null" >
+         and payConfig = #{condition.payconfig}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, payCode, payName, payOrder, enabled, isOnline, payFor
+  </sql>
+  <sql id="Blob_Column_List" >
+    payDesc, payConfig
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_payments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_payments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_payments
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_payments
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_payments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.PaymentsWithBLOBs" >
+    insert into cs_payments (id, payCode, payName, payOrder, enabled, isOnline, payFor, 
+      payDesc, payConfig)
+    values (#{id}, #{paycode}, #{payname}, #{payorder}, #{enabled}, #{isonline}, #{payfor}, 
+      #{paydesc}, #{payconfig})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.PaymentsWithBLOBs" >
+    insert into cs_payments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="paycode != null" >
+        payCode,
+      </if>
+      <if test="payname != null" >
+        payName,
+      </if>
+      <if test="payorder != null" >
+        payOrder,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="isonline != null" >
+        isOnline,
+      </if>
+      <if test="payfor != null" >
+        payFor,
+      </if>
+      <if test="paydesc != null" >
+        payDesc,
+      </if>
+      <if test="payconfig != null" >
+        payConfig,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="paycode != null" >
+        #{paycode},
+      </if>
+      <if test="payname != null" >
+        #{payname},
+      </if>
+      <if test="payorder != null" >
+        #{payorder},
+      </if>
+      <if test="enabled != null" >
+        #{enabled},
+      </if>
+      <if test="isonline != null" >
+        #{isonline},
+      </if>
+      <if test="payfor != null" >
+        #{payfor},
+      </if>
+      <if test="paydesc != null" >
+        #{paydesc},
+      </if>
+      <if test="payconfig != null" >
+        #{payconfig},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_payments
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_payments
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.paycode != null" >
+        payCode = #{record.paycode},
+      </if>
+      <if test="record.payname != null" >
+        payName = #{record.payname},
+      </if>
+      <if test="record.payorder != null" >
+        payOrder = #{record.payorder},
+      </if>
+      <if test="record.enabled != null" >
+        enabled = #{record.enabled},
+      </if>
+      <if test="record.isonline != null" >
+        isOnline = #{record.isonline},
+      </if>
+      <if test="record.payfor != null" >
+        payFor = #{record.payfor},
+      </if>
+      <if test="record.paydesc != null" >
+        payDesc = #{record.paydesc},
+      </if>
+      <if test="record.payconfig != null" >
+        payConfig = #{record.payconfig},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_payments
+    set id = #{record.id},
+      payCode = #{record.paycode},
+      payName = #{record.payname},
+      payOrder = #{record.payorder},
+      enabled = #{record.enabled},
+      isOnline = #{record.isonline},
+      payFor = #{record.payfor},
+      payDesc = #{record.paydesc},
+      payConfig = #{record.payconfig}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_payments
+    set id = #{record.id},
+      payCode = #{record.paycode},
+      payName = #{record.payname},
+      payOrder = #{record.payorder},
+      enabled = #{record.enabled},
+      isOnline = #{record.isonline},
+      payFor = #{record.payfor}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.PaymentsWithBLOBs" >
+    update cs_payments
+    <set >
+      <if test="paycode != null" >
+        payCode = #{paycode},
+      </if>
+      <if test="payname != null" >
+        payName = #{payname},
+      </if>
+      <if test="payorder != null" >
+        payOrder = #{payorder},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled},
+      </if>
+      <if test="isonline != null" >
+        isOnline = #{isonline},
+      </if>
+      <if test="payfor != null" >
+        payFor = #{payfor},
+      </if>
+      <if test="paydesc != null" >
+        payDesc = #{paydesc},
+      </if>
+      <if test="payconfig != null" >
+        payConfig = #{payconfig},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.PaymentsWithBLOBs" >
+    update cs_payments
+    set payCode = #{paycode},
+      payName = #{payname},
+      payOrder = #{payorder},
+      enabled = #{enabled},
+      isOnline = #{isonline},
+      payFor = #{payfor},
+      payDesc = #{paydesc},
+      payConfig = #{payconfig}
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Payments" >
+    update cs_payments
+    set payCode = #{paycode},
+      payName = #{payname},
+      payOrder = #{payorder},
+      enabled = #{enabled},
+      isOnline = #{isonline},
+      payFor = #{payfor}
+    where id = #{id}
+  </update>
+</mapper>

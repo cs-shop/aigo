@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="msgType" property="msgtype" jdbcType="TINYINT" />
+    <result column="sendUserId" property="senduserid" jdbcType="INTEGER" />
+    <result column="receiveUserId" property="receiveuserid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="msgStatus" property="msgstatus" jdbcType="TINYINT" />
+    <result column="msgFlag" property="msgflag" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Message" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.msgtype != null" >
+         and msgType = #{condition.msgtype}
+      </if>
+      <if test="condition.senduserid != null" >
+         and sendUserId = #{condition.senduserid}
+      </if>
+      <if test="condition.receiveuserid != null" >
+         and receiveUserId = #{condition.receiveuserid}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.msgstatus != null" >
+         and msgStatus = #{condition.msgstatus}
+      </if>
+      <if test="condition.msgflag != null" >
+         and msgFlag = #{condition.msgflag}
+      </if>
+      <if test="condition.msgcontent != null" >
+         and msgContent = #{condition.msgcontent}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, msgType, sendUserId, receiveUserId, createTime, msgStatus, msgFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    msgContent
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_messages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_messages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_messages
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_messages
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_messages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Message" >
+    insert into cs_messages (id, msgType, sendUserId, receiveUserId, createTime, msgStatus, 
+      msgFlag, msgContent)
+    values (#{id}, #{msgtype}, #{senduserid}, #{receiveuserid}, #{createtime}, #{msgstatus}, 
+      #{msgflag}, #{msgcontent})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Message" >
+    insert into cs_messages
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="msgtype != null" >
+        msgType,
+      </if>
+      <if test="senduserid != null" >
+        sendUserId,
+      </if>
+      <if test="receiveuserid != null" >
+        receiveUserId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="msgstatus != null" >
+        msgStatus,
+      </if>
+      <if test="msgflag != null" >
+        msgFlag,
+      </if>
+      <if test="msgcontent != null" >
+        msgContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="msgtype != null" >
+        #{msgtype},
+      </if>
+      <if test="senduserid != null" >
+        #{senduserid},
+      </if>
+      <if test="receiveuserid != null" >
+        #{receiveuserid},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="msgstatus != null" >
+        #{msgstatus},
+      </if>
+      <if test="msgflag != null" >
+        #{msgflag},
+      </if>
+      <if test="msgcontent != null" >
+        #{msgcontent},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_messages
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_messages
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.msgtype != null" >
+        msgType = #{record.msgtype},
+      </if>
+      <if test="record.senduserid != null" >
+        sendUserId = #{record.senduserid},
+      </if>
+      <if test="record.receiveuserid != null" >
+        receiveUserId = #{record.receiveuserid},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.msgstatus != null" >
+        msgStatus = #{record.msgstatus},
+      </if>
+      <if test="record.msgflag != null" >
+        msgFlag = #{record.msgflag},
+      </if>
+      <if test="record.msgcontent != null" >
+        msgContent = #{record.msgcontent},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_messages
+    set id = #{record.id},
+      msgType = #{record.msgtype},
+      sendUserId = #{record.senduserid},
+      receiveUserId = #{record.receiveuserid},
+      createTime = #{record.createtime},
+      msgStatus = #{record.msgstatus},
+      msgFlag = #{record.msgflag},
+      msgContent = #{record.msgcontent}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_messages
+    set id = #{record.id},
+      msgType = #{record.msgtype},
+      sendUserId = #{record.senduserid},
+      receiveUserId = #{record.receiveuserid},
+      createTime = #{record.createtime},
+      msgStatus = #{record.msgstatus},
+      msgFlag = #{record.msgflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Message" >
+    update cs_messages
+    <set >
+      <if test="msgtype != null" >
+        msgType = #{msgtype},
+      </if>
+      <if test="senduserid != null" >
+        sendUserId = #{senduserid},
+      </if>
+      <if test="receiveuserid != null" >
+        receiveUserId = #{receiveuserid},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="msgstatus != null" >
+        msgStatus = #{msgstatus},
+      </if>
+      <if test="msgflag != null" >
+        msgFlag = #{msgflag},
+      </if>
+      <if test="msgcontent != null" >
+        msgContent = #{msgcontent},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Message" >
+    update cs_messages
+    set msgType = #{msgtype},
+      sendUserId = #{senduserid},
+      receiveUserId = #{receiveuserid},
+      createTime = #{createtime},
+      msgStatus = #{msgstatus},
+      msgFlag = #{msgflag},
+      msgContent = #{msgcontent}
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Message" >
+    update cs_messages
+    set msgType = #{msgtype},
+      sendUserId = #{senduserid},
+      receiveUserId = #{receiveuserid},
+      createTime = #{createtime},
+      msgStatus = #{msgstatus},
+      msgFlag = #{msgflag}
+    where id = #{id}
+  </update>
+</mapper>

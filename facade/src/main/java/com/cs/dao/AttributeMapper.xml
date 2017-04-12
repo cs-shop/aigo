@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.AttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Attribute" >
+    <id column="attrId" property="attrid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="catId" property="catid" jdbcType="INTEGER" />
+    <result column="attrName" property="attrname" jdbcType="VARCHAR" />
+    <result column="attrType" property="attrtype" jdbcType="TINYINT" />
+    <result column="isPriceAttr" property="ispriceattr" jdbcType="TINYINT" />
+    <result column="attrFlag" property="attrflag" jdbcType="TINYINT" />
+    <result column="attrSort" property="attrsort" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Attribute" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.catid != null" >
+         and catId = #{condition.catid}
+      </if>
+      <if test="condition.attrname != null" >
+         and attrName = #{condition.attrname}
+      </if>
+      <if test="condition.attrtype != null" >
+         and attrType = #{condition.attrtype}
+      </if>
+      <if test="condition.ispriceattr != null" >
+         and isPriceAttr = #{condition.ispriceattr}
+      </if>
+      <if test="condition.attrflag != null" >
+         and attrFlag = #{condition.attrflag}
+      </if>
+      <if test="condition.attrsort != null" >
+         and attrSort = #{condition.attrsort}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.attrcontent != null" >
+         and attrContent = #{condition.attrcontent}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    attrId, shopId, catId, attrName, attrType, isPriceAttr, attrFlag, attrSort, createTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    attrContent
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_attributes
+    where attrId = #{attrid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_attributes
+    where attrId = #{attrid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Attribute" >
+    insert into cs_attributes (attrId, shopId, catId, attrName, attrType, isPriceAttr, 
+      attrFlag, attrSort, createTime, attrContent)
+    values (#{attrid}, #{shopid}, #{catid}, #{attrname}, #{attrtype}, #{ispriceattr}, 
+      #{attrflag}, #{attrsort}, #{createtime}, #{attrcontent})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Attribute" >
+    insert into cs_attributes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attrid != null" >
+        attrId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="catid != null" >
+        catId,
+      </if>
+      <if test="attrname != null" >
+        attrName,
+      </if>
+      <if test="attrtype != null" >
+        attrType,
+      </if>
+      <if test="ispriceattr != null" >
+        isPriceAttr,
+      </if>
+      <if test="attrflag != null" >
+        attrFlag,
+      </if>
+      <if test="attrsort != null" >
+        attrSort,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="attrcontent != null" >
+        attrContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attrid != null" >
+        #{attrid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="catid != null" >
+        #{catid},
+      </if>
+      <if test="attrname != null" >
+        #{attrname},
+      </if>
+      <if test="attrtype != null" >
+        #{attrtype},
+      </if>
+      <if test="ispriceattr != null" >
+        #{ispriceattr},
+      </if>
+      <if test="attrflag != null" >
+        #{attrflag},
+      </if>
+      <if test="attrsort != null" >
+        #{attrsort},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="attrcontent != null" >
+        #{attrcontent},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_attributes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_attributes
+    <set >
+      <if test="record.attrid != null" >
+        attrId = #{record.attrid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.catid != null" >
+        catId = #{record.catid},
+      </if>
+      <if test="record.attrname != null" >
+        attrName = #{record.attrname},
+      </if>
+      <if test="record.attrtype != null" >
+        attrType = #{record.attrtype},
+      </if>
+      <if test="record.ispriceattr != null" >
+        isPriceAttr = #{record.ispriceattr},
+      </if>
+      <if test="record.attrflag != null" >
+        attrFlag = #{record.attrflag},
+      </if>
+      <if test="record.attrsort != null" >
+        attrSort = #{record.attrsort},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.attrcontent != null" >
+        attrContent = #{record.attrcontent},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_attributes
+    set attrId = #{record.attrid},
+      shopId = #{record.shopid},
+      catId = #{record.catid},
+      attrName = #{record.attrname},
+      attrType = #{record.attrtype},
+      isPriceAttr = #{record.ispriceattr},
+      attrFlag = #{record.attrflag},
+      attrSort = #{record.attrsort},
+      createTime = #{record.createtime},
+      attrContent = #{record.attrcontent}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_attributes
+    set attrId = #{record.attrid},
+      shopId = #{record.shopid},
+      catId = #{record.catid},
+      attrName = #{record.attrname},
+      attrType = #{record.attrtype},
+      isPriceAttr = #{record.ispriceattr},
+      attrFlag = #{record.attrflag},
+      attrSort = #{record.attrsort},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Attribute" >
+    update cs_attributes
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="catid != null" >
+        catId = #{catid},
+      </if>
+      <if test="attrname != null" >
+        attrName = #{attrname},
+      </if>
+      <if test="attrtype != null" >
+        attrType = #{attrtype},
+      </if>
+      <if test="ispriceattr != null" >
+        isPriceAttr = #{ispriceattr},
+      </if>
+      <if test="attrflag != null" >
+        attrFlag = #{attrflag},
+      </if>
+      <if test="attrsort != null" >
+        attrSort = #{attrsort},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="attrcontent != null" >
+        attrContent = #{attrcontent},
+      </if>
+    </set>
+    where attrId = #{attrid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Attribute" >
+    update cs_attributes
+    set shopId = #{shopid},
+      catId = #{catid},
+      attrName = #{attrname},
+      attrType = #{attrtype},
+      isPriceAttr = #{ispriceattr},
+      attrFlag = #{attrflag},
+      attrSort = #{attrsort},
+      createTime = #{createtime},
+      attrContent = #{attrcontent}
+    where attrId = #{attrid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Attribute" >
+    update cs_attributes
+    set shopId = #{shopid},
+      catId = #{catid},
+      attrName = #{attrname},
+      attrType = #{attrtype},
+      isPriceAttr = #{ispriceattr},
+      attrFlag = #{attrflag},
+      attrSort = #{attrsort},
+      createTime = #{createtime}
+    where attrId = #{attrid}
+  </update>
+</mapper>

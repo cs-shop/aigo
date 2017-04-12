@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Shop" >
+    <id column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="shopSn" property="shopsn" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="areaId3" property="areaid3" jdbcType="INTEGER" />
+    <result column="goodsCatId1" property="goodscatid1" jdbcType="INTEGER" />
+    <result column="goodsCatId2" property="goodscatid2" jdbcType="INTEGER" />
+    <result column="goodsCatId3" property="goodscatid3" jdbcType="INTEGER" />
+    <result column="isSelf" property="isself" jdbcType="TINYINT" />
+    <result column="shopName" property="shopname" jdbcType="VARCHAR" />
+    <result column="shopCompany" property="shopcompany" jdbcType="VARCHAR" />
+    <result column="shopImg" property="shopimg" jdbcType="VARCHAR" />
+    <result column="shopTel" property="shoptel" jdbcType="VARCHAR" />
+    <result column="shopAddress" property="shopaddress" jdbcType="VARCHAR" />
+    <result column="avgeCostMoney" property="avgecostmoney" jdbcType="DECIMAL" />
+    <result column="deliveryStartMoney" property="deliverystartmoney" jdbcType="DECIMAL" />
+    <result column="deliveryMoney" property="deliverymoney" jdbcType="DECIMAL" />
+    <result column="deliveryFreeMoney" property="deliveryfreemoney" jdbcType="DECIMAL" />
+    <result column="deliveryCostTime" property="deliverycosttime" jdbcType="INTEGER" />
+    <result column="deliveryTime" property="deliverytime" jdbcType="VARCHAR" />
+    <result column="deliveryType" property="deliverytype" jdbcType="TINYINT" />
+    <result column="bankId" property="bankid" jdbcType="INTEGER" />
+    <result column="bankNo" property="bankno" jdbcType="VARCHAR" />
+    <result column="isInvoice" property="isinvoice" jdbcType="TINYINT" />
+    <result column="invoiceRemarks" property="invoiceremarks" jdbcType="VARCHAR" />
+    <result column="serviceStartTime" property="servicestarttime" jdbcType="REAL" />
+    <result column="serviceEndTime" property="serviceendtime" jdbcType="REAL" />
+    <result column="shopStatus" property="shopstatus" jdbcType="TINYINT" />
+    <result column="statusRemarks" property="statusremarks" jdbcType="VARCHAR" />
+    <result column="shopAtive" property="shopative" jdbcType="TINYINT" />
+    <result column="shopFlag" property="shopflag" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="latitude" property="latitude" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="CHAR" />
+    <result column="mapLevel" property="maplevel" jdbcType="INTEGER" />
+    <result column="qqNo" property="qqno" jdbcType="VARCHAR" />
+    <result column="bankUserName" property="bankusername" jdbcType="VARCHAR" />
+    <result column="isDistributAll" property="isdistributall" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopsn != null" >
+         and shopSn = #{condition.shopsn}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.areaid3 != null" >
+         and areaId3 = #{condition.areaid3}
+      </if>
+      <if test="condition.goodscatid1 != null" >
+         and goodsCatId1 = #{condition.goodscatid1}
+      </if>
+      <if test="condition.goodscatid2 != null" >
+         and goodsCatId2 = #{condition.goodscatid2}
+      </if>
+      <if test="condition.goodscatid3 != null" >
+         and goodsCatId3 = #{condition.goodscatid3}
+      </if>
+      <if test="condition.isself != null" >
+         and isSelf = #{condition.isself}
+      </if>
+      <if test="condition.shopname != null" >
+         and shopName = #{condition.shopname}
+      </if>
+      <if test="condition.shopcompany != null" >
+         and shopCompany = #{condition.shopcompany}
+      </if>
+      <if test="condition.shopimg != null" >
+         and shopImg = #{condition.shopimg}
+      </if>
+      <if test="condition.shoptel != null" >
+         and shopTel = #{condition.shoptel}
+      </if>
+      <if test="condition.shopaddress != null" >
+         and shopAddress = #{condition.shopaddress}
+      </if>
+      <if test="condition.avgecostmoney != null" >
+         and avgeCostMoney = #{condition.avgecostmoney}
+      </if>
+      <if test="condition.deliverystartmoney != null" >
+         and deliveryStartMoney = #{condition.deliverystartmoney}
+      </if>
+      <if test="condition.deliverymoney != null" >
+         and deliveryMoney = #{condition.deliverymoney}
+      </if>
+      <if test="condition.deliveryfreemoney != null" >
+         and deliveryFreeMoney = #{condition.deliveryfreemoney}
+      </if>
+      <if test="condition.deliverycosttime != null" >
+         and deliveryCostTime = #{condition.deliverycosttime}
+      </if>
+      <if test="condition.deliverytime != null" >
+         and deliveryTime = #{condition.deliverytime}
+      </if>
+      <if test="condition.deliverytype != null" >
+         and deliveryType = #{condition.deliverytype}
+      </if>
+      <if test="condition.bankid != null" >
+         and bankId = #{condition.bankid}
+      </if>
+      <if test="condition.bankno != null" >
+         and bankNo = #{condition.bankno}
+      </if>
+      <if test="condition.isinvoice != null" >
+         and isInvoice = #{condition.isinvoice}
+      </if>
+      <if test="condition.invoiceremarks != null" >
+         and invoiceRemarks = #{condition.invoiceremarks}
+      </if>
+      <if test="condition.servicestarttime != null" >
+         and serviceStartTime = #{condition.servicestarttime}
+      </if>
+      <if test="condition.serviceendtime != null" >
+         and serviceEndTime = #{condition.serviceendtime}
+      </if>
+      <if test="condition.shopstatus != null" >
+         and shopStatus = #{condition.shopstatus}
+      </if>
+      <if test="condition.statusremarks != null" >
+         and statusRemarks = #{condition.statusremarks}
+      </if>
+      <if test="condition.shopative != null" >
+         and shopAtive = #{condition.shopative}
+      </if>
+      <if test="condition.shopflag != null" >
+         and shopFlag = #{condition.shopflag}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.latitude != null" >
+         and latitude = #{condition.latitude}
+      </if>
+      <if test="condition.longitude != null" >
+         and longitude = #{condition.longitude}
+      </if>
+      <if test="condition.maplevel != null" >
+         and mapLevel = #{condition.maplevel}
+      </if>
+      <if test="condition.qqno != null" >
+         and qqNo = #{condition.qqno}
+      </if>
+      <if test="condition.bankusername != null" >
+         and bankUserName = #{condition.bankusername}
+      </if>
+      <if test="condition.isdistributall != null" >
+         and isDistributAll = #{condition.isdistributall}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    shopId, shopSn, userId, areaId1, areaId2, areaId3, goodsCatId1, goodsCatId2, goodsCatId3, 
+    isSelf, shopName, shopCompany, shopImg, shopTel, shopAddress, avgeCostMoney, deliveryStartMoney, 
+    deliveryMoney, deliveryFreeMoney, deliveryCostTime, deliveryTime, deliveryType, bankId, 
+    bankNo, isInvoice, invoiceRemarks, serviceStartTime, serviceEndTime, shopStatus, 
+    statusRemarks, shopAtive, shopFlag, createTime, latitude, longitude, mapLevel, qqNo, 
+    bankUserName, isDistributAll
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_shops
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_shops
+    where shopId = #{shopid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_shops
+    where shopId = #{shopid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_shops
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Shop" >
+    insert into cs_shops (shopId, shopSn, userId, areaId1, areaId2, areaId3, goodsCatId1, 
+      goodsCatId2, goodsCatId3, isSelf, shopName, shopCompany, shopImg, 
+      shopTel, shopAddress, avgeCostMoney, deliveryStartMoney, deliveryMoney, 
+      deliveryFreeMoney, deliveryCostTime, deliveryTime, deliveryType, bankId, 
+      bankNo, isInvoice, invoiceRemarks, serviceStartTime, serviceEndTime, 
+      shopStatus, statusRemarks, shopAtive, shopFlag, createTime, latitude, 
+      longitude, mapLevel, qqNo, bankUserName, isDistributAll)
+    values (#{shopid}, #{shopsn}, #{userid}, #{areaid1}, #{areaid2}, #{areaid3}, #{goodscatid1}, 
+      #{goodscatid2}, #{goodscatid3}, #{isself}, #{shopname}, #{shopcompany}, #{shopimg}, 
+      #{shoptel}, #{shopaddress}, #{avgecostmoney}, #{deliverystartmoney}, #{deliverymoney}, 
+      #{deliveryfreemoney}, #{deliverycosttime}, #{deliverytime}, #{deliverytype}, #{bankid}, 
+      #{bankno}, #{isinvoice}, #{invoiceremarks}, #{servicestarttime}, #{serviceendtime}, 
+      #{shopstatus}, #{statusremarks}, #{shopative}, #{shopflag}, #{createtime}, #{latitude}, 
+      #{longitude}, #{maplevel}, #{qqno}, #{bankusername}, #{isdistributall})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Shop" >
+    insert into cs_shops
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="shopsn != null" >
+        shopSn,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="areaid3 != null" >
+        areaId3,
+      </if>
+      <if test="goodscatid1 != null" >
+        goodsCatId1,
+      </if>
+      <if test="goodscatid2 != null" >
+        goodsCatId2,
+      </if>
+      <if test="goodscatid3 != null" >
+        goodsCatId3,
+      </if>
+      <if test="isself != null" >
+        isSelf,
+      </if>
+      <if test="shopname != null" >
+        shopName,
+      </if>
+      <if test="shopcompany != null" >
+        shopCompany,
+      </if>
+      <if test="shopimg != null" >
+        shopImg,
+      </if>
+      <if test="shoptel != null" >
+        shopTel,
+      </if>
+      <if test="shopaddress != null" >
+        shopAddress,
+      </if>
+      <if test="avgecostmoney != null" >
+        avgeCostMoney,
+      </if>
+      <if test="deliverystartmoney != null" >
+        deliveryStartMoney,
+      </if>
+      <if test="deliverymoney != null" >
+        deliveryMoney,
+      </if>
+      <if test="deliveryfreemoney != null" >
+        deliveryFreeMoney,
+      </if>
+      <if test="deliverycosttime != null" >
+        deliveryCostTime,
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime,
+      </if>
+      <if test="deliverytype != null" >
+        deliveryType,
+      </if>
+      <if test="bankid != null" >
+        bankId,
+      </if>
+      <if test="bankno != null" >
+        bankNo,
+      </if>
+      <if test="isinvoice != null" >
+        isInvoice,
+      </if>
+      <if test="invoiceremarks != null" >
+        invoiceRemarks,
+      </if>
+      <if test="servicestarttime != null" >
+        serviceStartTime,
+      </if>
+      <if test="serviceendtime != null" >
+        serviceEndTime,
+      </if>
+      <if test="shopstatus != null" >
+        shopStatus,
+      </if>
+      <if test="statusremarks != null" >
+        statusRemarks,
+      </if>
+      <if test="shopative != null" >
+        shopAtive,
+      </if>
+      <if test="shopflag != null" >
+        shopFlag,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="maplevel != null" >
+        mapLevel,
+      </if>
+      <if test="qqno != null" >
+        qqNo,
+      </if>
+      <if test="bankusername != null" >
+        bankUserName,
+      </if>
+      <if test="isdistributall != null" >
+        isDistributAll,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="shopsn != null" >
+        #{shopsn},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3},
+      </if>
+      <if test="goodscatid1 != null" >
+        #{goodscatid1},
+      </if>
+      <if test="goodscatid2 != null" >
+        #{goodscatid2},
+      </if>
+      <if test="goodscatid3 != null" >
+        #{goodscatid3},
+      </if>
+      <if test="isself != null" >
+        #{isself},
+      </if>
+      <if test="shopname != null" >
+        #{shopname},
+      </if>
+      <if test="shopcompany != null" >
+        #{shopcompany},
+      </if>
+      <if test="shopimg != null" >
+        #{shopimg},
+      </if>
+      <if test="shoptel != null" >
+        #{shoptel},
+      </if>
+      <if test="shopaddress != null" >
+        #{shopaddress},
+      </if>
+      <if test="avgecostmoney != null" >
+        #{avgecostmoney},
+      </if>
+      <if test="deliverystartmoney != null" >
+        #{deliverystartmoney},
+      </if>
+      <if test="deliverymoney != null" >
+        #{deliverymoney},
+      </if>
+      <if test="deliveryfreemoney != null" >
+        #{deliveryfreemoney},
+      </if>
+      <if test="deliverycosttime != null" >
+        #{deliverycosttime},
+      </if>
+      <if test="deliverytime != null" >
+        #{deliverytime},
+      </if>
+      <if test="deliverytype != null" >
+        #{deliverytype},
+      </if>
+      <if test="bankid != null" >
+        #{bankid},
+      </if>
+      <if test="bankno != null" >
+        #{bankno},
+      </if>
+      <if test="isinvoice != null" >
+        #{isinvoice},
+      </if>
+      <if test="invoiceremarks != null" >
+        #{invoiceremarks},
+      </if>
+      <if test="servicestarttime != null" >
+        #{servicestarttime},
+      </if>
+      <if test="serviceendtime != null" >
+        #{serviceendtime},
+      </if>
+      <if test="shopstatus != null" >
+        #{shopstatus},
+      </if>
+      <if test="statusremarks != null" >
+        #{statusremarks},
+      </if>
+      <if test="shopative != null" >
+        #{shopative},
+      </if>
+      <if test="shopflag != null" >
+        #{shopflag},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="latitude != null" >
+        #{latitude},
+      </if>
+      <if test="longitude != null" >
+        #{longitude},
+      </if>
+      <if test="maplevel != null" >
+        #{maplevel},
+      </if>
+      <if test="qqno != null" >
+        #{qqno},
+      </if>
+      <if test="bankusername != null" >
+        #{bankusername},
+      </if>
+      <if test="isdistributall != null" >
+        #{isdistributall},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_shops
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_shops
+    <set >
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.shopsn != null" >
+        shopSn = #{record.shopsn},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaId3 = #{record.areaid3},
+      </if>
+      <if test="record.goodscatid1 != null" >
+        goodsCatId1 = #{record.goodscatid1},
+      </if>
+      <if test="record.goodscatid2 != null" >
+        goodsCatId2 = #{record.goodscatid2},
+      </if>
+      <if test="record.goodscatid3 != null" >
+        goodsCatId3 = #{record.goodscatid3},
+      </if>
+      <if test="record.isself != null" >
+        isSelf = #{record.isself},
+      </if>
+      <if test="record.shopname != null" >
+        shopName = #{record.shopname},
+      </if>
+      <if test="record.shopcompany != null" >
+        shopCompany = #{record.shopcompany},
+      </if>
+      <if test="record.shopimg != null" >
+        shopImg = #{record.shopimg},
+      </if>
+      <if test="record.shoptel != null" >
+        shopTel = #{record.shoptel},
+      </if>
+      <if test="record.shopaddress != null" >
+        shopAddress = #{record.shopaddress},
+      </if>
+      <if test="record.avgecostmoney != null" >
+        avgeCostMoney = #{record.avgecostmoney},
+      </if>
+      <if test="record.deliverystartmoney != null" >
+        deliveryStartMoney = #{record.deliverystartmoney},
+      </if>
+      <if test="record.deliverymoney != null" >
+        deliveryMoney = #{record.deliverymoney},
+      </if>
+      <if test="record.deliveryfreemoney != null" >
+        deliveryFreeMoney = #{record.deliveryfreemoney},
+      </if>
+      <if test="record.deliverycosttime != null" >
+        deliveryCostTime = #{record.deliverycosttime},
+      </if>
+      <if test="record.deliverytime != null" >
+        deliveryTime = #{record.deliverytime},
+      </if>
+      <if test="record.deliverytype != null" >
+        deliveryType = #{record.deliverytype},
+      </if>
+      <if test="record.bankid != null" >
+        bankId = #{record.bankid},
+      </if>
+      <if test="record.bankno != null" >
+        bankNo = #{record.bankno},
+      </if>
+      <if test="record.isinvoice != null" >
+        isInvoice = #{record.isinvoice},
+      </if>
+      <if test="record.invoiceremarks != null" >
+        invoiceRemarks = #{record.invoiceremarks},
+      </if>
+      <if test="record.servicestarttime != null" >
+        serviceStartTime = #{record.servicestarttime},
+      </if>
+      <if test="record.serviceendtime != null" >
+        serviceEndTime = #{record.serviceendtime},
+      </if>
+      <if test="record.shopstatus != null" >
+        shopStatus = #{record.shopstatus},
+      </if>
+      <if test="record.statusremarks != null" >
+        statusRemarks = #{record.statusremarks},
+      </if>
+      <if test="record.shopative != null" >
+        shopAtive = #{record.shopative},
+      </if>
+      <if test="record.shopflag != null" >
+        shopFlag = #{record.shopflag},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude},
+      </if>
+      <if test="record.maplevel != null" >
+        mapLevel = #{record.maplevel},
+      </if>
+      <if test="record.qqno != null" >
+        qqNo = #{record.qqno},
+      </if>
+      <if test="record.bankusername != null" >
+        bankUserName = #{record.bankusername},
+      </if>
+      <if test="record.isdistributall != null" >
+        isDistributAll = #{record.isdistributall},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_shops
+    set shopId = #{record.shopid},
+      shopSn = #{record.shopsn},
+      userId = #{record.userid},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      areaId3 = #{record.areaid3},
+      goodsCatId1 = #{record.goodscatid1},
+      goodsCatId2 = #{record.goodscatid2},
+      goodsCatId3 = #{record.goodscatid3},
+      isSelf = #{record.isself},
+      shopName = #{record.shopname},
+      shopCompany = #{record.shopcompany},
+      shopImg = #{record.shopimg},
+      shopTel = #{record.shoptel},
+      shopAddress = #{record.shopaddress},
+      avgeCostMoney = #{record.avgecostmoney},
+      deliveryStartMoney = #{record.deliverystartmoney},
+      deliveryMoney = #{record.deliverymoney},
+      deliveryFreeMoney = #{record.deliveryfreemoney},
+      deliveryCostTime = #{record.deliverycosttime},
+      deliveryTime = #{record.deliverytime},
+      deliveryType = #{record.deliverytype},
+      bankId = #{record.bankid},
+      bankNo = #{record.bankno},
+      isInvoice = #{record.isinvoice},
+      invoiceRemarks = #{record.invoiceremarks},
+      serviceStartTime = #{record.servicestarttime},
+      serviceEndTime = #{record.serviceendtime},
+      shopStatus = #{record.shopstatus},
+      statusRemarks = #{record.statusremarks},
+      shopAtive = #{record.shopative},
+      shopFlag = #{record.shopflag},
+      createTime = #{record.createtime},
+      latitude = #{record.latitude},
+      longitude = #{record.longitude},
+      mapLevel = #{record.maplevel},
+      qqNo = #{record.qqno},
+      bankUserName = #{record.bankusername},
+      isDistributAll = #{record.isdistributall}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Shop" >
+    update cs_shops
+    <set >
+      <if test="shopsn != null" >
+        shopSn = #{shopsn},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="areaid3 != null" >
+        areaId3 = #{areaid3},
+      </if>
+      <if test="goodscatid1 != null" >
+        goodsCatId1 = #{goodscatid1},
+      </if>
+      <if test="goodscatid2 != null" >
+        goodsCatId2 = #{goodscatid2},
+      </if>
+      <if test="goodscatid3 != null" >
+        goodsCatId3 = #{goodscatid3},
+      </if>
+      <if test="isself != null" >
+        isSelf = #{isself},
+      </if>
+      <if test="shopname != null" >
+        shopName = #{shopname},
+      </if>
+      <if test="shopcompany != null" >
+        shopCompany = #{shopcompany},
+      </if>
+      <if test="shopimg != null" >
+        shopImg = #{shopimg},
+      </if>
+      <if test="shoptel != null" >
+        shopTel = #{shoptel},
+      </if>
+      <if test="shopaddress != null" >
+        shopAddress = #{shopaddress},
+      </if>
+      <if test="avgecostmoney != null" >
+        avgeCostMoney = #{avgecostmoney},
+      </if>
+      <if test="deliverystartmoney != null" >
+        deliveryStartMoney = #{deliverystartmoney},
+      </if>
+      <if test="deliverymoney != null" >
+        deliveryMoney = #{deliverymoney},
+      </if>
+      <if test="deliveryfreemoney != null" >
+        deliveryFreeMoney = #{deliveryfreemoney},
+      </if>
+      <if test="deliverycosttime != null" >
+        deliveryCostTime = #{deliverycosttime},
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime = #{deliverytime},
+      </if>
+      <if test="deliverytype != null" >
+        deliveryType = #{deliverytype},
+      </if>
+      <if test="bankid != null" >
+        bankId = #{bankid},
+      </if>
+      <if test="bankno != null" >
+        bankNo = #{bankno},
+      </if>
+      <if test="isinvoice != null" >
+        isInvoice = #{isinvoice},
+      </if>
+      <if test="invoiceremarks != null" >
+        invoiceRemarks = #{invoiceremarks},
+      </if>
+      <if test="servicestarttime != null" >
+        serviceStartTime = #{servicestarttime},
+      </if>
+      <if test="serviceendtime != null" >
+        serviceEndTime = #{serviceendtime},
+      </if>
+      <if test="shopstatus != null" >
+        shopStatus = #{shopstatus},
+      </if>
+      <if test="statusremarks != null" >
+        statusRemarks = #{statusremarks},
+      </if>
+      <if test="shopative != null" >
+        shopAtive = #{shopative},
+      </if>
+      <if test="shopflag != null" >
+        shopFlag = #{shopflag},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude},
+      </if>
+      <if test="maplevel != null" >
+        mapLevel = #{maplevel},
+      </if>
+      <if test="qqno != null" >
+        qqNo = #{qqno},
+      </if>
+      <if test="bankusername != null" >
+        bankUserName = #{bankusername},
+      </if>
+      <if test="isdistributall != null" >
+        isDistributAll = #{isdistributall},
+      </if>
+    </set>
+    where shopId = #{shopid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Shop" >
+    update cs_shops
+    set shopSn = #{shopsn},
+      userId = #{userid},
+      areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      areaId3 = #{areaid3},
+      goodsCatId1 = #{goodscatid1},
+      goodsCatId2 = #{goodscatid2},
+      goodsCatId3 = #{goodscatid3},
+      isSelf = #{isself},
+      shopName = #{shopname},
+      shopCompany = #{shopcompany},
+      shopImg = #{shopimg},
+      shopTel = #{shoptel},
+      shopAddress = #{shopaddress},
+      avgeCostMoney = #{avgecostmoney},
+      deliveryStartMoney = #{deliverystartmoney},
+      deliveryMoney = #{deliverymoney},
+      deliveryFreeMoney = #{deliveryfreemoney},
+      deliveryCostTime = #{deliverycosttime},
+      deliveryTime = #{deliverytime},
+      deliveryType = #{deliverytype},
+      bankId = #{bankid},
+      bankNo = #{bankno},
+      isInvoice = #{isinvoice},
+      invoiceRemarks = #{invoiceremarks},
+      serviceStartTime = #{servicestarttime},
+      serviceEndTime = #{serviceendtime},
+      shopStatus = #{shopstatus},
+      statusRemarks = #{statusremarks},
+      shopAtive = #{shopative},
+      shopFlag = #{shopflag},
+      createTime = #{createtime},
+      latitude = #{latitude},
+      longitude = #{longitude},
+      mapLevel = #{maplevel},
+      qqNo = #{qqno},
+      bankUserName = #{bankusername},
+      isDistributAll = #{isdistributall}
+    where shopId = #{shopid}
+  </update>
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogOperateMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogOperate" >
+    <id column="operateId" property="operateid" jdbcType="INTEGER" />
+    <result column="staffId" property="staffid" jdbcType="INTEGER" />
+    <result column="operateTime" property="operatetime" jdbcType="TIMESTAMP" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="operateURI" property="operateuri" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.LogOperate" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.staffid != null" >
+         and staffId = #{condition.staffid}
+      </if>
+      <if test="condition.operatetime != null" >
+         and operateTime = #{condition.operatetime}
+      </if>
+      <if test="condition.module != null" >
+         and module = #{condition.module}
+      </if>
+      <if test="condition.operateuri != null" >
+         and operateURI = #{condition.operateuri}
+      </if>
+      <if test="condition.content != null" >
+         and content = #{condition.content}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    operateId, staffId, operateTime, module, operateURI
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_log_operates
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_operates
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_log_operates
+    where operateId = #{operateid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_operates
+    where operateId = #{operateid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_operates
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogOperate" >
+    insert into cs_log_operates (operateId, staffId, operateTime, module, operateURI, content
+      )
+    values (#{operateid}, #{staffid}, #{operatetime}, #{module}, #{operateuri}, #{content}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogOperate" >
+    insert into cs_log_operates
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operateid != null" >
+        operateId,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="operatetime != null" >
+        operateTime,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="operateuri != null" >
+        operateURI,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operateid != null" >
+        #{operateid},
+      </if>
+      <if test="staffid != null" >
+        #{staffid},
+      </if>
+      <if test="operatetime != null" >
+        #{operatetime},
+      </if>
+      <if test="module != null" >
+        #{module},
+      </if>
+      <if test="operateuri != null" >
+        #{operateuri},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_operates
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_operates
+    <set >
+      <if test="record.operateid != null" >
+        operateId = #{record.operateid},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid},
+      </if>
+      <if test="record.operatetime != null" >
+        operateTime = #{record.operatetime},
+      </if>
+      <if test="record.module != null" >
+        module = #{record.module},
+      </if>
+      <if test="record.operateuri != null" >
+        operateURI = #{record.operateuri},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_log_operates
+    set operateId = #{record.operateid},
+      staffId = #{record.staffid},
+      operateTime = #{record.operatetime},
+      module = #{record.module},
+      operateURI = #{record.operateuri},
+      content = #{record.content}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_operates
+    set operateId = #{record.operateid},
+      staffId = #{record.staffid},
+      operateTime = #{record.operatetime},
+      module = #{record.module},
+      operateURI = #{record.operateuri}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogOperate" >
+    update cs_log_operates
+    <set >
+      <if test="staffid != null" >
+        staffId = #{staffid},
+      </if>
+      <if test="operatetime != null" >
+        operateTime = #{operatetime},
+      </if>
+      <if test="module != null" >
+        module = #{module},
+      </if>
+      <if test="operateuri != null" >
+        operateURI = #{operateuri},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+    </set>
+    where operateId = #{operateid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.LogOperate" >
+    update cs_log_operates
+    set staffId = #{staffid},
+      operateTime = #{operatetime},
+      module = #{module},
+      operateURI = #{operateuri},
+      content = #{content}
+    where operateId = #{operateid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogOperate" >
+    update cs_log_operates
+    set staffId = #{staffid},
+      operateTime = #{operatetime},
+      module = #{module},
+      operateURI = #{operateuri}
+    where operateId = #{operateid}
+  </update>
+</mapper>

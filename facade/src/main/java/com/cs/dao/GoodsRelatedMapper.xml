@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.GoodsRelatedMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.GoodsRelated" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="relatedGoodsId" property="relatedgoodsid" jdbcType="INTEGER" />
+    <result column="relatedType" property="relatedtype" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.goodsid != null" >
+         and goodsId = #{condition.goodsid}
+      </if>
+      <if test="condition.relatedgoodsid != null" >
+         and relatedGoodsId = #{condition.relatedgoodsid}
+      </if>
+      <if test="condition.relatedtype != null" >
+         and relatedType = #{condition.relatedtype}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goodsId, relatedGoodsId, relatedType
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_goods_relateds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_goods_relateds
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_goods_relateds
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_goods_relateds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.GoodsRelated" >
+    insert into cs_goods_relateds (id, goodsId, relatedGoodsId, relatedType)
+    values (#{id}, #{goodsid}, #{relatedgoodsid}, #{relatedtype})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.GoodsRelated" >
+    insert into cs_goods_relateds
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="relatedgoodsid != null" >
+        relatedGoodsId,
+      </if>
+      <if test="relatedtype != null" >
+        relatedType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid},
+      </if>
+      <if test="relatedgoodsid != null" >
+        #{relatedgoodsid},
+      </if>
+      <if test="relatedtype != null" >
+        #{relatedtype},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_goods_relateds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_goods_relateds
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.goodsid != null" >
+        goodsId = #{record.goodsid},
+      </if>
+      <if test="record.relatedgoodsid != null" >
+        relatedGoodsId = #{record.relatedgoodsid},
+      </if>
+      <if test="record.relatedtype != null" >
+        relatedType = #{record.relatedtype},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_goods_relateds
+    set id = #{record.id},
+      goodsId = #{record.goodsid},
+      relatedGoodsId = #{record.relatedgoodsid},
+      relatedType = #{record.relatedtype}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.GoodsRelated" >
+    update cs_goods_relateds
+    <set >
+      <if test="goodsid != null" >
+        goodsId = #{goodsid},
+      </if>
+      <if test="relatedgoodsid != null" >
+        relatedGoodsId = #{relatedgoodsid},
+      </if>
+      <if test="relatedtype != null" >
+        relatedType = #{relatedtype},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.GoodsRelated" >
+    update cs_goods_relateds
+    set goodsId = #{goodsid},
+      relatedGoodsId = #{relatedgoodsid},
+      relatedType = #{relatedtype}
+    where id = #{id}
+  </update>
+</mapper>

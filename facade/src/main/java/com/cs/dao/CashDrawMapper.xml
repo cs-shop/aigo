@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CashDrawMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.CashDraw" >
+    <id column="cashId" property="cashid" jdbcType="INTEGER" />
+    <result column="targetType" property="targettype" jdbcType="TINYINT" />
+    <result column="targetId" property="targetid" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="accType" property="acctype" jdbcType="TINYINT" />
+    <result column="accTargetId" property="acctargetid" jdbcType="VARCHAR" />
+    <result column="accNo" property="accno" jdbcType="VARCHAR" />
+    <result column="accUser" property="accuser" jdbcType="VARCHAR" />
+    <result column="cashSatus" property="cashsatus" jdbcType="TINYINT" />
+    <result column="cashRemarks" property="cashremarks" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="handleTime" property="handletime" jdbcType="TIMESTAMP" />
+    <result column="cashConfigId" property="cashconfigid" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.targettype != null" >
+         and targetType = #{condition.targettype}
+      </if>
+      <if test="condition.targetid != null" >
+         and targetId = #{condition.targetid}
+      </if>
+      <if test="condition.money != null" >
+         and money = #{condition.money}
+      </if>
+      <if test="condition.acctype != null" >
+         and accType = #{condition.acctype}
+      </if>
+      <if test="condition.acctargetid != null" >
+         and accTargetId = #{condition.acctargetid}
+      </if>
+      <if test="condition.accno != null" >
+         and accNo = #{condition.accno}
+      </if>
+      <if test="condition.accuser != null" >
+         and accUser = #{condition.accuser}
+      </if>
+      <if test="condition.cashsatus != null" >
+         and cashSatus = #{condition.cashsatus}
+      </if>
+      <if test="condition.cashremarks != null" >
+         and cashRemarks = #{condition.cashremarks}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.handletime != null" >
+         and handleTime = #{condition.handletime}
+      </if>
+      <if test="condition.cashconfigid != null" >
+         and cashConfigId = #{condition.cashconfigid}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    cashId, targetType, targetId, money, accType, accTargetId, accNo, accUser, cashSatus, 
+    cashRemarks, createTime, handleTime, cashConfigId, areaId2
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_cash_draws
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_cash_draws
+    where cashId = #{cashid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_cash_draws
+    where cashId = #{cashid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_cash_draws
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.CashDraw" >
+    insert into cs_cash_draws (cashId, targetType, targetId, money, accType, accTargetId, 
+      accNo, accUser, cashSatus, cashRemarks, createTime, handleTime, 
+      cashConfigId, areaId2)
+    values (#{cashid}, #{targettype}, #{targetid}, #{money}, #{acctype}, #{acctargetid}, 
+      #{accno}, #{accuser}, #{cashsatus}, #{cashremarks}, #{createtime}, #{handletime}, 
+      #{cashconfigid}, #{areaid2})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.CashDraw" >
+    insert into cs_cash_draws
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cashid != null" >
+        cashId,
+      </if>
+      <if test="targettype != null" >
+        targetType,
+      </if>
+      <if test="targetid != null" >
+        targetId,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="acctype != null" >
+        accType,
+      </if>
+      <if test="acctargetid != null" >
+        accTargetId,
+      </if>
+      <if test="accno != null" >
+        accNo,
+      </if>
+      <if test="accuser != null" >
+        accUser,
+      </if>
+      <if test="cashsatus != null" >
+        cashSatus,
+      </if>
+      <if test="cashremarks != null" >
+        cashRemarks,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="handletime != null" >
+        handleTime,
+      </if>
+      <if test="cashconfigid != null" >
+        cashConfigId,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cashid != null" >
+        #{cashid},
+      </if>
+      <if test="targettype != null" >
+        #{targettype},
+      </if>
+      <if test="targetid != null" >
+        #{targetid},
+      </if>
+      <if test="money != null" >
+        #{money},
+      </if>
+      <if test="acctype != null" >
+        #{acctype},
+      </if>
+      <if test="acctargetid != null" >
+        #{acctargetid},
+      </if>
+      <if test="accno != null" >
+        #{accno},
+      </if>
+      <if test="accuser != null" >
+        #{accuser},
+      </if>
+      <if test="cashsatus != null" >
+        #{cashsatus},
+      </if>
+      <if test="cashremarks != null" >
+        #{cashremarks},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="handletime != null" >
+        #{handletime},
+      </if>
+      <if test="cashconfigid != null" >
+        #{cashconfigid},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_cash_draws
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_cash_draws
+    <set >
+      <if test="record.cashid != null" >
+        cashId = #{record.cashid},
+      </if>
+      <if test="record.targettype != null" >
+        targetType = #{record.targettype},
+      </if>
+      <if test="record.targetid != null" >
+        targetId = #{record.targetid},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money},
+      </if>
+      <if test="record.acctype != null" >
+        accType = #{record.acctype},
+      </if>
+      <if test="record.acctargetid != null" >
+        accTargetId = #{record.acctargetid},
+      </if>
+      <if test="record.accno != null" >
+        accNo = #{record.accno},
+      </if>
+      <if test="record.accuser != null" >
+        accUser = #{record.accuser},
+      </if>
+      <if test="record.cashsatus != null" >
+        cashSatus = #{record.cashsatus},
+      </if>
+      <if test="record.cashremarks != null" >
+        cashRemarks = #{record.cashremarks},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.handletime != null" >
+        handleTime = #{record.handletime},
+      </if>
+      <if test="record.cashconfigid != null" >
+        cashConfigId = #{record.cashconfigid},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_cash_draws
+    set cashId = #{record.cashid},
+      targetType = #{record.targettype},
+      targetId = #{record.targetid},
+      money = #{record.money},
+      accType = #{record.acctype},
+      accTargetId = #{record.acctargetid},
+      accNo = #{record.accno},
+      accUser = #{record.accuser},
+      cashSatus = #{record.cashsatus},
+      cashRemarks = #{record.cashremarks},
+      createTime = #{record.createtime},
+      handleTime = #{record.handletime},
+      cashConfigId = #{record.cashconfigid},
+      areaId2 = #{record.areaid2}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.CashDraw" >
+    update cs_cash_draws
+    <set >
+      <if test="targettype != null" >
+        targetType = #{targettype},
+      </if>
+      <if test="targetid != null" >
+        targetId = #{targetid},
+      </if>
+      <if test="money != null" >
+        money = #{money},
+      </if>
+      <if test="acctype != null" >
+        accType = #{acctype},
+      </if>
+      <if test="acctargetid != null" >
+        accTargetId = #{acctargetid},
+      </if>
+      <if test="accno != null" >
+        accNo = #{accno},
+      </if>
+      <if test="accuser != null" >
+        accUser = #{accuser},
+      </if>
+      <if test="cashsatus != null" >
+        cashSatus = #{cashsatus},
+      </if>
+      <if test="cashremarks != null" >
+        cashRemarks = #{cashremarks},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="handletime != null" >
+        handleTime = #{handletime},
+      </if>
+      <if test="cashconfigid != null" >
+        cashConfigId = #{cashconfigid},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+    </set>
+    where cashId = #{cashid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.CashDraw" >
+    update cs_cash_draws
+    set targetType = #{targettype},
+      targetId = #{targetid},
+      money = #{money},
+      accType = #{acctype},
+      accTargetId = #{acctargetid},
+      accNo = #{accno},
+      accUser = #{accuser},
+      cashSatus = #{cashsatus},
+      cashRemarks = #{cashremarks},
+      createTime = #{createtime},
+      handleTime = #{handletime},
+      cashConfigId = #{cashconfigid},
+      areaId2 = #{areaid2}
+    where cashId = #{cashid}
+  </update>
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.OrderRemindMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.OrderRemind" >
+    <id column="remindId" property="remindid" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="remindType" property="remindtype" jdbcType="TINYINT" />
+    <result column="userType" property="usertype" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.orderid != null" >
+         and orderId = #{condition.orderid}
+      </if>
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.remindtype != null" >
+         and remindType = #{condition.remindtype}
+      </if>
+      <if test="condition.usertype != null" >
+         and userType = #{condition.usertype}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    remindId, orderId, userId, shopId, remindType, userType, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_order_reminds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_order_reminds
+    where remindId = #{remindid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_order_reminds
+    where remindId = #{remindid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_order_reminds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.OrderRemind" >
+    insert into cs_order_reminds (remindId, orderId, userId, shopId, remindType, userType, 
+      createTime)
+    values (#{remindid}, #{orderid}, #{userid}, #{shopid}, #{remindtype}, #{usertype}, 
+      #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.OrderRemind" >
+    insert into cs_order_reminds
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="remindid != null" >
+        remindId,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="remindtype != null" >
+        remindType,
+      </if>
+      <if test="usertype != null" >
+        userType,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="remindid != null" >
+        #{remindid},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="remindtype != null" >
+        #{remindtype},
+      </if>
+      <if test="usertype != null" >
+        #{usertype},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_order_reminds
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_order_reminds
+    <set >
+      <if test="record.remindid != null" >
+        remindId = #{record.remindid},
+      </if>
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.remindtype != null" >
+        remindType = #{record.remindtype},
+      </if>
+      <if test="record.usertype != null" >
+        userType = #{record.usertype},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_order_reminds
+    set remindId = #{record.remindid},
+      orderId = #{record.orderid},
+      userId = #{record.userid},
+      shopId = #{record.shopid},
+      remindType = #{record.remindtype},
+      userType = #{record.usertype},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.OrderRemind" >
+    update cs_order_reminds
+    <set >
+      <if test="orderid != null" >
+        orderId = #{orderid},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="remindtype != null" >
+        remindType = #{remindtype},
+      </if>
+      <if test="usertype != null" >
+        userType = #{usertype},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where remindId = #{remindid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.OrderRemind" >
+    update cs_order_reminds
+    set orderId = #{orderid},
+      userId = #{userid},
+      shopId = #{shopid},
+      remindType = #{remindtype},
+      userType = #{usertype},
+      createTime = #{createtime}
+    where remindId = #{remindid}
+  </update>
+</mapper>

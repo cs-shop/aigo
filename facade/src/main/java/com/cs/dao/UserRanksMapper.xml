@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.UserRanksMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.UserRanks" >
+    <id column="rankId" property="rankid" jdbcType="INTEGER" />
+    <result column="rankName" property="rankname" jdbcType="VARCHAR" />
+    <result column="startScore" property="startscore" jdbcType="INTEGER" />
+    <result column="endScore" property="endscore" jdbcType="INTEGER" />
+    <result column="rebate" property="rebate" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.rankname != null" >
+         and rankName = #{condition.rankname}
+      </if>
+      <if test="condition.startscore != null" >
+         and startScore = #{condition.startscore}
+      </if>
+      <if test="condition.endscore != null" >
+         and endScore = #{condition.endscore}
+      </if>
+      <if test="condition.rebate != null" >
+         and rebate = #{condition.rebate}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    rankId, rankName, startScore, endScore, rebate, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_user_ranks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_user_ranks
+    where rankId = #{rankid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_user_ranks
+    where rankId = #{rankid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_user_ranks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.UserRanks" >
+    insert into cs_user_ranks (rankId, rankName, startScore, endScore, rebate, createTime
+      )
+    values (#{rankid}, #{rankname}, #{startscore}, #{endscore}, #{rebate}, #{createtime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.UserRanks" >
+    insert into cs_user_ranks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rankid != null" >
+        rankId,
+      </if>
+      <if test="rankname != null" >
+        rankName,
+      </if>
+      <if test="startscore != null" >
+        startScore,
+      </if>
+      <if test="endscore != null" >
+        endScore,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rankid != null" >
+        #{rankid},
+      </if>
+      <if test="rankname != null" >
+        #{rankname},
+      </if>
+      <if test="startscore != null" >
+        #{startscore},
+      </if>
+      <if test="endscore != null" >
+        #{endscore},
+      </if>
+      <if test="rebate != null" >
+        #{rebate},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_user_ranks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_user_ranks
+    <set >
+      <if test="record.rankid != null" >
+        rankId = #{record.rankid},
+      </if>
+      <if test="record.rankname != null" >
+        rankName = #{record.rankname},
+      </if>
+      <if test="record.startscore != null" >
+        startScore = #{record.startscore},
+      </if>
+      <if test="record.endscore != null" >
+        endScore = #{record.endscore},
+      </if>
+      <if test="record.rebate != null" >
+        rebate = #{record.rebate},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_user_ranks
+    set rankId = #{record.rankid},
+      rankName = #{record.rankname},
+      startScore = #{record.startscore},
+      endScore = #{record.endscore},
+      rebate = #{record.rebate},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.UserRanks" >
+    update cs_user_ranks
+    <set >
+      <if test="rankname != null" >
+        rankName = #{rankname},
+      </if>
+      <if test="startscore != null" >
+        startScore = #{startscore},
+      </if>
+      <if test="endscore != null" >
+        endScore = #{endscore},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where rankId = #{rankid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.UserRanks" >
+    update cs_user_ranks
+    set rankName = #{rankname},
+      startScore = #{startscore},
+      endScore = #{endscore},
+      rebate = #{rebate},
+      createTime = #{createtime}
+    where rankId = #{rankid}
+  </update>
+</mapper>

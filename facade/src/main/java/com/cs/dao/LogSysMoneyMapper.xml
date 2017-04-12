@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogSysMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogSysMoney" >
+    <id column="moneyId" property="moneyid" jdbcType="INTEGER" />
+    <result column="targetType" property="targettype" jdbcType="TINYINT" />
+    <result column="targetId" property="targetid" jdbcType="INTEGER" />
+    <result column="dataSrc" property="datasrc" jdbcType="INTEGER" />
+    <result column="dataId" property="dataid" jdbcType="INTEGER" />
+    <result column="moneyType" property="moneytype" jdbcType="TINYINT" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.LogSysMoney" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.targettype != null" >
+         and targetType = #{condition.targettype}
+      </if>
+      <if test="condition.targetid != null" >
+         and targetId = #{condition.targetid}
+      </if>
+      <if test="condition.datasrc != null" >
+         and dataSrc = #{condition.datasrc}
+      </if>
+      <if test="condition.dataid != null" >
+         and dataId = #{condition.dataid}
+      </if>
+      <if test="condition.moneytype != null" >
+         and moneyType = #{condition.moneytype}
+      </if>
+      <if test="condition.money != null" >
+         and money = #{condition.money}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+      <if test="condition.moneyremark != null" >
+         and moneyRemark = #{condition.moneyremark}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    moneyId, targetType, targetId, dataSrc, dataId, moneyType, money, createTime, dataFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    moneyRemark
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_log_sys_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_sys_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_log_sys_moneys
+    where moneyId = #{moneyid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_sys_moneys
+    where moneyId = #{moneyid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_sys_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogSysMoney" >
+    insert into cs_log_sys_moneys (moneyId, targetType, targetId, dataSrc, dataId, moneyType, 
+      money, createTime, dataFlag, moneyRemark)
+    values (#{moneyid}, #{targettype}, #{targetid}, #{datasrc}, #{dataid}, #{moneytype}, 
+      #{money}, #{createtime}, #{dataflag}, #{moneyremark})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogSysMoney" >
+    insert into cs_log_sys_moneys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moneyid != null" >
+        moneyId,
+      </if>
+      <if test="targettype != null" >
+        targetType,
+      </if>
+      <if test="targetid != null" >
+        targetId,
+      </if>
+      <if test="datasrc != null" >
+        dataSrc,
+      </if>
+      <if test="dataid != null" >
+        dataId,
+      </if>
+      <if test="moneytype != null" >
+        moneyType,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+      <if test="moneyremark != null" >
+        moneyRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moneyid != null" >
+        #{moneyid},
+      </if>
+      <if test="targettype != null" >
+        #{targettype},
+      </if>
+      <if test="targetid != null" >
+        #{targetid},
+      </if>
+      <if test="datasrc != null" >
+        #{datasrc},
+      </if>
+      <if test="dataid != null" >
+        #{dataid},
+      </if>
+      <if test="moneytype != null" >
+        #{moneytype},
+      </if>
+      <if test="money != null" >
+        #{money},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+      <if test="moneyremark != null" >
+        #{moneyremark},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_sys_moneys
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_sys_moneys
+    <set >
+      <if test="record.moneyid != null" >
+        moneyId = #{record.moneyid},
+      </if>
+      <if test="record.targettype != null" >
+        targetType = #{record.targettype},
+      </if>
+      <if test="record.targetid != null" >
+        targetId = #{record.targetid},
+      </if>
+      <if test="record.datasrc != null" >
+        dataSrc = #{record.datasrc},
+      </if>
+      <if test="record.dataid != null" >
+        dataId = #{record.dataid},
+      </if>
+      <if test="record.moneytype != null" >
+        moneyType = #{record.moneytype},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+      <if test="record.moneyremark != null" >
+        moneyRemark = #{record.moneyremark},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_log_sys_moneys
+    set moneyId = #{record.moneyid},
+      targetType = #{record.targettype},
+      targetId = #{record.targetid},
+      dataSrc = #{record.datasrc},
+      dataId = #{record.dataid},
+      moneyType = #{record.moneytype},
+      money = #{record.money},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      moneyRemark = #{record.moneyremark}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_sys_moneys
+    set moneyId = #{record.moneyid},
+      targetType = #{record.targettype},
+      targetId = #{record.targetid},
+      dataSrc = #{record.datasrc},
+      dataId = #{record.dataid},
+      moneyType = #{record.moneytype},
+      money = #{record.money},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogSysMoney" >
+    update cs_log_sys_moneys
+    <set >
+      <if test="targettype != null" >
+        targetType = #{targettype},
+      </if>
+      <if test="targetid != null" >
+        targetId = #{targetid},
+      </if>
+      <if test="datasrc != null" >
+        dataSrc = #{datasrc},
+      </if>
+      <if test="dataid != null" >
+        dataId = #{dataid},
+      </if>
+      <if test="moneytype != null" >
+        moneyType = #{moneytype},
+      </if>
+      <if test="money != null" >
+        money = #{money},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+      <if test="moneyremark != null" >
+        moneyRemark = #{moneyremark},
+      </if>
+    </set>
+    where moneyId = #{moneyid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.LogSysMoney" >
+    update cs_log_sys_moneys
+    set targetType = #{targettype},
+      targetId = #{targetid},
+      dataSrc = #{datasrc},
+      dataId = #{dataid},
+      moneyType = #{moneytype},
+      money = #{money},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      moneyRemark = #{moneyremark}
+    where moneyId = #{moneyid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogSysMoney" >
+    update cs_log_sys_moneys
+    set targetType = #{targettype},
+      targetId = #{targetid},
+      dataSrc = #{datasrc},
+      dataId = #{dataid},
+      moneyType = #{moneytype},
+      money = #{money},
+      createTime = #{createtime},
+      dataFlag = #{dataflag}
+    where moneyId = #{moneyid}
+  </update>
+</mapper>

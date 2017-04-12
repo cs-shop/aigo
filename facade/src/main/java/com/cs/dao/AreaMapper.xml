@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Area" >
+    <id column="areaId" property="areaid" jdbcType="INTEGER" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="areaName" property="areaname" jdbcType="VARCHAR" />
+    <result column="isShow" property="isshow" jdbcType="TINYINT" />
+    <result column="areaSort" property="areasort" jdbcType="INTEGER" />
+    <result column="areaKey" property="areakey" jdbcType="CHAR" />
+    <result column="areaType" property="areatype" jdbcType="TINYINT" />
+    <result column="areaFlag" property="areaflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.parentid != null" >
+         and parentId = #{condition.parentid}
+      </if>
+      <if test="condition.areaname != null" >
+         and areaName = #{condition.areaname}
+      </if>
+      <if test="condition.isshow != null" >
+         and isShow = #{condition.isshow}
+      </if>
+      <if test="condition.areasort != null" >
+         and areaSort = #{condition.areasort}
+      </if>
+      <if test="condition.areakey != null" >
+         and areaKey = #{condition.areakey}
+      </if>
+      <if test="condition.areatype != null" >
+         and areaType = #{condition.areatype}
+      </if>
+      <if test="condition.areaflag != null" >
+         and areaFlag = #{condition.areaflag}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    areaId, parentId, areaName, isShow, areaSort, areaKey, areaType, areaFlag
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_areas
+    where areaId = #{areaid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_areas
+    where areaId = #{areaid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Area" >
+    insert into cs_areas (areaId, parentId, areaName, isShow, areaSort, areaKey, 
+      areaType, areaFlag)
+    values (#{areaid}, #{parentid}, #{areaname}, #{isshow}, #{areasort}, #{areakey}, 
+      #{areatype}, #{areaflag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Area" >
+    insert into cs_areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        areaId,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="areaname != null" >
+        areaName,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="areasort != null" >
+        areaSort,
+      </if>
+      <if test="areakey != null" >
+        areaKey,
+      </if>
+      <if test="areatype != null" >
+        areaType,
+      </if>
+      <if test="areaflag != null" >
+        areaFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaid != null" >
+        #{areaid},
+      </if>
+      <if test="parentid != null" >
+        #{parentid},
+      </if>
+      <if test="areaname != null" >
+        #{areaname},
+      </if>
+      <if test="isshow != null" >
+        #{isshow},
+      </if>
+      <if test="areasort != null" >
+        #{areasort},
+      </if>
+      <if test="areakey != null" >
+        #{areakey},
+      </if>
+      <if test="areatype != null" >
+        #{areatype},
+      </if>
+      <if test="areaflag != null" >
+        #{areaflag},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_areas
+    <set >
+      <if test="record.areaid != null" >
+        areaId = #{record.areaid},
+      </if>
+      <if test="record.parentid != null" >
+        parentId = #{record.parentid},
+      </if>
+      <if test="record.areaname != null" >
+        areaName = #{record.areaname},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow},
+      </if>
+      <if test="record.areasort != null" >
+        areaSort = #{record.areasort},
+      </if>
+      <if test="record.areakey != null" >
+        areaKey = #{record.areakey},
+      </if>
+      <if test="record.areatype != null" >
+        areaType = #{record.areatype},
+      </if>
+      <if test="record.areaflag != null" >
+        areaFlag = #{record.areaflag},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_areas
+    set areaId = #{record.areaid},
+      parentId = #{record.parentid},
+      areaName = #{record.areaname},
+      isShow = #{record.isshow},
+      areaSort = #{record.areasort},
+      areaKey = #{record.areakey},
+      areaType = #{record.areatype},
+      areaFlag = #{record.areaflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Area" >
+    update cs_areas
+    <set >
+      <if test="parentid != null" >
+        parentId = #{parentid},
+      </if>
+      <if test="areaname != null" >
+        areaName = #{areaname},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow},
+      </if>
+      <if test="areasort != null" >
+        areaSort = #{areasort},
+      </if>
+      <if test="areakey != null" >
+        areaKey = #{areakey},
+      </if>
+      <if test="areatype != null" >
+        areaType = #{areatype},
+      </if>
+      <if test="areaflag != null" >
+        areaFlag = #{areaflag},
+      </if>
+    </set>
+    where areaId = #{areaid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Area" >
+    update cs_areas
+    set parentId = #{parentid},
+      areaName = #{areaname},
+      isShow = #{isshow},
+      areaSort = #{areasort},
+      areaKey = #{areakey},
+      areaType = #{areatype},
+      areaFlag = #{areaflag}
+    where areaId = #{areaid}
+  </update>
+</mapper>

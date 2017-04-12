@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.StaffsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Staffs" >
+    <id column="staffId" property="staffid" jdbcType="INTEGER" />
+    <result column="loginName" property="loginname" jdbcType="VARCHAR" />
+    <result column="loginPwd" property="loginpwd" jdbcType="VARCHAR" />
+    <result column="secretKey" property="secretkey" jdbcType="INTEGER" />
+    <result column="staffName" property="staffname" jdbcType="VARCHAR" />
+    <result column="staffNo" property="staffno" jdbcType="VARCHAR" />
+    <result column="staffPhoto" property="staffphoto" jdbcType="VARCHAR" />
+    <result column="staffRoleId" property="staffroleid" jdbcType="INTEGER" />
+    <result column="workStatus" property="workstatus" jdbcType="TINYINT" />
+    <result column="staffStatus" property="staffstatus" jdbcType="TINYINT" />
+    <result column="staffFlag" property="staffflag" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastTime" property="lasttime" jdbcType="TIMESTAMP" />
+    <result column="lastIP" property="lastip" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.loginname != null" >
+         and loginName = #{condition.loginname}
+      </if>
+      <if test="condition.loginpwd != null" >
+         and loginPwd = #{condition.loginpwd}
+      </if>
+      <if test="condition.secretkey != null" >
+         and secretKey = #{condition.secretkey}
+      </if>
+      <if test="condition.staffname != null" >
+         and staffName = #{condition.staffname}
+      </if>
+      <if test="condition.staffno != null" >
+         and staffNo = #{condition.staffno}
+      </if>
+      <if test="condition.staffphoto != null" >
+         and staffPhoto = #{condition.staffphoto}
+      </if>
+      <if test="condition.staffroleid != null" >
+         and staffRoleId = #{condition.staffroleid}
+      </if>
+      <if test="condition.workstatus != null" >
+         and workStatus = #{condition.workstatus}
+      </if>
+      <if test="condition.staffstatus != null" >
+         and staffStatus = #{condition.staffstatus}
+      </if>
+      <if test="condition.staffflag != null" >
+         and staffFlag = #{condition.staffflag}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.lasttime != null" >
+         and lastTime = #{condition.lasttime}
+      </if>
+      <if test="condition.lastip != null" >
+         and lastIP = #{condition.lastip}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    staffId, loginName, loginPwd, secretKey, staffName, staffNo, staffPhoto, staffRoleId, 
+    workStatus, staffStatus, staffFlag, createTime, lastTime, lastIP
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_staffs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_staffs
+    where staffId = #{staffid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_staffs
+    where staffId = #{staffid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_staffs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Staffs" >
+    insert into cs_staffs (staffId, loginName, loginPwd, secretKey, staffName, staffNo, 
+      staffPhoto, staffRoleId, workStatus, staffStatus, staffFlag, createTime, 
+      lastTime, lastIP)
+    values (#{staffid}, #{loginname}, #{loginpwd}, #{secretkey}, #{staffname}, #{staffno}, 
+      #{staffphoto}, #{staffroleid}, #{workstatus}, #{staffstatus}, #{staffflag}, #{createtime}, 
+      #{lasttime}, #{lastip})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Staffs" >
+    insert into cs_staffs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="loginname != null" >
+        loginName,
+      </if>
+      <if test="loginpwd != null" >
+        loginPwd,
+      </if>
+      <if test="secretkey != null" >
+        secretKey,
+      </if>
+      <if test="staffname != null" >
+        staffName,
+      </if>
+      <if test="staffno != null" >
+        staffNo,
+      </if>
+      <if test="staffphoto != null" >
+        staffPhoto,
+      </if>
+      <if test="staffroleid != null" >
+        staffRoleId,
+      </if>
+      <if test="workstatus != null" >
+        workStatus,
+      </if>
+      <if test="staffstatus != null" >
+        staffStatus,
+      </if>
+      <if test="staffflag != null" >
+        staffFlag,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="lasttime != null" >
+        lastTime,
+      </if>
+      <if test="lastip != null" >
+        lastIP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffid != null" >
+        #{staffid},
+      </if>
+      <if test="loginname != null" >
+        #{loginname},
+      </if>
+      <if test="loginpwd != null" >
+        #{loginpwd},
+      </if>
+      <if test="secretkey != null" >
+        #{secretkey},
+      </if>
+      <if test="staffname != null" >
+        #{staffname},
+      </if>
+      <if test="staffno != null" >
+        #{staffno},
+      </if>
+      <if test="staffphoto != null" >
+        #{staffphoto},
+      </if>
+      <if test="staffroleid != null" >
+        #{staffroleid},
+      </if>
+      <if test="workstatus != null" >
+        #{workstatus},
+      </if>
+      <if test="staffstatus != null" >
+        #{staffstatus},
+      </if>
+      <if test="staffflag != null" >
+        #{staffflag},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="lasttime != null" >
+        #{lasttime},
+      </if>
+      <if test="lastip != null" >
+        #{lastip},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_staffs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_staffs
+    <set >
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid},
+      </if>
+      <if test="record.loginname != null" >
+        loginName = #{record.loginname},
+      </if>
+      <if test="record.loginpwd != null" >
+        loginPwd = #{record.loginpwd},
+      </if>
+      <if test="record.secretkey != null" >
+        secretKey = #{record.secretkey},
+      </if>
+      <if test="record.staffname != null" >
+        staffName = #{record.staffname},
+      </if>
+      <if test="record.staffno != null" >
+        staffNo = #{record.staffno},
+      </if>
+      <if test="record.staffphoto != null" >
+        staffPhoto = #{record.staffphoto},
+      </if>
+      <if test="record.staffroleid != null" >
+        staffRoleId = #{record.staffroleid},
+      </if>
+      <if test="record.workstatus != null" >
+        workStatus = #{record.workstatus},
+      </if>
+      <if test="record.staffstatus != null" >
+        staffStatus = #{record.staffstatus},
+      </if>
+      <if test="record.staffflag != null" >
+        staffFlag = #{record.staffflag},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.lasttime != null" >
+        lastTime = #{record.lasttime},
+      </if>
+      <if test="record.lastip != null" >
+        lastIP = #{record.lastip},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_staffs
+    set staffId = #{record.staffid},
+      loginName = #{record.loginname},
+      loginPwd = #{record.loginpwd},
+      secretKey = #{record.secretkey},
+      staffName = #{record.staffname},
+      staffNo = #{record.staffno},
+      staffPhoto = #{record.staffphoto},
+      staffRoleId = #{record.staffroleid},
+      workStatus = #{record.workstatus},
+      staffStatus = #{record.staffstatus},
+      staffFlag = #{record.staffflag},
+      createTime = #{record.createtime},
+      lastTime = #{record.lasttime},
+      lastIP = #{record.lastip}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Staffs" >
+    update cs_staffs
+    <set >
+      <if test="loginname != null" >
+        loginName = #{loginname},
+      </if>
+      <if test="loginpwd != null" >
+        loginPwd = #{loginpwd},
+      </if>
+      <if test="secretkey != null" >
+        secretKey = #{secretkey},
+      </if>
+      <if test="staffname != null" >
+        staffName = #{staffname},
+      </if>
+      <if test="staffno != null" >
+        staffNo = #{staffno},
+      </if>
+      <if test="staffphoto != null" >
+        staffPhoto = #{staffphoto},
+      </if>
+      <if test="staffroleid != null" >
+        staffRoleId = #{staffroleid},
+      </if>
+      <if test="workstatus != null" >
+        workStatus = #{workstatus},
+      </if>
+      <if test="staffstatus != null" >
+        staffStatus = #{staffstatus},
+      </if>
+      <if test="staffflag != null" >
+        staffFlag = #{staffflag},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="lasttime != null" >
+        lastTime = #{lasttime},
+      </if>
+      <if test="lastip != null" >
+        lastIP = #{lastip},
+      </if>
+    </set>
+    where staffId = #{staffid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Staffs" >
+    update cs_staffs
+    set loginName = #{loginname},
+      loginPwd = #{loginpwd},
+      secretKey = #{secretkey},
+      staffName = #{staffname},
+      staffNo = #{staffno},
+      staffPhoto = #{staffphoto},
+      staffRoleId = #{staffroleid},
+      workStatus = #{workstatus},
+      staffStatus = #{staffstatus},
+      staffFlag = #{staffflag},
+      createTime = #{createtime},
+      lastTime = #{lasttime},
+      lastIP = #{lastip}
+    where staffId = #{staffid}
+  </update>
+</mapper>

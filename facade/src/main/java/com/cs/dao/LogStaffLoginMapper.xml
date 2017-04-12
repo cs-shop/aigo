@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.LogStaffLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.LogStaffLogin" >
+    <id column="loginId" property="loginid" jdbcType="INTEGER" />
+    <result column="staffId" property="staffid" jdbcType="INTEGER" />
+    <result column="loginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="loginIp" property="loginip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.staffid != null" >
+         and staffId = #{condition.staffid}
+      </if>
+      <if test="condition.logintime != null" >
+         and loginTime = #{condition.logintime}
+      </if>
+      <if test="condition.loginip != null" >
+         and loginIp = #{condition.loginip}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    loginId, staffId, loginTime, loginIp
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log_staff_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_log_staff_logins
+    where loginId = #{loginid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_log_staff_logins
+    where loginId = #{loginid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_log_staff_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.LogStaffLogin" >
+    insert into cs_log_staff_logins (loginId, staffId, loginTime, loginIp)
+    values (#{loginid}, #{staffid}, #{logintime}, #{loginip})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.LogStaffLogin" >
+    insert into cs_log_staff_logins
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        loginId,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="logintime != null" >
+        loginTime,
+      </if>
+      <if test="loginip != null" >
+        loginIp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        #{loginid},
+      </if>
+      <if test="staffid != null" >
+        #{staffid},
+      </if>
+      <if test="logintime != null" >
+        #{logintime},
+      </if>
+      <if test="loginip != null" >
+        #{loginip},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_log_staff_logins
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_log_staff_logins
+    <set >
+      <if test="record.loginid != null" >
+        loginId = #{record.loginid},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid},
+      </if>
+      <if test="record.logintime != null" >
+        loginTime = #{record.logintime},
+      </if>
+      <if test="record.loginip != null" >
+        loginIp = #{record.loginip},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_log_staff_logins
+    set loginId = #{record.loginid},
+      staffId = #{record.staffid},
+      loginTime = #{record.logintime},
+      loginIp = #{record.loginip}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.LogStaffLogin" >
+    update cs_log_staff_logins
+    <set >
+      <if test="staffid != null" >
+        staffId = #{staffid},
+      </if>
+      <if test="logintime != null" >
+        loginTime = #{logintime},
+      </if>
+      <if test="loginip != null" >
+        loginIp = #{loginip},
+      </if>
+    </set>
+    where loginId = #{loginid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.LogStaffLogin" >
+    update cs_log_staff_logins
+    set staffId = #{staffid},
+      loginTime = #{logintime},
+      loginIp = #{loginip}
+    where loginId = #{loginid}
+  </update>
+</mapper>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.ShopConfigsMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.ShopConfigs" >
+    <id column="configId" property="configid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="shopTitle" property="shoptitle" jdbcType="VARCHAR" />
+    <result column="shopKeywords" property="shopkeywords" jdbcType="VARCHAR" />
+    <result column="shopDesc" property="shopdesc" jdbcType="VARCHAR" />
+    <result column="shopBanner" property="shopbanner" jdbcType="VARCHAR" />
+    <result column="isDistribut" property="isdistribut" jdbcType="TINYINT" />
+    <result column="distributType" property="distributtype" jdbcType="TINYINT" />
+    <result column="distributOrderRate" property="distributorderrate" jdbcType="INTEGER" />
+    <result column="promoterRate" property="promoterrate" jdbcType="INTEGER" />
+    <result column="buyerRate" property="buyerrate" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.ShopConfigsWithBLOBs" extends="BaseResultMap" >
+    <result column="shopAdsUrl" property="shopadsurl" jdbcType="LONGVARCHAR" />
+      </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.shoptitle != null" >
+         and shopTitle = #{condition.shoptitle}
+      </if>
+      <if test="condition.shopkeywords != null" >
+         and shopKeywords = #{condition.shopkeywords}
+      </if>
+      <if test="condition.shopdesc != null" >
+         and shopDesc = #{condition.shopdesc}
+      </if>
+      <if test="condition.shopbanner != null" >
+         and shopBanner = #{condition.shopbanner}
+      </if>
+      <if test="condition.isdistribut != null" >
+         and isDistribut = #{condition.isdistribut}
+      </if>
+      <if test="condition.distributtype != null" >
+         and distributType = #{condition.distributtype}
+      </if>
+      <if test="condition.distributorderrate != null" >
+         and distributOrderRate = #{condition.distributorderrate}
+      </if>
+      <if test="condition.promoterrate != null" >
+         and promoterRate = #{condition.promoterrate}
+      </if>
+      <if test="condition.buyerrate != null" >
+         and buyerRate = #{condition.buyerrate}
+      </if>
+      <if test="condition.shopads != null" >
+         and shopAds = #{condition.shopads}
+      </if>
+      <if test="condition.shopadsurl != null" >
+         and shopAdsUrl = #{condition.shopadsurl}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    configId, shopId, shopTitle, shopKeywords, shopDesc, shopBanner, isDistribut, distributType, 
+    distributOrderRate, promoterRate, buyerRate
+  </sql>
+  <sql id="Blob_Column_List" >
+    shopAds, shopAdsUrl
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_shop_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_shop_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_shop_configs
+    where configId = #{configid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_shop_configs
+    where configId = #{configid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_shop_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.ShopConfigsWithBLOBs" >
+    insert into cs_shop_configs (configId, shopId, shopTitle, shopKeywords, shopDesc, shopBanner, 
+      isDistribut, distributType, distributOrderRate, promoterRate, buyerRate, 
+      shopAds, shopAdsUrl)
+    values (#{configid}, #{shopid}, #{shoptitle}, #{shopkeywords}, #{shopdesc}, #{shopbanner}, 
+      #{isdistribut}, #{distributtype}, #{distributorderrate}, #{promoterrate}, #{buyerrate}, 
+      #{shopads}, #{shopadsurl})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.ShopConfigsWithBLOBs" >
+    insert into cs_shop_configs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="configid != null" >
+        configId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="shoptitle != null" >
+        shopTitle,
+      </if>
+      <if test="shopkeywords != null" >
+        shopKeywords,
+      </if>
+      <if test="shopdesc != null" >
+        shopDesc,
+      </if>
+      <if test="shopbanner != null" >
+        shopBanner,
+      </if>
+      <if test="isdistribut != null" >
+        isDistribut,
+      </if>
+      <if test="distributtype != null" >
+        distributType,
+      </if>
+      <if test="distributorderrate != null" >
+        distributOrderRate,
+      </if>
+      <if test="promoterrate != null" >
+        promoterRate,
+      </if>
+      <if test="buyerrate != null" >
+        buyerRate,
+      </if>
+      <if test="shopads != null" >
+        shopAds,
+      </if>
+      <if test="shopadsurl != null" >
+        shopAdsUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="configid != null" >
+        #{configid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="shoptitle != null" >
+        #{shoptitle},
+      </if>
+      <if test="shopkeywords != null" >
+        #{shopkeywords},
+      </if>
+      <if test="shopdesc != null" >
+        #{shopdesc},
+      </if>
+      <if test="shopbanner != null" >
+        #{shopbanner},
+      </if>
+      <if test="isdistribut != null" >
+        #{isdistribut},
+      </if>
+      <if test="distributtype != null" >
+        #{distributtype},
+      </if>
+      <if test="distributorderrate != null" >
+        #{distributorderrate},
+      </if>
+      <if test="promoterrate != null" >
+        #{promoterrate},
+      </if>
+      <if test="buyerrate != null" >
+        #{buyerrate},
+      </if>
+      <if test="shopads != null" >
+        #{shopads},
+      </if>
+      <if test="shopadsurl != null" >
+        #{shopadsurl},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_shop_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_shop_configs
+    <set >
+      <if test="record.configid != null" >
+        configId = #{record.configid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.shoptitle != null" >
+        shopTitle = #{record.shoptitle},
+      </if>
+      <if test="record.shopkeywords != null" >
+        shopKeywords = #{record.shopkeywords},
+      </if>
+      <if test="record.shopdesc != null" >
+        shopDesc = #{record.shopdesc},
+      </if>
+      <if test="record.shopbanner != null" >
+        shopBanner = #{record.shopbanner},
+      </if>
+      <if test="record.isdistribut != null" >
+        isDistribut = #{record.isdistribut},
+      </if>
+      <if test="record.distributtype != null" >
+        distributType = #{record.distributtype},
+      </if>
+      <if test="record.distributorderrate != null" >
+        distributOrderRate = #{record.distributorderrate},
+      </if>
+      <if test="record.promoterrate != null" >
+        promoterRate = #{record.promoterrate},
+      </if>
+      <if test="record.buyerrate != null" >
+        buyerRate = #{record.buyerrate},
+      </if>
+      <if test="record.shopads != null" >
+        shopAds = #{record.shopads},
+      </if>
+      <if test="record.shopadsurl != null" >
+        shopAdsUrl = #{record.shopadsurl},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_shop_configs
+    set configId = #{record.configid},
+      shopId = #{record.shopid},
+      shopTitle = #{record.shoptitle},
+      shopKeywords = #{record.shopkeywords},
+      shopDesc = #{record.shopdesc},
+      shopBanner = #{record.shopbanner},
+      isDistribut = #{record.isdistribut},
+      distributType = #{record.distributtype},
+      distributOrderRate = #{record.distributorderrate},
+      promoterRate = #{record.promoterrate},
+      buyerRate = #{record.buyerrate},
+      shopAds = #{record.shopads},
+      shopAdsUrl = #{record.shopadsurl}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_shop_configs
+    set configId = #{record.configid},
+      shopId = #{record.shopid},
+      shopTitle = #{record.shoptitle},
+      shopKeywords = #{record.shopkeywords},
+      shopDesc = #{record.shopdesc},
+      shopBanner = #{record.shopbanner},
+      isDistribut = #{record.isdistribut},
+      distributType = #{record.distributtype},
+      distributOrderRate = #{record.distributorderrate},
+      promoterRate = #{record.promoterrate},
+      buyerRate = #{record.buyerrate}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.ShopConfigsWithBLOBs" >
+    update cs_shop_configs
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="shoptitle != null" >
+        shopTitle = #{shoptitle},
+      </if>
+      <if test="shopkeywords != null" >
+        shopKeywords = #{shopkeywords},
+      </if>
+      <if test="shopdesc != null" >
+        shopDesc = #{shopdesc},
+      </if>
+      <if test="shopbanner != null" >
+        shopBanner = #{shopbanner},
+      </if>
+      <if test="isdistribut != null" >
+        isDistribut = #{isdistribut},
+      </if>
+      <if test="distributtype != null" >
+        distributType = #{distributtype},
+      </if>
+      <if test="distributorderrate != null" >
+        distributOrderRate = #{distributorderrate},
+      </if>
+      <if test="promoterrate != null" >
+        promoterRate = #{promoterrate},
+      </if>
+      <if test="buyerrate != null" >
+        buyerRate = #{buyerrate},
+      </if>
+      <if test="shopads != null" >
+        shopAds = #{shopads},
+      </if>
+      <if test="shopadsurl != null" >
+        shopAdsUrl = #{shopadsurl},
+      </if>
+    </set>
+    where configId = #{configid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.ShopConfigsWithBLOBs" >
+    update cs_shop_configs
+    set shopId = #{shopid},
+      shopTitle = #{shoptitle},
+      shopKeywords = #{shopkeywords},
+      shopDesc = #{shopdesc},
+      shopBanner = #{shopbanner},
+      isDistribut = #{isdistribut},
+      distributType = #{distributtype},
+      distributOrderRate = #{distributorderrate},
+      promoterRate = #{promoterrate},
+      buyerRate = #{buyerrate},
+      shopAds = #{shopads},
+      shopAdsUrl = #{shopadsurl}
+    where configId = #{configid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.ShopConfigs" >
+    update cs_shop_configs
+    set shopId = #{shopid},
+      shopTitle = #{shoptitle},
+      shopKeywords = #{shopkeywords},
+      shopDesc = #{shopdesc},
+      shopBanner = #{shopbanner},
+      isDistribut = #{isdistribut},
+      distributType = #{distributtype},
+      distributOrderRate = #{distributorderrate},
+      promoterRate = #{promoterrate},
+      buyerRate = #{buyerrate}
+    where configId = #{configid}
+  </update>
+</mapper>

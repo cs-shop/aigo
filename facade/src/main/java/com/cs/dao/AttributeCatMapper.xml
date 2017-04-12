@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.AttributeCatMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.AttributeCat" >
+    <id column="catId" property="catid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="catName" property="catname" jdbcType="VARCHAR" />
+    <result column="catFlag" property="catflag" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.catname != null" >
+         and catName = #{condition.catname}
+      </if>
+      <if test="condition.catflag != null" >
+         and catFlag = #{condition.catflag}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    catId, shopId, catName, catFlag, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_attribute_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_attribute_cats
+    where catId = #{catid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_attribute_cats
+    where catId = #{catid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_attribute_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.AttributeCat" >
+    insert into cs_attribute_cats (catId, shopId, catName, catFlag, createTime)
+    values (#{catid}, #{shopid}, #{catname}, #{catflag}, #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.AttributeCat" >
+    insert into cs_attribute_cats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        catId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="catname != null" >
+        catName,
+      </if>
+      <if test="catflag != null" >
+        catFlag,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catid != null" >
+        #{catid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="catname != null" >
+        #{catname},
+      </if>
+      <if test="catflag != null" >
+        #{catflag},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_attribute_cats
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_attribute_cats
+    <set >
+      <if test="record.catid != null" >
+        catId = #{record.catid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.catname != null" >
+        catName = #{record.catname},
+      </if>
+      <if test="record.catflag != null" >
+        catFlag = #{record.catflag},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_attribute_cats
+    set catId = #{record.catid},
+      shopId = #{record.shopid},
+      catName = #{record.catname},
+      catFlag = #{record.catflag},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.AttributeCat" >
+    update cs_attribute_cats
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="catname != null" >
+        catName = #{catname},
+      </if>
+      <if test="catflag != null" >
+        catFlag = #{catflag},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where catId = #{catid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.AttributeCat" >
+    update cs_attribute_cats
+    set shopId = #{shopid},
+      catName = #{catname},
+      catFlag = #{catflag},
+      createTime = #{createtime}
+    where catId = #{catid}
+  </update>
+</mapper>

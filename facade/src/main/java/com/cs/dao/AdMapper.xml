@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.AdMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Ad" >
+    <id column="adId" property="adid" jdbcType="INTEGER" />
+    <result column="adPositionId" property="adpositionid" jdbcType="INTEGER" />
+    <result column="areaId1" property="areaid1" jdbcType="INTEGER" />
+    <result column="areaId2" property="areaid2" jdbcType="INTEGER" />
+    <result column="adType" property="adtype" jdbcType="TINYINT" />
+    <result column="adFile" property="adfile" jdbcType="VARCHAR" />
+    <result column="adName" property="adname" jdbcType="VARCHAR" />
+    <result column="adURL" property="adurl" jdbcType="VARCHAR" />
+    <result column="adStartDate" property="adstartdate" jdbcType="DATE" />
+    <result column="adEndDate" property="adenddate" jdbcType="DATE" />
+    <result column="adSort" property="adsort" jdbcType="INTEGER" />
+    <result column="adClickNum" property="adclicknum" jdbcType="INTEGER" />
+    <result column="positionType" property="positiontype" jdbcType="TINYINT" />
+    <result column="areaId3" property="areaid3" jdbcType="INTEGER" />
+    <result column="communityId" property="communityid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.adpositionid != null" >
+         and adPositionId = #{condition.adpositionid}
+      </if>
+      <if test="condition.areaid1 != null" >
+         and areaId1 = #{condition.areaid1}
+      </if>
+      <if test="condition.areaid2 != null" >
+         and areaId2 = #{condition.areaid2}
+      </if>
+      <if test="condition.adtype != null" >
+         and adType = #{condition.adtype}
+      </if>
+      <if test="condition.adfile != null" >
+         and adFile = #{condition.adfile}
+      </if>
+      <if test="condition.adname != null" >
+         and adName = #{condition.adname}
+      </if>
+      <if test="condition.adurl != null" >
+         and adURL = #{condition.adurl}
+      </if>
+      <if test="condition.adstartdate != null" >
+         and adStartDate = #{condition.adstartdate}
+      </if>
+      <if test="condition.adenddate != null" >
+         and adEndDate = #{condition.adenddate}
+      </if>
+      <if test="condition.adsort != null" >
+         and adSort = #{condition.adsort}
+      </if>
+      <if test="condition.adclicknum != null" >
+         and adClickNum = #{condition.adclicknum}
+      </if>
+      <if test="condition.positiontype != null" >
+         and positionType = #{condition.positiontype}
+      </if>
+      <if test="condition.areaid3 != null" >
+         and areaId3 = #{condition.areaid3}
+      </if>
+      <if test="condition.communityid != null" >
+         and communityId = #{condition.communityid}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    adId, adPositionId, areaId1, areaId2, adType, adFile, adName, adURL, adStartDate, 
+    adEndDate, adSort, adClickNum, positionType, areaId3, communityId
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_ads
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_ads
+    where adId = #{adid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_ads
+    where adId = #{adid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_ads
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Ad" >
+    insert into cs_ads (adId, adPositionId, areaId1, areaId2, adType, adFile, adName, 
+      adURL, adStartDate, adEndDate, adSort, adClickNum, positionType, 
+      areaId3, communityId)
+    values (#{adid}, #{adpositionid}, #{areaid1}, #{areaid2}, #{adtype}, #{adfile}, #{adname}, 
+      #{adurl}, #{adstartdate}, #{adenddate}, #{adsort}, #{adclicknum}, #{positiontype}, 
+      #{areaid3}, #{communityid})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Ad" >
+    insert into cs_ads
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adid != null" >
+        adId,
+      </if>
+      <if test="adpositionid != null" >
+        adPositionId,
+      </if>
+      <if test="areaid1 != null" >
+        areaId1,
+      </if>
+      <if test="areaid2 != null" >
+        areaId2,
+      </if>
+      <if test="adtype != null" >
+        adType,
+      </if>
+      <if test="adfile != null" >
+        adFile,
+      </if>
+      <if test="adname != null" >
+        adName,
+      </if>
+      <if test="adurl != null" >
+        adURL,
+      </if>
+      <if test="adstartdate != null" >
+        adStartDate,
+      </if>
+      <if test="adenddate != null" >
+        adEndDate,
+      </if>
+      <if test="adsort != null" >
+        adSort,
+      </if>
+      <if test="adclicknum != null" >
+        adClickNum,
+      </if>
+      <if test="positiontype != null" >
+        positionType,
+      </if>
+      <if test="areaid3 != null" >
+        areaId3,
+      </if>
+      <if test="communityid != null" >
+        communityId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adid != null" >
+        #{adid},
+      </if>
+      <if test="adpositionid != null" >
+        #{adpositionid},
+      </if>
+      <if test="areaid1 != null" >
+        #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        #{areaid2},
+      </if>
+      <if test="adtype != null" >
+        #{adtype},
+      </if>
+      <if test="adfile != null" >
+        #{adfile},
+      </if>
+      <if test="adname != null" >
+        #{adname},
+      </if>
+      <if test="adurl != null" >
+        #{adurl},
+      </if>
+      <if test="adstartdate != null" >
+        #{adstartdate},
+      </if>
+      <if test="adenddate != null" >
+        #{adenddate},
+      </if>
+      <if test="adsort != null" >
+        #{adsort},
+      </if>
+      <if test="adclicknum != null" >
+        #{adclicknum},
+      </if>
+      <if test="positiontype != null" >
+        #{positiontype},
+      </if>
+      <if test="areaid3 != null" >
+        #{areaid3},
+      </if>
+      <if test="communityid != null" >
+        #{communityid},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_ads
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_ads
+    <set >
+      <if test="record.adid != null" >
+        adId = #{record.adid},
+      </if>
+      <if test="record.adpositionid != null" >
+        adPositionId = #{record.adpositionid},
+      </if>
+      <if test="record.areaid1 != null" >
+        areaId1 = #{record.areaid1},
+      </if>
+      <if test="record.areaid2 != null" >
+        areaId2 = #{record.areaid2},
+      </if>
+      <if test="record.adtype != null" >
+        adType = #{record.adtype},
+      </if>
+      <if test="record.adfile != null" >
+        adFile = #{record.adfile},
+      </if>
+      <if test="record.adname != null" >
+        adName = #{record.adname},
+      </if>
+      <if test="record.adurl != null" >
+        adURL = #{record.adurl},
+      </if>
+      <if test="record.adstartdate != null" >
+        adStartDate = #{record.adstartdate},
+      </if>
+      <if test="record.adenddate != null" >
+        adEndDate = #{record.adenddate},
+      </if>
+      <if test="record.adsort != null" >
+        adSort = #{record.adsort},
+      </if>
+      <if test="record.adclicknum != null" >
+        adClickNum = #{record.adclicknum},
+      </if>
+      <if test="record.positiontype != null" >
+        positionType = #{record.positiontype},
+      </if>
+      <if test="record.areaid3 != null" >
+        areaId3 = #{record.areaid3},
+      </if>
+      <if test="record.communityid != null" >
+        communityId = #{record.communityid},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_ads
+    set adId = #{record.adid},
+      adPositionId = #{record.adpositionid},
+      areaId1 = #{record.areaid1},
+      areaId2 = #{record.areaid2},
+      adType = #{record.adtype},
+      adFile = #{record.adfile},
+      adName = #{record.adname},
+      adURL = #{record.adurl},
+      adStartDate = #{record.adstartdate},
+      adEndDate = #{record.adenddate},
+      adSort = #{record.adsort},
+      adClickNum = #{record.adclicknum},
+      positionType = #{record.positiontype},
+      areaId3 = #{record.areaid3},
+      communityId = #{record.communityid}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Ad" >
+    update cs_ads
+    <set >
+      <if test="adpositionid != null" >
+        adPositionId = #{adpositionid},
+      </if>
+      <if test="areaid1 != null" >
+        areaId1 = #{areaid1},
+      </if>
+      <if test="areaid2 != null" >
+        areaId2 = #{areaid2},
+      </if>
+      <if test="adtype != null" >
+        adType = #{adtype},
+      </if>
+      <if test="adfile != null" >
+        adFile = #{adfile},
+      </if>
+      <if test="adname != null" >
+        adName = #{adname},
+      </if>
+      <if test="adurl != null" >
+        adURL = #{adurl},
+      </if>
+      <if test="adstartdate != null" >
+        adStartDate = #{adstartdate},
+      </if>
+      <if test="adenddate != null" >
+        adEndDate = #{adenddate},
+      </if>
+      <if test="adsort != null" >
+        adSort = #{adsort},
+      </if>
+      <if test="adclicknum != null" >
+        adClickNum = #{adclicknum},
+      </if>
+      <if test="positiontype != null" >
+        positionType = #{positiontype},
+      </if>
+      <if test="areaid3 != null" >
+        areaId3 = #{areaid3},
+      </if>
+      <if test="communityid != null" >
+        communityId = #{communityid},
+      </if>
+    </set>
+    where adId = #{adid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Ad" >
+    update cs_ads
+    set adPositionId = #{adpositionid},
+      areaId1 = #{areaid1},
+      areaId2 = #{areaid2},
+      adType = #{adtype},
+      adFile = #{adfile},
+      adName = #{adname},
+      adURL = #{adurl},
+      adStartDate = #{adstartdate},
+      adEndDate = #{adenddate},
+      adSort = #{adsort},
+      adClickNum = #{adclicknum},
+      positionType = #{positiontype},
+      areaId3 = #{areaid3},
+      communityId = #{communityid}
+    where adId = #{adid}
+  </update>
+</mapper>

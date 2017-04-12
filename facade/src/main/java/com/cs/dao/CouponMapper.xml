@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Coupon" >
+    <id column="couponId" property="couponid" jdbcType="INTEGER" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="couponName" property="couponname" jdbcType="VARCHAR" />
+    <result column="couponType" property="coupontype" jdbcType="TINYINT" />
+    <result column="couponMoney" property="couponmoney" jdbcType="INTEGER" />
+    <result column="spendMoney" property="spendmoney" jdbcType="INTEGER" />
+    <result column="sendNum" property="sendnum" jdbcType="INTEGER" />
+    <result column="receiveNum" property="receivenum" jdbcType="INTEGER" />
+    <result column="sendStartTime" property="sendstarttime" jdbcType="DATE" />
+    <result column="sendEndTime" property="sendendtime" jdbcType="DATE" />
+    <result column="validStartTime" property="validstarttime" jdbcType="DATE" />
+    <result column="validEndTime" property="validendtime" jdbcType="DATE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="dataFlag" property="dataflag" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Coupon" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.couponname != null" >
+         and couponName = #{condition.couponname}
+      </if>
+      <if test="condition.coupontype != null" >
+         and couponType = #{condition.coupontype}
+      </if>
+      <if test="condition.couponmoney != null" >
+         and couponMoney = #{condition.couponmoney}
+      </if>
+      <if test="condition.spendmoney != null" >
+         and spendMoney = #{condition.spendmoney}
+      </if>
+      <if test="condition.sendnum != null" >
+         and sendNum = #{condition.sendnum}
+      </if>
+      <if test="condition.receivenum != null" >
+         and receiveNum = #{condition.receivenum}
+      </if>
+      <if test="condition.sendstarttime != null" >
+         and sendStartTime = #{condition.sendstarttime}
+      </if>
+      <if test="condition.sendendtime != null" >
+         and sendEndTime = #{condition.sendendtime}
+      </if>
+      <if test="condition.validstarttime != null" >
+         and validStartTime = #{condition.validstarttime}
+      </if>
+      <if test="condition.validendtime != null" >
+         and validEndTime = #{condition.validendtime}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.dataflag != null" >
+         and dataFlag = #{condition.dataflag}
+      </if>
+      <if test="condition.coupondes != null" >
+         and couponDes = #{condition.coupondes}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    couponId, shopId, couponName, couponType, couponMoney, spendMoney, sendNum, receiveNum, 
+    sendStartTime, sendEndTime, validStartTime, validEndTime, createTime, dataFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    couponDes
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_coupons
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_coupons
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_coupons
+    where couponId = #{couponid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_coupons
+    where couponId = #{couponid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_coupons
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Coupon" >
+    insert into cs_coupons (couponId, shopId, couponName, couponType, couponMoney, spendMoney, 
+      sendNum, receiveNum, sendStartTime, sendEndTime, validStartTime, 
+      validEndTime, createTime, dataFlag, couponDes)
+    values (#{couponid}, #{shopid}, #{couponname}, #{coupontype}, #{couponmoney}, #{spendmoney}, 
+      #{sendnum}, #{receivenum}, #{sendstarttime}, #{sendendtime}, #{validstarttime}, 
+      #{validendtime}, #{createtime}, #{dataflag}, #{coupondes})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Coupon" >
+    insert into cs_coupons
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponid != null" >
+        couponId,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="couponname != null" >
+        couponName,
+      </if>
+      <if test="coupontype != null" >
+        couponType,
+      </if>
+      <if test="couponmoney != null" >
+        couponMoney,
+      </if>
+      <if test="spendmoney != null" >
+        spendMoney,
+      </if>
+      <if test="sendnum != null" >
+        sendNum,
+      </if>
+      <if test="receivenum != null" >
+        receiveNum,
+      </if>
+      <if test="sendstarttime != null" >
+        sendStartTime,
+      </if>
+      <if test="sendendtime != null" >
+        sendEndTime,
+      </if>
+      <if test="validstarttime != null" >
+        validStartTime,
+      </if>
+      <if test="validendtime != null" >
+        validEndTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="dataflag != null" >
+        dataFlag,
+      </if>
+      <if test="coupondes != null" >
+        couponDes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponid != null" >
+        #{couponid},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="couponname != null" >
+        #{couponname},
+      </if>
+      <if test="coupontype != null" >
+        #{coupontype},
+      </if>
+      <if test="couponmoney != null" >
+        #{couponmoney},
+      </if>
+      <if test="spendmoney != null" >
+        #{spendmoney},
+      </if>
+      <if test="sendnum != null" >
+        #{sendnum},
+      </if>
+      <if test="receivenum != null" >
+        #{receivenum},
+      </if>
+      <if test="sendstarttime != null" >
+        #{sendstarttime},
+      </if>
+      <if test="sendendtime != null" >
+        #{sendendtime},
+      </if>
+      <if test="validstarttime != null" >
+        #{validstarttime},
+      </if>
+      <if test="validendtime != null" >
+        #{validendtime},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        #{dataflag},
+      </if>
+      <if test="coupondes != null" >
+        #{coupondes},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_coupons
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_coupons
+    <set >
+      <if test="record.couponid != null" >
+        couponId = #{record.couponid},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.couponname != null" >
+        couponName = #{record.couponname},
+      </if>
+      <if test="record.coupontype != null" >
+        couponType = #{record.coupontype},
+      </if>
+      <if test="record.couponmoney != null" >
+        couponMoney = #{record.couponmoney},
+      </if>
+      <if test="record.spendmoney != null" >
+        spendMoney = #{record.spendmoney},
+      </if>
+      <if test="record.sendnum != null" >
+        sendNum = #{record.sendnum},
+      </if>
+      <if test="record.receivenum != null" >
+        receiveNum = #{record.receivenum},
+      </if>
+      <if test="record.sendstarttime != null" >
+        sendStartTime = #{record.sendstarttime},
+      </if>
+      <if test="record.sendendtime != null" >
+        sendEndTime = #{record.sendendtime},
+      </if>
+      <if test="record.validstarttime != null" >
+        validStartTime = #{record.validstarttime},
+      </if>
+      <if test="record.validendtime != null" >
+        validEndTime = #{record.validendtime},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.dataflag != null" >
+        dataFlag = #{record.dataflag},
+      </if>
+      <if test="record.coupondes != null" >
+        couponDes = #{record.coupondes},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_coupons
+    set couponId = #{record.couponid},
+      shopId = #{record.shopid},
+      couponName = #{record.couponname},
+      couponType = #{record.coupontype},
+      couponMoney = #{record.couponmoney},
+      spendMoney = #{record.spendmoney},
+      sendNum = #{record.sendnum},
+      receiveNum = #{record.receivenum},
+      sendStartTime = #{record.sendstarttime},
+      sendEndTime = #{record.sendendtime},
+      validStartTime = #{record.validstarttime},
+      validEndTime = #{record.validendtime},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag},
+      couponDes = #{record.coupondes}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_coupons
+    set couponId = #{record.couponid},
+      shopId = #{record.shopid},
+      couponName = #{record.couponname},
+      couponType = #{record.coupontype},
+      couponMoney = #{record.couponmoney},
+      spendMoney = #{record.spendmoney},
+      sendNum = #{record.sendnum},
+      receiveNum = #{record.receivenum},
+      sendStartTime = #{record.sendstarttime},
+      sendEndTime = #{record.sendendtime},
+      validStartTime = #{record.validstarttime},
+      validEndTime = #{record.validendtime},
+      createTime = #{record.createtime},
+      dataFlag = #{record.dataflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Coupon" >
+    update cs_coupons
+    <set >
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="couponname != null" >
+        couponName = #{couponname},
+      </if>
+      <if test="coupontype != null" >
+        couponType = #{coupontype},
+      </if>
+      <if test="couponmoney != null" >
+        couponMoney = #{couponmoney},
+      </if>
+      <if test="spendmoney != null" >
+        spendMoney = #{spendmoney},
+      </if>
+      <if test="sendnum != null" >
+        sendNum = #{sendnum},
+      </if>
+      <if test="receivenum != null" >
+        receiveNum = #{receivenum},
+      </if>
+      <if test="sendstarttime != null" >
+        sendStartTime = #{sendstarttime},
+      </if>
+      <if test="sendendtime != null" >
+        sendEndTime = #{sendendtime},
+      </if>
+      <if test="validstarttime != null" >
+        validStartTime = #{validstarttime},
+      </if>
+      <if test="validendtime != null" >
+        validEndTime = #{validendtime},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="dataflag != null" >
+        dataFlag = #{dataflag},
+      </if>
+      <if test="coupondes != null" >
+        couponDes = #{coupondes},
+      </if>
+    </set>
+    where couponId = #{couponid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Coupon" >
+    update cs_coupons
+    set shopId = #{shopid},
+      couponName = #{couponname},
+      couponType = #{coupontype},
+      couponMoney = #{couponmoney},
+      spendMoney = #{spendmoney},
+      sendNum = #{sendnum},
+      receiveNum = #{receivenum},
+      sendStartTime = #{sendstarttime},
+      sendEndTime = #{sendendtime},
+      validStartTime = #{validstarttime},
+      validEndTime = #{validendtime},
+      createTime = #{createtime},
+      dataFlag = #{dataflag},
+      couponDes = #{coupondes}
+    where couponId = #{couponid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Coupon" >
+    update cs_coupons
+    set shopId = #{shopid},
+      couponName = #{couponname},
+      couponType = #{coupontype},
+      couponMoney = #{couponmoney},
+      spendMoney = #{spendmoney},
+      sendNum = #{sendnum},
+      receiveNum = #{receivenum},
+      sendStartTime = #{sendstarttime},
+      sendEndTime = #{sendendtime},
+      validStartTime = #{validstarttime},
+      validEndTime = #{validendtime},
+      createTime = #{createtime},
+      dataFlag = #{dataflag}
+    where couponId = #{couponid}
+  </update>
+</mapper>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.OrderSettlementMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.OrderSettlement" >
+    <id column="settlementId" property="settlementid" jdbcType="INTEGER" />
+    <result column="settlementNo" property="settlementno" jdbcType="VARCHAR" />
+    <result column="settlementType" property="settlementtype" jdbcType="TINYINT" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="accName" property="accname" jdbcType="VARCHAR" />
+    <result column="accNo" property="accno" jdbcType="VARCHAR" />
+    <result column="accUser" property="accuser" jdbcType="VARCHAR" />
+    <result column="orderMoney" property="ordermoney" jdbcType="DECIMAL" />
+    <result column="settlementMoney" property="settlementmoney" jdbcType="DECIMAL" />
+    <result column="poundageMoney" property="poundagemoney" jdbcType="DECIMAL" />
+    <result column="totalCommission" property="totalcommission" jdbcType="DECIMAL" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="isFinish" property="isfinish" jdbcType="TINYINT" />
+    <result column="finishTime" property="finishtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.OrderSettlement" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.settlementno != null" >
+         and settlementNo = #{condition.settlementno}
+      </if>
+      <if test="condition.settlementtype != null" >
+         and settlementType = #{condition.settlementtype}
+      </if>
+      <if test="condition.shopid != null" >
+         and shopId = #{condition.shopid}
+      </if>
+      <if test="condition.accname != null" >
+         and accName = #{condition.accname}
+      </if>
+      <if test="condition.accno != null" >
+         and accNo = #{condition.accno}
+      </if>
+      <if test="condition.accuser != null" >
+         and accUser = #{condition.accuser}
+      </if>
+      <if test="condition.ordermoney != null" >
+         and orderMoney = #{condition.ordermoney}
+      </if>
+      <if test="condition.settlementmoney != null" >
+         and settlementMoney = #{condition.settlementmoney}
+      </if>
+      <if test="condition.poundagemoney != null" >
+         and poundageMoney = #{condition.poundagemoney}
+      </if>
+      <if test="condition.totalcommission != null" >
+         and totalCommission = #{condition.totalcommission}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.isfinish != null" >
+         and isFinish = #{condition.isfinish}
+      </if>
+      <if test="condition.finishtime != null" >
+         and finishTime = #{condition.finishtime}
+      </if>
+      <if test="condition.remarks != null" >
+         and remarks = #{condition.remarks}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    settlementId, settlementNo, settlementType, shopId, accName, accNo, accUser, orderMoney, 
+    settlementMoney, poundageMoney, totalCommission, createTime, isFinish, finishTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    remarks
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_order_settlements
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_order_settlements
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_order_settlements
+    where settlementId = #{settlementid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_order_settlements
+    where settlementId = #{settlementid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_order_settlements
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.OrderSettlement" >
+    insert into cs_order_settlements (settlementId, settlementNo, settlementType, shopId, accName, 
+      accNo, accUser, orderMoney, settlementMoney, poundageMoney, totalCommission, 
+      createTime, isFinish, finishTime, remarks)
+    values (#{settlementid}, #{settlementno}, #{settlementtype}, #{shopid}, #{accname}, 
+      #{accno}, #{accuser}, #{ordermoney}, #{settlementmoney}, #{poundagemoney}, #{totalcommission}, 
+      #{createtime}, #{isfinish}, #{finishtime}, #{remarks})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.OrderSettlement" >
+    insert into cs_order_settlements
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settlementid != null" >
+        settlementId,
+      </if>
+      <if test="settlementno != null" >
+        settlementNo,
+      </if>
+      <if test="settlementtype != null" >
+        settlementType,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="accname != null" >
+        accName,
+      </if>
+      <if test="accno != null" >
+        accNo,
+      </if>
+      <if test="accuser != null" >
+        accUser,
+      </if>
+      <if test="ordermoney != null" >
+        orderMoney,
+      </if>
+      <if test="settlementmoney != null" >
+        settlementMoney,
+      </if>
+      <if test="poundagemoney != null" >
+        poundageMoney,
+      </if>
+      <if test="totalcommission != null" >
+        totalCommission,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="isfinish != null" >
+        isFinish,
+      </if>
+      <if test="finishtime != null" >
+        finishTime,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settlementid != null" >
+        #{settlementid},
+      </if>
+      <if test="settlementno != null" >
+        #{settlementno},
+      </if>
+      <if test="settlementtype != null" >
+        #{settlementtype},
+      </if>
+      <if test="shopid != null" >
+        #{shopid},
+      </if>
+      <if test="accname != null" >
+        #{accname},
+      </if>
+      <if test="accno != null" >
+        #{accno},
+      </if>
+      <if test="accuser != null" >
+        #{accuser},
+      </if>
+      <if test="ordermoney != null" >
+        #{ordermoney},
+      </if>
+      <if test="settlementmoney != null" >
+        #{settlementmoney},
+      </if>
+      <if test="poundagemoney != null" >
+        #{poundagemoney},
+      </if>
+      <if test="totalcommission != null" >
+        #{totalcommission},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="isfinish != null" >
+        #{isfinish},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime},
+      </if>
+      <if test="remarks != null" >
+        #{remarks},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_order_settlements
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_order_settlements
+    <set >
+      <if test="record.settlementid != null" >
+        settlementId = #{record.settlementid},
+      </if>
+      <if test="record.settlementno != null" >
+        settlementNo = #{record.settlementno},
+      </if>
+      <if test="record.settlementtype != null" >
+        settlementType = #{record.settlementtype},
+      </if>
+      <if test="record.shopid != null" >
+        shopId = #{record.shopid},
+      </if>
+      <if test="record.accname != null" >
+        accName = #{record.accname},
+      </if>
+      <if test="record.accno != null" >
+        accNo = #{record.accno},
+      </if>
+      <if test="record.accuser != null" >
+        accUser = #{record.accuser},
+      </if>
+      <if test="record.ordermoney != null" >
+        orderMoney = #{record.ordermoney},
+      </if>
+      <if test="record.settlementmoney != null" >
+        settlementMoney = #{record.settlementmoney},
+      </if>
+      <if test="record.poundagemoney != null" >
+        poundageMoney = #{record.poundagemoney},
+      </if>
+      <if test="record.totalcommission != null" >
+        totalCommission = #{record.totalcommission},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.isfinish != null" >
+        isFinish = #{record.isfinish},
+      </if>
+      <if test="record.finishtime != null" >
+        finishTime = #{record.finishtime},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_order_settlements
+    set settlementId = #{record.settlementid},
+      settlementNo = #{record.settlementno},
+      settlementType = #{record.settlementtype},
+      shopId = #{record.shopid},
+      accName = #{record.accname},
+      accNo = #{record.accno},
+      accUser = #{record.accuser},
+      orderMoney = #{record.ordermoney},
+      settlementMoney = #{record.settlementmoney},
+      poundageMoney = #{record.poundagemoney},
+      totalCommission = #{record.totalcommission},
+      createTime = #{record.createtime},
+      isFinish = #{record.isfinish},
+      finishTime = #{record.finishtime},
+      remarks = #{record.remarks}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_order_settlements
+    set settlementId = #{record.settlementid},
+      settlementNo = #{record.settlementno},
+      settlementType = #{record.settlementtype},
+      shopId = #{record.shopid},
+      accName = #{record.accname},
+      accNo = #{record.accno},
+      accUser = #{record.accuser},
+      orderMoney = #{record.ordermoney},
+      settlementMoney = #{record.settlementmoney},
+      poundageMoney = #{record.poundagemoney},
+      totalCommission = #{record.totalcommission},
+      createTime = #{record.createtime},
+      isFinish = #{record.isfinish},
+      finishTime = #{record.finishtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.OrderSettlement" >
+    update cs_order_settlements
+    <set >
+      <if test="settlementno != null" >
+        settlementNo = #{settlementno},
+      </if>
+      <if test="settlementtype != null" >
+        settlementType = #{settlementtype},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid},
+      </if>
+      <if test="accname != null" >
+        accName = #{accname},
+      </if>
+      <if test="accno != null" >
+        accNo = #{accno},
+      </if>
+      <if test="accuser != null" >
+        accUser = #{accuser},
+      </if>
+      <if test="ordermoney != null" >
+        orderMoney = #{ordermoney},
+      </if>
+      <if test="settlementmoney != null" >
+        settlementMoney = #{settlementmoney},
+      </if>
+      <if test="poundagemoney != null" >
+        poundageMoney = #{poundagemoney},
+      </if>
+      <if test="totalcommission != null" >
+        totalCommission = #{totalcommission},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="isfinish != null" >
+        isFinish = #{isfinish},
+      </if>
+      <if test="finishtime != null" >
+        finishTime = #{finishtime},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks},
+      </if>
+    </set>
+    where settlementId = #{settlementid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.OrderSettlement" >
+    update cs_order_settlements
+    set settlementNo = #{settlementno},
+      settlementType = #{settlementtype},
+      shopId = #{shopid},
+      accName = #{accname},
+      accNo = #{accno},
+      accUser = #{accuser},
+      orderMoney = #{ordermoney},
+      settlementMoney = #{settlementmoney},
+      poundageMoney = #{poundagemoney},
+      totalCommission = #{totalcommission},
+      createTime = #{createtime},
+      isFinish = #{isfinish},
+      finishTime = #{finishtime},
+      remarks = #{remarks}
+    where settlementId = #{settlementid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.OrderSettlement" >
+    update cs_order_settlements
+    set settlementNo = #{settlementno},
+      settlementType = #{settlementtype},
+      shopId = #{shopid},
+      accName = #{accname},
+      accNo = #{accno},
+      accUser = #{accuser},
+      orderMoney = #{ordermoney},
+      settlementMoney = #{settlementmoney},
+      poundageMoney = #{poundagemoney},
+      totalCommission = #{totalcommission},
+      createTime = #{createtime},
+      isFinish = #{isfinish},
+      finishTime = #{finishtime}
+    where settlementId = #{settlementid}
+  </update>
+</mapper>

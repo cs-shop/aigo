@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.FavoriteMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Favorite" >
+    <id column="favoriteId" property="favoriteid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="favoriteType" property="favoritetype" jdbcType="TINYINT" />
+    <result column="targetId" property="targetid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.userid != null" >
+         and userId = #{condition.userid}
+      </if>
+      <if test="condition.favoritetype != null" >
+         and favoriteType = #{condition.favoritetype}
+      </if>
+      <if test="condition.targetid != null" >
+         and targetId = #{condition.targetid}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    favoriteId, userId, favoriteType, targetId, createTime
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_favorites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_favorites
+    where favoriteId = #{favoriteid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_favorites
+    where favoriteId = #{favoriteid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_favorites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Favorite" >
+    insert into cs_favorites (favoriteId, userId, favoriteType, targetId, createTime)
+    values (#{favoriteid}, #{userid}, #{favoritetype}, #{targetid}, #{createtime})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Favorite" >
+    insert into cs_favorites
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="favoriteid != null" >
+        favoriteId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="favoritetype != null" >
+        favoriteType,
+      </if>
+      <if test="targetid != null" >
+        targetId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="favoriteid != null" >
+        #{favoriteid},
+      </if>
+      <if test="userid != null" >
+        #{userid},
+      </if>
+      <if test="favoritetype != null" >
+        #{favoritetype},
+      </if>
+      <if test="targetid != null" >
+        #{targetid},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_favorites
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_favorites
+    <set >
+      <if test="record.favoriteid != null" >
+        favoriteId = #{record.favoriteid},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid},
+      </if>
+      <if test="record.favoritetype != null" >
+        favoriteType = #{record.favoritetype},
+      </if>
+      <if test="record.targetid != null" >
+        targetId = #{record.targetid},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_favorites
+    set favoriteId = #{record.favoriteid},
+      userId = #{record.userid},
+      favoriteType = #{record.favoritetype},
+      targetId = #{record.targetid},
+      createTime = #{record.createtime}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Favorite" >
+    update cs_favorites
+    <set >
+      <if test="userid != null" >
+        userId = #{userid},
+      </if>
+      <if test="favoritetype != null" >
+        favoriteType = #{favoritetype},
+      </if>
+      <if test="targetid != null" >
+        targetId = #{targetid},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+    </set>
+    where favoriteId = #{favoriteid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Favorite" >
+    update cs_favorites
+    set userId = #{userid},
+      favoriteType = #{favoritetype},
+      targetId = #{targetid},
+      createTime = #{createtime}
+    where favoriteId = #{favoriteid}
+  </update>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.BankMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Bank" >
+    <id column="bankId" property="bankid" jdbcType="INTEGER" />
+    <result column="bankName" property="bankname" jdbcType="VARCHAR" />
+    <result column="bankFlag" property="bankflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.bankname != null" >
+         and bankName = #{condition.bankname}
+      </if>
+      <if test="condition.bankflag != null" >
+         and bankFlag = #{condition.bankflag}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    bankId, bankName, bankFlag
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_banks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_banks
+    where bankId = #{bankid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_banks
+    where bankId = #{bankid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_banks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Bank" >
+    insert into cs_banks (bankId, bankName, bankFlag)
+    values (#{bankid}, #{bankname}, #{bankflag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Bank" >
+    insert into cs_banks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankid != null" >
+        bankId,
+      </if>
+      <if test="bankname != null" >
+        bankName,
+      </if>
+      <if test="bankflag != null" >
+        bankFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankid != null" >
+        #{bankid},
+      </if>
+      <if test="bankname != null" >
+        #{bankname},
+      </if>
+      <if test="bankflag != null" >
+        #{bankflag},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_banks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_banks
+    <set >
+      <if test="record.bankid != null" >
+        bankId = #{record.bankid},
+      </if>
+      <if test="record.bankname != null" >
+        bankName = #{record.bankname},
+      </if>
+      <if test="record.bankflag != null" >
+        bankFlag = #{record.bankflag},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_banks
+    set bankId = #{record.bankid},
+      bankName = #{record.bankname},
+      bankFlag = #{record.bankflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Bank" >
+    update cs_banks
+    <set >
+      <if test="bankname != null" >
+        bankName = #{bankname},
+      </if>
+      <if test="bankflag != null" >
+        bankFlag = #{bankflag},
+      </if>
+    </set>
+    where bankId = #{bankid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Bank" >
+    update cs_banks
+    set bankName = #{bankname},
+      bankFlag = #{bankflag}
+    where bankId = #{bankid}
+  </update>
+</mapper>

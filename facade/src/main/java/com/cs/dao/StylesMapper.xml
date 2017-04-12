@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.StylesMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Styles" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="styleSys" property="stylesys" jdbcType="VARCHAR" />
+    <result column="styleName" property="stylename" jdbcType="VARCHAR" />
+    <result column="styleAuthor" property="styleauthor" jdbcType="VARCHAR" />
+    <result column="styleShopSite" property="styleshopsite" jdbcType="VARCHAR" />
+    <result column="styleShopId" property="styleshopid" jdbcType="INTEGER" />
+    <result column="stylePath" property="stylepath" jdbcType="VARCHAR" />
+    <result column="isUse" property="isuse" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.stylesys != null" >
+         and styleSys = #{condition.stylesys}
+      </if>
+      <if test="condition.stylename != null" >
+         and styleName = #{condition.stylename}
+      </if>
+      <if test="condition.styleauthor != null" >
+         and styleAuthor = #{condition.styleauthor}
+      </if>
+      <if test="condition.styleshopsite != null" >
+         and styleShopSite = #{condition.styleshopsite}
+      </if>
+      <if test="condition.styleshopid != null" >
+         and styleShopId = #{condition.styleshopid}
+      </if>
+      <if test="condition.stylepath != null" >
+         and stylePath = #{condition.stylepath}
+      </if>
+      <if test="condition.isuse != null" >
+         and isUse = #{condition.isuse}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, styleSys, styleName, styleAuthor, styleShopSite, styleShopId, stylePath, isUse
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_styles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_styles
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_styles
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_styles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Styles" >
+    insert into cs_styles (id, styleSys, styleName, styleAuthor, styleShopSite, styleShopId, 
+      stylePath, isUse)
+    values (#{id}, #{stylesys}, #{stylename}, #{styleauthor}, #{styleshopsite}, #{styleshopid}, 
+      #{stylepath}, #{isuse})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Styles" >
+    insert into cs_styles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stylesys != null" >
+        styleSys,
+      </if>
+      <if test="stylename != null" >
+        styleName,
+      </if>
+      <if test="styleauthor != null" >
+        styleAuthor,
+      </if>
+      <if test="styleshopsite != null" >
+        styleShopSite,
+      </if>
+      <if test="styleshopid != null" >
+        styleShopId,
+      </if>
+      <if test="stylepath != null" >
+        stylePath,
+      </if>
+      <if test="isuse != null" >
+        isUse,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="stylesys != null" >
+        #{stylesys},
+      </if>
+      <if test="stylename != null" >
+        #{stylename},
+      </if>
+      <if test="styleauthor != null" >
+        #{styleauthor},
+      </if>
+      <if test="styleshopsite != null" >
+        #{styleshopsite},
+      </if>
+      <if test="styleshopid != null" >
+        #{styleshopid},
+      </if>
+      <if test="stylepath != null" >
+        #{stylepath},
+      </if>
+      <if test="isuse != null" >
+        #{isuse},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_styles
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_styles
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.stylesys != null" >
+        styleSys = #{record.stylesys},
+      </if>
+      <if test="record.stylename != null" >
+        styleName = #{record.stylename},
+      </if>
+      <if test="record.styleauthor != null" >
+        styleAuthor = #{record.styleauthor},
+      </if>
+      <if test="record.styleshopsite != null" >
+        styleShopSite = #{record.styleshopsite},
+      </if>
+      <if test="record.styleshopid != null" >
+        styleShopId = #{record.styleshopid},
+      </if>
+      <if test="record.stylepath != null" >
+        stylePath = #{record.stylepath},
+      </if>
+      <if test="record.isuse != null" >
+        isUse = #{record.isuse},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_styles
+    set id = #{record.id},
+      styleSys = #{record.stylesys},
+      styleName = #{record.stylename},
+      styleAuthor = #{record.styleauthor},
+      styleShopSite = #{record.styleshopsite},
+      styleShopId = #{record.styleshopid},
+      stylePath = #{record.stylepath},
+      isUse = #{record.isuse}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Styles" >
+    update cs_styles
+    <set >
+      <if test="stylesys != null" >
+        styleSys = #{stylesys},
+      </if>
+      <if test="stylename != null" >
+        styleName = #{stylename},
+      </if>
+      <if test="styleauthor != null" >
+        styleAuthor = #{styleauthor},
+      </if>
+      <if test="styleshopsite != null" >
+        styleShopSite = #{styleshopsite},
+      </if>
+      <if test="styleshopid != null" >
+        styleShopId = #{styleshopid},
+      </if>
+      <if test="stylepath != null" >
+        stylePath = #{stylepath},
+      </if>
+      <if test="isuse != null" >
+        isUse = #{isuse},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Styles" >
+    update cs_styles
+    set styleSys = #{stylesys},
+      styleName = #{stylename},
+      styleAuthor = #{styleauthor},
+      styleShopSite = #{styleshopsite},
+      styleShopId = #{styleshopid},
+      stylePath = #{stylepath},
+      isUse = #{isuse}
+    where id = #{id}
+  </update>
+</mapper>

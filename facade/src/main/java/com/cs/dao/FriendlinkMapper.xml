@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.FriendlinkMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Friendlink" >
+    <id column="friendlinkId" property="friendlinkid" jdbcType="INTEGER" />
+    <result column="friendlinkIco" property="friendlinkico" jdbcType="VARCHAR" />
+    <result column="friendlinkName" property="friendlinkname" jdbcType="VARCHAR" />
+    <result column="friendlinkUrl" property="friendlinkurl" jdbcType="VARCHAR" />
+    <result column="friendlinkSort" property="friendlinksort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.friendlinkico != null" >
+         and friendlinkIco = #{condition.friendlinkico}
+      </if>
+      <if test="condition.friendlinkname != null" >
+         and friendlinkName = #{condition.friendlinkname}
+      </if>
+      <if test="condition.friendlinkurl != null" >
+         and friendlinkUrl = #{condition.friendlinkurl}
+      </if>
+      <if test="condition.friendlinksort != null" >
+         and friendlinkSort = #{condition.friendlinksort}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    friendlinkId, friendlinkIco, friendlinkName, friendlinkUrl, friendlinkSort
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_friendlinks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cs_friendlinks
+    where friendlinkId = #{friendlinkid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_friendlinks
+    where friendlinkId = #{friendlinkid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_friendlinks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Friendlink" >
+    insert into cs_friendlinks (friendlinkId, friendlinkIco, friendlinkName, friendlinkUrl, friendlinkSort
+      )
+    values (#{friendlinkid}, #{friendlinkico}, #{friendlinkname}, #{friendlinkurl}, #{friendlinksort}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Friendlink" >
+    insert into cs_friendlinks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="friendlinkid != null" >
+        friendlinkId,
+      </if>
+      <if test="friendlinkico != null" >
+        friendlinkIco,
+      </if>
+      <if test="friendlinkname != null" >
+        friendlinkName,
+      </if>
+      <if test="friendlinkurl != null" >
+        friendlinkUrl,
+      </if>
+      <if test="friendlinksort != null" >
+        friendlinkSort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="friendlinkid != null" >
+        #{friendlinkid},
+      </if>
+      <if test="friendlinkico != null" >
+        #{friendlinkico},
+      </if>
+      <if test="friendlinkname != null" >
+        #{friendlinkname},
+      </if>
+      <if test="friendlinkurl != null" >
+        #{friendlinkurl},
+      </if>
+      <if test="friendlinksort != null" >
+        #{friendlinksort},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_friendlinks
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_friendlinks
+    <set >
+      <if test="record.friendlinkid != null" >
+        friendlinkId = #{record.friendlinkid},
+      </if>
+      <if test="record.friendlinkico != null" >
+        friendlinkIco = #{record.friendlinkico},
+      </if>
+      <if test="record.friendlinkname != null" >
+        friendlinkName = #{record.friendlinkname},
+      </if>
+      <if test="record.friendlinkurl != null" >
+        friendlinkUrl = #{record.friendlinkurl},
+      </if>
+      <if test="record.friendlinksort != null" >
+        friendlinkSort = #{record.friendlinksort},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_friendlinks
+    set friendlinkId = #{record.friendlinkid},
+      friendlinkIco = #{record.friendlinkico},
+      friendlinkName = #{record.friendlinkname},
+      friendlinkUrl = #{record.friendlinkurl},
+      friendlinkSort = #{record.friendlinksort}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Friendlink" >
+    update cs_friendlinks
+    <set >
+      <if test="friendlinkico != null" >
+        friendlinkIco = #{friendlinkico},
+      </if>
+      <if test="friendlinkname != null" >
+        friendlinkName = #{friendlinkname},
+      </if>
+      <if test="friendlinkurl != null" >
+        friendlinkUrl = #{friendlinkurl},
+      </if>
+      <if test="friendlinksort != null" >
+        friendlinkSort = #{friendlinksort},
+      </if>
+    </set>
+    where friendlinkId = #{friendlinkid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Friendlink" >
+    update cs_friendlinks
+    set friendlinkIco = #{friendlinkico},
+      friendlinkName = #{friendlinkname},
+      friendlinkUrl = #{friendlinkurl},
+      friendlinkSort = #{friendlinksort}
+    where friendlinkId = #{friendlinkid}
+  </update>
+</mapper>

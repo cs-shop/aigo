@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.dao.BrandMapper" >
+  <resultMap id="BaseResultMap" type="com.cs.pojo.Brand" >
+    <id column="brandId" property="brandid" jdbcType="INTEGER" />
+    <result column="brandName" property="brandname" jdbcType="VARCHAR" />
+    <result column="brandIco" property="brandico" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="brandFlag" property="brandflag" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cs.pojo.Brand" extends="BaseResultMap" >
+    </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.brandname != null" >
+         and brandName = #{condition.brandname}
+      </if>
+      <if test="condition.brandico != null" >
+         and brandIco = #{condition.brandico}
+      </if>
+      <if test="condition.createtime != null" >
+         and createTime = #{condition.createtime}
+      </if>
+      <if test="condition.brandflag != null" >
+         and brandFlag = #{condition.brandflag}
+      </if>
+      <if test="condition.branddesc != null" >
+         and brandDesc = #{condition.branddesc}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    brandId, brandName, brandIco, createTime, brandFlag
+  </sql>
+  <sql id="Blob_Column_List" >
+    brandDesc
+  </sql>
+  <select id="selectByParamsWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_brands
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.cs.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_brands
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cs_brands
+    where brandId = #{brandid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cs_brands
+    where brandId = #{brandid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.cs.pojo.Criteria" >
+    delete from cs_brands
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cs.pojo.Brand" >
+    insert into cs_brands (brandId, brandName, brandIco, createTime, brandFlag, brandDesc
+      )
+    values (#{brandid}, #{brandname}, #{brandico}, #{createtime}, #{brandflag}, #{branddesc}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.pojo.Brand" >
+    insert into cs_brands
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brandid != null" >
+        brandId,
+      </if>
+      <if test="brandname != null" >
+        brandName,
+      </if>
+      <if test="brandico != null" >
+        brandIco,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="brandflag != null" >
+        brandFlag,
+      </if>
+      <if test="branddesc != null" >
+        brandDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brandid != null" >
+        #{brandid},
+      </if>
+      <if test="brandname != null" >
+        #{brandname},
+      </if>
+      <if test="brandico != null" >
+        #{brandico},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="brandflag != null" >
+        #{brandflag},
+      </if>
+      <if test="branddesc != null" >
+        #{branddesc},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.cs.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from cs_brands
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update cs_brands
+    <set >
+      <if test="record.brandid != null" >
+        brandId = #{record.brandid},
+      </if>
+      <if test="record.brandname != null" >
+        brandName = #{record.brandname},
+      </if>
+      <if test="record.brandico != null" >
+        brandIco = #{record.brandico},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime},
+      </if>
+      <if test="record.brandflag != null" >
+        brandFlag = #{record.brandflag},
+      </if>
+      <if test="record.branddesc != null" >
+        brandDesc = #{record.branddesc},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParamsWithBLOBs" parameterType="map" >
+    update cs_brands
+    set brandId = #{record.brandid},
+      brandName = #{record.brandname},
+      brandIco = #{record.brandico},
+      createTime = #{record.createtime},
+      brandFlag = #{record.brandflag},
+      brandDesc = #{record.branddesc}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update cs_brands
+    set brandId = #{record.brandid},
+      brandName = #{record.brandname},
+      brandIco = #{record.brandico},
+      createTime = #{record.createtime},
+      brandFlag = #{record.brandflag}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.pojo.Brand" >
+    update cs_brands
+    <set >
+      <if test="brandname != null" >
+        brandName = #{brandname},
+      </if>
+      <if test="brandico != null" >
+        brandIco = #{brandico},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime},
+      </if>
+      <if test="brandflag != null" >
+        brandFlag = #{brandflag},
+      </if>
+      <if test="branddesc != null" >
+        brandDesc = #{branddesc},
+      </if>
+    </set>
+    where brandId = #{brandid}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cs.pojo.Brand" >
+    update cs_brands
+    set brandName = #{brandname},
+      brandIco = #{brandico},
+      createTime = #{createtime},
+      brandFlag = #{brandflag},
+      brandDesc = #{branddesc}
+    where brandId = #{brandid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.pojo.Brand" >
+    update cs_brands
+    set brandName = #{brandname},
+      brandIco = #{brandico},
+      createTime = #{createtime},
+      brandFlag = #{brandflag}
+    where brandId = #{brandid}
+  </update>
+</mapper>
