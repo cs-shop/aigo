@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-
+ <script type="text/javascript" src="${ctx}/js/user/user.js"></script>
 </head>
 
 <body>
@@ -38,11 +38,11 @@
 						<div class="form-bottom">
 							<form class="login-form">
 								<div class="form-group">
-									<label class="sr-only" for="form-username">Username</label> <input type="text" name="form-username"
+									<label class="sr-only" for="form-username">Username</label> <input type="text" id="user_name" name="form-username"
 										placeholder="用户名/邮箱/手机号" class="form-username form-control" id="login-username">
 								</div>
 								<div class="form-group">
-									<label class="sr-only" for="form-password">Password</label> <input type="password" name="form-password"
+									<label class="sr-only" for="form-password">Password</label> <input type="password" id="password" name="form-password"
 										placeholder="账号密码" class="form-password form-control" id="login-password">
 								</div>
 							</form>

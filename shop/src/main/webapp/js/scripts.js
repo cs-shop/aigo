@@ -28,25 +28,4 @@ jQuery(document).ready(function() {
     
     
 });
-var login = function() {
-	$.ajax({
-		url:"http://localhost:8080/cs-shop/user/getUsers/100",
-		type:'get',
-		success: function(data) {
-			 //请求成功处理，和本地回调完全一样
-			alert('login success');
-			windows.localtion.href='/pages/test.jsp';
-			debugger;
-			    },
-			
-		complete: function(data) {
-			       //请求完成的处理
-			debugger;
-		     },
-			
-		error: function(data) {
-		        //请求出错处理
-			debugger;
-		    }
-	}); 
- }
+

@@ -32,6 +32,7 @@
     <title>cs-shop注册</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/user/register.css">
+    <script type="text/javascript" src="${ctx}/js/user/user.js"></script>
 </head>
 <body>
 
@@ -81,7 +82,7 @@
             <div class="from_nam">
             		<span class="from_xing">*</span>
             		<span class="from_name">用户名:</span>
-                    <input type="text" name="" class="from_text" placeholder="nihao">
+                    <input type="text" id="user_name" class="from_text" placeholder="nihao">
                     <!-- <span class="yhtx_logo"><img src="./images/user.jpg"></span> -->
             <span class="from_tsy">4-20位字母、数字汉字及特殊字符组合</span>
             </div>
@@ -89,7 +90,7 @@
             <div class="from1_nam">
 	            <span class="from_xing">*</span>
 	            <span class="from_name">密码:</span>
-	             <input type="password" name="pwd" class="from1_text" placeholder="nihao" />
+	             <input type="password" id="pwd" name="pwd" class="from1_text" placeholder="nihao" />
 	                   <!--  <span class="yhtx1_logo"><img src="./images/pwd.jpg"></span> -->
 	            <span class="from1_tsy">6-20位字符，建议字母、数字和符号</span>
             </div>
@@ -97,7 +98,7 @@
             <div class="from2_nam">
 	            <span class="from_xing">*</span>
 	            <span class="from_name">请确认密码:</span>
-	            <input type="password" name="pwdc" class="from2_text" placeholder="nihao" />
+	            <input type="password" id="pwdc" name="pwdc" class="from2_text" placeholder="nihao" />
 	            <span class="from2_tsy">请再次输入密码</span>
             </div>
             <!--手机验证-->
@@ -111,9 +112,9 @@
             <!--短信验证码-->
             <div class="from4_nam">
 	            <span class="from_xing">*</span>
-	            <span class="from_name">短信验证码:</span>
+	            <span class="from_name">邮箱:</span>
 	            <input type="text" name="" class="from4_text">
-	            <span class="from4_tsy">获取短信验证码</span>
+	            <span class="from4_tsy">邮箱</span>
             </div>
             <!--from尾部-->
             <div class="from5_nam">
@@ -121,7 +122,7 @@
                 <span>我已同意并阅读</span>
                 <span><a href=""><<用户注册协议>></a></span>
             </div>
-            <input type="button" name="" class="from5_text" value="立即注册">
+            <input type="button" name="" class="from5_text" value="立即注册" onclick="register()">
           </div>
         </form>
 
