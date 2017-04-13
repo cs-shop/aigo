@@ -29,7 +29,7 @@
 <html>
 <head>
 <%@include file="/pages/common/common.jsp" %>
-    <title>cs-shop注册</title>
+    <title>京东注册</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/user/register.css">
 </head>
@@ -43,11 +43,13 @@
                     <li><a href="">收藏京东</a></li>
                 </ul> -->
                 <ul class="nav_rig">
-                    <li><a href="">您好，欢迎来到csshop！</a></li>
+                    <li><a href="">您好，欢迎来到京东！</a></li>
                     <li><a href="">[登录]</a></li>
                     <li><a href="">[免费注册]</a></li>
                     <li>|</li>
                     <li><a href="">我的订单</a></li>
+                    <li>|</li>
+                    <li><a href="">手机京东</a></li>
                     <li>|</li>
                     <li><a href="">客户服务</a></li>
                     <li>|</li>
@@ -76,8 +78,6 @@
 
     <header class="head">
         <form>
-        <div class="form_body">
-       
             <div class="from_nam">
             		<span class="from_xing">*</span>
             		<span class="from_name">用户名:</span>
@@ -87,47 +87,53 @@
             </div>
             <!--密码框-->
             <div class="from1_nam">
-	            <span class="from_xing">*</span>
-	            <span class="from_name">密码:</span>
-	             <input type="password" name="pwd" class="from1_text" placeholder="nihao" />
+	            <span class="from1_xing">*</span>
+	            <span class="from1_name">密码:</span>
+	             <input type="password" name="" class="from1_text">
 	                   <!--  <span class="yhtx1_logo"><img src="./images/pwd.jpg"></span> -->
 	            <span class="from1_tsy">6-20位字符，建议字母、数字和符号</span>
             </div>
             <!--确认密码框-->
             <div class="from2_nam">
-	            <span class="from_xing">*</span>
-	            <span class="from_name">请确认密码:</span>
-	            <input type="password" name="pwdc" class="from2_text" placeholder="nihao" />
-	            <span class="from2_tsy">请再次输入密码</span>
+            <span class="from2_xing">*</span>
+            <span class="from2_name">请确认密码:</span>
+                <div id="text2_logo">
+                    <input type="password" name="" class="from2_text">
+                    <span class="yhtx2_logo"><img src="./images/pwd.jpg"></span>
+                </div>
+            <span class="from2_tsy">请再次输入密码</span>
             </div>
             <!--手机验证-->
             <div class="from3_nam">
-            <span class="from_xing">*</span>
-            <span class="from_name">验证手机:</span>
-            <input type="text" name="" class="from3_text">
-                    <!-- <span class="yhtx3_logo"><img src="./images/phone.jpg"></span> -->
+            <span class="from3_xing">*</span>
+            <span class="from3_name">验证手机:</span>
+                <div id="text3_logo">
+                    <input type="text" name="" class="from3_text">
+                    <span class="yhtx3_logo"><img src="./images/phone.jpg"></span>
+                </div>
             <span class="from3_tsy">完成验证后，可以使用该手机找回</span>
             </div>
             <!--短信验证码-->
             <div class="from4_nam">
-	            <span class="from_xing">*</span>
-	            <span class="from_name">短信验证码:</span>
-	            <input type="text" name="" class="from4_text">
-	            <span class="from4_tsy">获取短信验证码</span>
+            <span class="from4_xing">*</span>
+            <span class="from4_name">短信验证码:</span>
+                <div id="text4_logo">
+                    <input type="text" name="" class="from4_text">
+                </div>
+            <span class="from4_tsy">获取短信验证码</span>
             </div>
             <!--from尾部-->
             <div class="from5_nam">
                 <input type="checkbox" name="">
                 <span>我已同意并阅读</span>
-                <span><a href=""><<用户注册协议>></a></span>
+                <span><a href=""><<京东用户注册协议>></a></span>
             </div>
             <input type="button" name="" class="from5_text" value="立即注册">
-          </div>
         </form>
 
         
         <div id="regphone">
-        <img src="${ctx}/ico/cs-shop.png">
+        <img src="./images/reg_phone.jpg">
         </div>
     </header>
 <!--footer-->
@@ -143,14 +149,20 @@
             <li>|</li>
             <li><a href="#">广告服务</a></li>
             <li>|</li>
+            <li><a href="#">手机京东</a></li>
+            <li>|</li>
             <li><a href="#">友情链接</a></li>
             <li>|</li>
             <li><a href="#">销售联盟</a></li>
-            <li id="jd_number">Copyright©2017-2018  cs-shop 版权所有 </li>
+            <li>|</li>
+            <li><a href="#">京东社区</a></li>
+            <li>|</li>
+            <li><a href="#">京东公益</a></li>
+            <li id="jd_number">Copyright©2004-2016  京东JD.com 版权所有 </li>
         </ul>
     </footer>
 <!--侧边悬浮框-->
-<!--     <aside>
+    <aside>
         <ul>
             <li class="zhuti">特色栏目</li>
             <li>为我推荐</li>
@@ -173,6 +185,6 @@
             <li>迷你挑</li>
             <li>EngliahSite</li>
         </ul>
-    </aside> -->
+    </aside>
 </body>
 </html>
