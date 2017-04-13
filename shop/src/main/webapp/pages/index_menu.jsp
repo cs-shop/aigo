@@ -116,8 +116,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视1<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -126,7 +126,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -137,7 +137,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -157,8 +157,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视2<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -167,7 +167,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -178,7 +178,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -198,8 +198,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视3<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -208,7 +208,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -219,7 +219,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -239,8 +239,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视4<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -249,7 +249,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -260,7 +260,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -280,8 +280,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视5<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -290,7 +290,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -301,7 +301,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -321,8 +321,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视6<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -331,7 +331,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -342,7 +342,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -362,8 +362,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视7<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -372,7 +372,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -383,7 +383,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -403,8 +403,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视8<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -413,7 +413,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -424,7 +424,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -444,8 +444,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视9<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -454,7 +454,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -465,7 +465,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -485,8 +485,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视10<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -495,7 +495,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -506,7 +506,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -526,8 +526,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视11<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -536,7 +536,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -547,7 +547,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -567,8 +567,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视12<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -577,7 +577,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -588,7 +588,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -608,8 +608,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视13<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -618,7 +618,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -629,7 +629,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -649,8 +649,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视14<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -659,7 +659,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -670,7 +670,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -690,8 +690,8 @@
 							<div class="cate_channel"></div>
 							<div class="cate_detail">
 								<dl class="cate_detail_item cate_detail_item1">
-									<dt class="cate_detail+tit">
-										<a href="###" class="cate_detail_tit_lk">电视<i class="iconfont cate_deetail_tit_arrow"></i></a>
+									<dt class="cate_detail_tit">
+										<a href="###" class="cate_detail_tit_lk">电视15<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
 										<a href="###" class="cate_detail_con_lk" target="_blank">合资品牌</a>
@@ -700,7 +700,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item2">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">空调<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -711,7 +711,7 @@
 									</dd>
 								</dl>
 								<dl class="cate_detail_item cate_detail_item3">
-									<dt class="cate_detail+tit">
+									<dt class="cate_detail_tit">
 										<a href="###" class="cate_detail_tit_lk">洗衣机<i class="iconfont cate_deetail_tit_arrow"></i></a>
 									</dt>
 									<dd class="cate_detail_con">
@@ -945,29 +945,99 @@
 
 <!--所有分类 End-->
 <script type="text/javascript">
-	//左侧菜单事件
-	$(".cate_menu_item").each(function(){
-		$(this).hover(function(){
-			$(".cate_menu_item").removeClass("cate_menu_item_on");
-			$(this).addClass("cate_menu_item_on");
-			
-			var index = $(this).attr("data-index");
-			$(".cate_pop").show();
-			$("#cate_item"+index).show();
-		},function(){
-			$(".cate_menu_item").removeClass("cate_menu_item_on");
-			
-			$(".cate_pop").hide();
-			$(".cate_part").hide();
+	//左侧菜单相关事件
+	$(".cate_menu").children(".cate_menu_item").hover(function() { //一级导航悬浮
+        $(this).addClass("cate_menu_item_on").siblings(".cate_menu_item").removeClass("cate_menu_item_on");
+        var index = $(this).index();
+        $(".cate_pop").children(".cate_part").hide();
+        $(".cate_pop").children(".cate_part").eq(index).show();
+        
+        $(".cate_pop").show();
+    }, function() {
+        $(".cate_pop").hide();
+        $('.cate_menu_item').removeClass("cate_menu_item_on");
+    });
+	
+//     $(".cate_menu").hover(function() { //整个导航菜单悬浮，是否显示二级导航到出厂
+//         $(".cate_pop").show();
+//     }, function() {
+//         $(".cate_pop").hide();
+//         $('.cate_menu_item').removeClass("cate_menu_item_on");
+//     });
+    
+    $(".cate_pop").hover(function() { //二级导航悬浮
+        $(".cate_pop").show();
+		$(".cate_part").each(function(){
+			if($(this).css("display") != "none"){
+				var index = $(this).index();
+				$(".cate_menu").children(".cate_menu_item").eq(index).addClass("cate_menu_item_on");
+			}
 		});
-	});
+    }, function() {
+        $(".cate_pop").hide();
+        $(".cate_pop").children(".cate_part").hide();
+        $('.cate_menu_item').removeClass("cate_menu_item_on");
+    });
+	
 	//中间图片切换事件
-	//3个div的统一class = 'div'
-	var index =0;
+	var slideIndex =0;
 	//3秒轮播一次
 	var timer = setInterval(function(){
-	    index = (index == 2) ? 0 : index + 1;          
+		slideIndex = (slideIndex == 7) ? 0 : slideIndex + 1;    
+		
+		//小圆点的切换 slider_indicator_btn_active
+	    $(".slider_indicator_btn").removeClass("slider_indicator_btn_active");
+	    $(".slider_indicator_btn").eq(slideIndex).addClass("slider_indicator_btn_active");
+		
 	    //某个div显示，其他的隐藏
-	    $(".div").hide().eq(index).show();    
+	    $(".slider_item").css("opacity","0");
+	    $(".slider_item").css("z-index","0");
+	    $(".slider_item").hide().eq(slideIndex).css("opacity","1");
+	    $(".slider_item").hide().eq(slideIndex).css("z-index","1");
+	    $(".slider_item").hide().eq(slideIndex).show();    
 	}, 3000);
+	
+	//小圆点的切换
+	$(".slider_indicator_btn").hover(function(){
+		var index = $(this).index();
+		
+		slideIndex = index-1;
+		
+		$(".slider_indicator_btn").removeClass("slider_indicator_btn_active");
+	    $(this).addClass("slider_indicator_btn_active");
+		
+		$(".slider_item").css("opacity","0");
+	    $(".slider_item").css("z-index","0");
+	    $(".slider_item").hide().eq(index-1).css("opacity","1");
+	    $(".slider_item").hide().eq(index-1).css("z-index","1");
+	    $(".slider_item").hide().eq(index-1).show();    
+	});
+	
+	//左右箭头
+	$(".slider_control_prev").click(function(){
+		
+		slideIndex = (slideIndex == 0) ? 7 : slideIndex - 1;  
+		
+		$(".slider_indicator_btn").removeClass("slider_indicator_btn_active");
+		$(".slider_indicator_btn").eq(slideIndex+1).addClass("slider_indicator_btn_active");
+		
+		$(".slider_item").css("opacity","0");
+	    $(".slider_item").css("z-index","0");
+	    $(".slider_item").hide().eq(slideIndex).css("opacity","1");
+	    $(".slider_item").hide().eq(slideIndex).css("z-index","1");
+	    $(".slider_item").hide().eq(slideIndex).show();
+	});
+	$(".slider_control_next").click(function(){
+		
+		slideIndex = (slideIndex == 7) ? 0 : slideIndex + 1;   
+		
+		$(".slider_indicator_btn").removeClass("slider_indicator_btn_active");
+		$(".slider_indicator_btn").eq(slideIndex+1).addClass("slider_indicator_btn_active");
+		
+		$(".slider_item").css("opacity","0");
+	    $(".slider_item").css("z-index","0");
+	    $(".slider_item").hide().eq(slideIndex).css("opacity","1");
+	    $(".slider_item").hide().eq(slideIndex).css("z-index","1");
+	    $(".slider_item").hide().eq(slideIndex).show();
+	});
 </script>

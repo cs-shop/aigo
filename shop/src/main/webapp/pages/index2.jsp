@@ -4,7 +4,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<%@include file="/pages/common/common.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<head>
+<script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
 <head>
 <title>CS-SHOP</title>
 <link rel="stylesheet" href="${ctx }/css/jd.css">
