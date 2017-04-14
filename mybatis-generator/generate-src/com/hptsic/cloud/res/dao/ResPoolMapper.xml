@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hptsic.cloud.res.dao.ResPoolMapper" >
+  <resultMap id="BaseResultMap" type="com.hptsic.cloud.res.pojo.ResPool" >
+    <id column="RES_POOL_SID" property="resPoolSid" jdbcType="VARCHAR" />
+    <result column="RES_PARENT_POOL_SID" property="resParentPoolSid" jdbcType="VARCHAR" />
+    <result column="RES_ZONE_SID" property="resZoneSid" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="DESC" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.resParentPoolSid != null" >
+         and RES_PARENT_POOL_SID = #{condition.resParentPoolSid}
+      </if>
+      <if test="condition.resZoneSid != null" >
+         and RES_ZONE_SID = #{condition.resZoneSid}
+      </if>
+      <if test="condition.type != null" >
+         and TYPE = #{condition.type}
+      </if>
+      <if test="condition.desc != null" >
+         and DESC = #{condition.desc}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    RES_POOL_SID, RES_PARENT_POOL_SID, RES_ZONE_SID, TYPE, DESC
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from res_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_pool
+    where RES_POOL_SID = #{resPoolSid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from res_pool
+    where RES_POOL_SID = #{resPoolSid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    delete from res_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hptsic.cloud.res.pojo.ResPool" >
+    insert into res_pool (RES_POOL_SID, RES_PARENT_POOL_SID, RES_ZONE_SID, TYPE, DESC)
+    values (#{resPoolSid}, #{resParentPoolSid}, #{resZoneSid}, #{type}, #{desc})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hptsic.cloud.res.pojo.ResPool" >
+    insert into res_pool
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resPoolSid != null" >
+        RES_POOL_SID,
+      </if>
+      <if test="resParentPoolSid != null" >
+        RES_PARENT_POOL_SID,
+      </if>
+      <if test="resZoneSid != null" >
+        RES_ZONE_SID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="desc != null" >
+        DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resPoolSid != null" >
+        #{resPoolSid},
+      </if>
+      <if test="resParentPoolSid != null" >
+        #{resParentPoolSid},
+      </if>
+      <if test="resZoneSid != null" >
+        #{resZoneSid},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="desc != null" >
+        #{desc},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from res_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update res_pool
+    <set >
+      <if test="record.resPoolSid != null" >
+        RES_POOL_SID = #{record.resPoolSid},
+      </if>
+      <if test="record.resParentPoolSid != null" >
+        RES_PARENT_POOL_SID = #{record.resParentPoolSid},
+      </if>
+      <if test="record.resZoneSid != null" >
+        RES_ZONE_SID = #{record.resZoneSid},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type},
+      </if>
+      <if test="record.desc != null" >
+        DESC = #{record.desc},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update res_pool
+    set RES_POOL_SID = #{record.resPoolSid},
+      RES_PARENT_POOL_SID = #{record.resParentPoolSid},
+      RES_ZONE_SID = #{record.resZoneSid},
+      TYPE = #{record.type},
+      DESC = #{record.desc}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hptsic.cloud.res.pojo.ResPool" >
+    update res_pool
+    <set >
+      <if test="resParentPoolSid != null" >
+        RES_PARENT_POOL_SID = #{resParentPoolSid},
+      </if>
+      <if test="resZoneSid != null" >
+        RES_ZONE_SID = #{resZoneSid},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type},
+      </if>
+      <if test="desc != null" >
+        DESC = #{desc},
+      </if>
+    </set>
+    where RES_POOL_SID = #{resPoolSid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hptsic.cloud.res.pojo.ResPool" >
+    update res_pool
+    set RES_PARENT_POOL_SID = #{resParentPoolSid},
+      RES_ZONE_SID = #{resZoneSid},
+      TYPE = #{type},
+      DESC = #{desc}
+    where RES_POOL_SID = #{resPoolSid}
+  </update>
+</mapper>

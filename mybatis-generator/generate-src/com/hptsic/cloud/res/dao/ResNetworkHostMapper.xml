@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hptsic.cloud.res.dao.ResNetworkHostMapper" >
+  <resultMap id="BaseResultMap" type="com.hptsic.cloud.res.pojo.ResNetworkHostKey" >
+    <id column="RES_HOST_SID" property="resHostSid" jdbcType="VARCHAR" />
+    <id column="RES_NETWORK_SID" property="resNetworkSid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" />
+  </sql>
+  <sql id="Base_Column_List" >
+    RES_HOST_SID, RES_NETWORK_SID
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from res_network_host
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hptsic.cloud.res.pojo.ResNetworkHostKey" >
+    delete from res_network_host
+    where RES_HOST_SID = #{resHostSid}
+      and RES_NETWORK_SID = #{resNetworkSid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    delete from res_network_host
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hptsic.cloud.res.pojo.ResNetworkHostKey" >
+    insert into res_network_host (RES_HOST_SID, RES_NETWORK_SID)
+    values (#{resHostSid}, #{resNetworkSid})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hptsic.cloud.res.pojo.ResNetworkHostKey" >
+    insert into res_network_host
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resHostSid != null" >
+        RES_HOST_SID,
+      </if>
+      <if test="resNetworkSid != null" >
+        RES_NETWORK_SID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resHostSid != null" >
+        #{resHostSid},
+      </if>
+      <if test="resNetworkSid != null" >
+        #{resNetworkSid},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from res_network_host
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update res_network_host
+    <set >
+      <if test="record.resHostSid != null" >
+        RES_HOST_SID = #{record.resHostSid},
+      </if>
+      <if test="record.resNetworkSid != null" >
+        RES_NETWORK_SID = #{record.resNetworkSid},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update res_network_host
+    set RES_HOST_SID = #{record.resHostSid},
+      RES_NETWORK_SID = #{record.resNetworkSid}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

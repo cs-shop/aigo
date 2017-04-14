@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="../mybatis-generator/lib/mysql-connector-java-5.1.25-bin.jar" />
+
+	<context id="MyBatis3" targetRuntime="MyBatis3">
+
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.MybatisCriteriaPlugin" />
+		<plugin type="org.mybatis.generator.plugins.MybatisServicePlugin">
+			<property name="targetPackage" value="com.hptsic.cloud.res.service" />
+			<property name="implementationPackage" value="com.hptsic.cloud.res.service.impl" />
+			<property name="targetProject" value="../mybatis-generator/generate-src" />
+			<property name="enableInsert" value="true" />
+			<property name="enableUpdateByParamsSelective" value="true" />
+			<property name="enableInsertSelective" value="true" />
+			<property name="enableUpdateByPrimaryKey" value="true" />
+			<property name="enableDeleteByPrimaryKey" value="true" />
+			<property name="enableDeleteByParams" value="true" />
+			<property name="enableUpdateByPrimaryKeySelective" value="true" />
+			<property name="enableUpdateByParams" value="true" />
+		</plugin>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/gdruc"
+			userId="root" password="li1127" />
+
+		<javaModelGenerator targetPackage="com.hptsic.cloud.res.pojo" targetProject="../mybatis-generator/generate-src">
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.hptsic.cloud.res.dao" targetProject="../mybatis-generator/generate-src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- XMLMAPPER SPRING -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.hptsic.cloud.res.dao" targetProject="../mybatis-generator/generate-src">
+		</javaClientGenerator>
+
+
+		<table tableName="res_storage" >
+			<property name="runtimeTableName" value="res_storage" />
+			<!-- <generatedKey column="user_sid" sqlStatement="SELECT NEXTVAL('SEQ_SYS_M_USER')" /> -->
+		</table>
+	</context>
+</generatorConfiguration>
