@@ -11,9 +11,14 @@
 <head>
 <title>CS-SHOP</title>
 <link rel="stylesheet" href="${ctx }/css/jd.css">
+<link rel="stylesheet" href="${ctx }/css/footer.css">
 </head>
 <body class="index">
+<!-- 头部 -->
 <%@ include file="/pages/common/navigat.jsp"%>
+<!-- 菜单、幻灯片 -->
 <%@ include file="/pages/index_menu.jsp"%>
+<!-- 底部 -->
+<%@ include file="/pages/common/footer.jsp" %>
 </body>
 </html> 
