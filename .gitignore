@@ -8,3 +8,4 @@ shop/.settings/*
 shop/.settings/org.eclipse.wst.common.project.facet.core.xml
 facade/.classpath
 *.classpath
+*/.settings/*
