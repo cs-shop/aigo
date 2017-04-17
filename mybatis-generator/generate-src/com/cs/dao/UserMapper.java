@@ -20,7 +20,7 @@ public interface UserMapper {
     /**
      * 根据主键删除记录
      */
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(Integer userId);
 
     /**
      * 保存记录,不管记录里面的属性是否为空
@@ -40,7 +40,7 @@ public interface UserMapper {
     /**
      * 根据主键查询记录
      */
-    User selectByPrimaryKey(Integer userid);
+    User selectByPrimaryKey(Integer userId);
 
     /**
      * 根据条件更新属性不为空的记录

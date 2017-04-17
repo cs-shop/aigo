@@ -7,11 +7,11 @@ import java.util.List;
 public interface UserService {
     int countByParams(Criteria example);
 
-    User selectByPrimaryKey(Integer userid);
+    User selectByPrimaryKey(Integer userId);
 
     List<User> selectByParams(Criteria example);
 
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(Integer userId);
 
     int updateByPrimaryKeySelective(User record);
 

@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor{
         response.sendRedirect(request.getContextPath()+"/pages/user/login.jsp");
 //        request.getRequestDispatcher("/pages/user/login.jsp").forward(request, response);  
 */		
-		return false;
+		return true;
 	}
 
 	@Override

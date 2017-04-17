@@ -32,6 +32,7 @@
     <title>cs-shop注册</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/user/register.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/user/jdregister.css">
     <script type="text/javascript" src="${ctx}/js/user/user.js"></script>
 </head>
 <body>

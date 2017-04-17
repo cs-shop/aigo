@@ -23,16 +23,16 @@ public class UserServiceImpl implements UserService {
         return count;
     }
 
-    public User selectByPrimaryKey(Integer userid) {
-        return this.userMapper.selectByPrimaryKey(userid);
+    public User selectByPrimaryKey(Integer userId) {
+        return this.userMapper.selectByPrimaryKey(userId);
     }
 
     public List<User> selectByParams(Criteria example) {
         return this.userMapper.selectByParams(example);
     }
 
-    public int deleteByPrimaryKey(Integer userid) {
-        return this.userMapper.deleteByPrimaryKey(userid);
+    public int deleteByPrimaryKey(Integer userId) {
+        return this.userMapper.deleteByPrimaryKey(userId);
     }
 
     public int updateByPrimaryKeySelective(User record) {

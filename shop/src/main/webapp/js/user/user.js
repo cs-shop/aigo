@@ -3,23 +3,28 @@
  */
 var register = function () {
 	var userName = $('#user_name').val();
+	var password = $('#pwd').val();
 	debugger;
 	console.log(userName);
 	$.ajax({
 		url : ctx+'/user/register',
 		type : 'post',
 		data : {
-			name : userName
+			loginName : userName,
+			loginPwd : password
 		},
 		dataType : 'json',
 		success :   function(data, textStatus){
 			debugger;
-			consloe.log(data);
+			console.log(data);
+         },
+         error : function(data, textStatus){
+			debugger;
+			console.log(data);
          }
- 	});
 	
+	});
 }
-
 var login = function() {
 	$.ajax({
 		url : ctx+ '/user/login',
