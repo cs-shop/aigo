@@ -1,2 +1,9 @@
-/_Ibator_Run_Test.class
+/generatorConfigIbatis2.xml
+/generatorConfigMyBatis3.xml
+/grid.xml
+/log4j.properties
+/mysql.xml
+/oracle.out.xml
+/oracle.xml
 /org/
+/_Ibator_Run_Test.class
