@@ -1,7 +1,7 @@
-package com.cs.dao;
+package com.hptsic.cloud.sys.dao;
 
-import com.cs.pojo.Criteria;
-import com.cs.pojo.User;
+import com.hptsic.cloud.sys.pojo.Criteria;
+import com.hptsic.cloud.sys.pojo.User;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Param;

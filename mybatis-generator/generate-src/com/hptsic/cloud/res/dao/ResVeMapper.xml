@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hptsic.cloud.res.dao.ResVeMapper" >
+  <resultMap id="BaseResultMap" type="com.hptsic.cloud.res.pojo.ResVe" >
+    <id column="RES_VE_SID" property="resVeSid" jdbcType="VARCHAR" />
+    <result column="RES_PARENT_TOPOLOGY_SID" property="resParentTopologySid" jdbcType="VARCHAR" />
+    <result column="RES_VE_NAME" property="resVeName" jdbcType="VARCHAR" />
+    <result column="VIRTUAL_PLATFORM_TYPE" property="virtualPlatformType" jdbcType="VARCHAR" />
+    <result column="VIRTUAL_PLATFORM_VERSION" property="virtualPlatformVersion" jdbcType="VARCHAR" />
+    <result column="MANAGEMENT_URL" property="managementUrl" jdbcType="VARCHAR" />
+    <result column="MANAGEMENT_ACCOUNT" property="managementAccount" jdbcType="VARCHAR" />
+    <result column="MANAGEMENT_PASSWORD" property="managementPassword" jdbcType="VARCHAR" />
+    <result column="CONNECT_STATUS" property="connectStatus" jdbcType="VARCHAR" />
+    <result column="UPDATE_STATUS" property="updateStatus" jdbcType="VARCHAR" />
+    <result column="UPDATE_CYCLE" property="updateCycle" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.resParentTopologySid != null" >
+         and RES_PARENT_TOPOLOGY_SID = #{condition.resParentTopologySid}
+      </if>
+      <if test="condition.resVeName != null" >
+         and RES_VE_NAME = #{condition.resVeName}
+      </if>
+      <if test="condition.virtualPlatformType != null" >
+         and VIRTUAL_PLATFORM_TYPE = #{condition.virtualPlatformType}
+      </if>
+      <if test="condition.virtualPlatformVersion != null" >
+         and VIRTUAL_PLATFORM_VERSION = #{condition.virtualPlatformVersion}
+      </if>
+      <if test="condition.managementUrl != null" >
+         and MANAGEMENT_URL = #{condition.managementUrl}
+      </if>
+      <if test="condition.managementAccount != null" >
+         and MANAGEMENT_ACCOUNT = #{condition.managementAccount}
+      </if>
+      <if test="condition.managementPassword != null" >
+         and MANAGEMENT_PASSWORD = #{condition.managementPassword}
+      </if>
+      <if test="condition.connectStatus != null" >
+         and CONNECT_STATUS = #{condition.connectStatus}
+      </if>
+      <if test="condition.updateStatus != null" >
+         and UPDATE_STATUS = #{condition.updateStatus}
+      </if>
+      <if test="condition.updateCycle != null" >
+         and UPDATE_CYCLE = #{condition.updateCycle}
+      </if>
+      <if test="condition.updateTime != null" >
+         and UPDATE_TIME = #{condition.updateTime}
+      </if>
+      <if test="condition.taskId != null" >
+         and TASK_ID = #{condition.taskId}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    RES_VE_SID, RES_PARENT_TOPOLOGY_SID, RES_VE_NAME, VIRTUAL_PLATFORM_TYPE, VIRTUAL_PLATFORM_VERSION, 
+    MANAGEMENT_URL, MANAGEMENT_ACCOUNT, MANAGEMENT_PASSWORD, CONNECT_STATUS, UPDATE_STATUS, 
+    UPDATE_CYCLE, UPDATE_TIME, TASK_ID
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from res_ve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_ve
+    where RES_VE_SID = #{resVeSid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from res_ve
+    where RES_VE_SID = #{resVeSid}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" >
+    delete from res_ve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hptsic.cloud.res.pojo.ResVe" >
+    insert into res_ve (RES_VE_SID, RES_PARENT_TOPOLOGY_SID, RES_VE_NAME, VIRTUAL_PLATFORM_TYPE, 
+      VIRTUAL_PLATFORM_VERSION, MANAGEMENT_URL, MANAGEMENT_ACCOUNT, MANAGEMENT_PASSWORD, 
+      CONNECT_STATUS, UPDATE_STATUS, UPDATE_CYCLE, UPDATE_TIME, TASK_ID)
+    values (#{resVeSid}, #{resParentTopologySid}, #{resVeName}, #{virtualPlatformType}, 
+      #{virtualPlatformVersion}, #{managementUrl}, #{managementAccount}, #{managementPassword}, 
+      #{connectStatus}, #{updateStatus}, #{updateCycle}, #{updateTime}, #{taskId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hptsic.cloud.res.pojo.ResVe" >
+    insert into res_ve
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resVeSid != null" >
+        RES_VE_SID,
+      </if>
+      <if test="resParentTopologySid != null" >
+        RES_PARENT_TOPOLOGY_SID,
+      </if>
+      <if test="resVeName != null" >
+        RES_VE_NAME,
+      </if>
+      <if test="virtualPlatformType != null" >
+        VIRTUAL_PLATFORM_TYPE,
+      </if>
+      <if test="virtualPlatformVersion != null" >
+        VIRTUAL_PLATFORM_VERSION,
+      </if>
+      <if test="managementUrl != null" >
+        MANAGEMENT_URL,
+      </if>
+      <if test="managementAccount != null" >
+        MANAGEMENT_ACCOUNT,
+      </if>
+      <if test="managementPassword != null" >
+        MANAGEMENT_PASSWORD,
+      </if>
+      <if test="connectStatus != null" >
+        CONNECT_STATUS,
+      </if>
+      <if test="updateStatus != null" >
+        UPDATE_STATUS,
+      </if>
+      <if test="updateCycle != null" >
+        UPDATE_CYCLE,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="taskId != null" >
+        TASK_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resVeSid != null" >
+        #{resVeSid},
+      </if>
+      <if test="resParentTopologySid != null" >
+        #{resParentTopologySid},
+      </if>
+      <if test="resVeName != null" >
+        #{resVeName},
+      </if>
+      <if test="virtualPlatformType != null" >
+        #{virtualPlatformType},
+      </if>
+      <if test="virtualPlatformVersion != null" >
+        #{virtualPlatformVersion},
+      </if>
+      <if test="managementUrl != null" >
+        #{managementUrl},
+      </if>
+      <if test="managementAccount != null" >
+        #{managementAccount},
+      </if>
+      <if test="managementPassword != null" >
+        #{managementPassword},
+      </if>
+      <if test="connectStatus != null" >
+        #{connectStatus},
+      </if>
+      <if test="updateStatus != null" >
+        #{updateStatus},
+      </if>
+      <if test="updateCycle != null" >
+        #{updateCycle},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime},
+      </if>
+      <if test="taskId != null" >
+        #{taskId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.hptsic.cloud.res.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from res_ve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update res_ve
+    <set >
+      <if test="record.resVeSid != null" >
+        RES_VE_SID = #{record.resVeSid},
+      </if>
+      <if test="record.resParentTopologySid != null" >
+        RES_PARENT_TOPOLOGY_SID = #{record.resParentTopologySid},
+      </if>
+      <if test="record.resVeName != null" >
+        RES_VE_NAME = #{record.resVeName},
+      </if>
+      <if test="record.virtualPlatformType != null" >
+        VIRTUAL_PLATFORM_TYPE = #{record.virtualPlatformType},
+      </if>
+      <if test="record.virtualPlatformVersion != null" >
+        VIRTUAL_PLATFORM_VERSION = #{record.virtualPlatformVersion},
+      </if>
+      <if test="record.managementUrl != null" >
+        MANAGEMENT_URL = #{record.managementUrl},
+      </if>
+      <if test="record.managementAccount != null" >
+        MANAGEMENT_ACCOUNT = #{record.managementAccount},
+      </if>
+      <if test="record.managementPassword != null" >
+        MANAGEMENT_PASSWORD = #{record.managementPassword},
+      </if>
+      <if test="record.connectStatus != null" >
+        CONNECT_STATUS = #{record.connectStatus},
+      </if>
+      <if test="record.updateStatus != null" >
+        UPDATE_STATUS = #{record.updateStatus},
+      </if>
+      <if test="record.updateCycle != null" >
+        UPDATE_CYCLE = #{record.updateCycle},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime},
+      </if>
+      <if test="record.taskId != null" >
+        TASK_ID = #{record.taskId},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update res_ve
+    set RES_VE_SID = #{record.resVeSid},
+      RES_PARENT_TOPOLOGY_SID = #{record.resParentTopologySid},
+      RES_VE_NAME = #{record.resVeName},
+      VIRTUAL_PLATFORM_TYPE = #{record.virtualPlatformType},
+      VIRTUAL_PLATFORM_VERSION = #{record.virtualPlatformVersion},
+      MANAGEMENT_URL = #{record.managementUrl},
+      MANAGEMENT_ACCOUNT = #{record.managementAccount},
+      MANAGEMENT_PASSWORD = #{record.managementPassword},
+      CONNECT_STATUS = #{record.connectStatus},
+      UPDATE_STATUS = #{record.updateStatus},
+      UPDATE_CYCLE = #{record.updateCycle},
+      UPDATE_TIME = #{record.updateTime},
+      TASK_ID = #{record.taskId}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hptsic.cloud.res.pojo.ResVe" >
+    update res_ve
+    <set >
+      <if test="resParentTopologySid != null" >
+        RES_PARENT_TOPOLOGY_SID = #{resParentTopologySid},
+      </if>
+      <if test="resVeName != null" >
+        RES_VE_NAME = #{resVeName},
+      </if>
+      <if test="virtualPlatformType != null" >
+        VIRTUAL_PLATFORM_TYPE = #{virtualPlatformType},
+      </if>
+      <if test="virtualPlatformVersion != null" >
+        VIRTUAL_PLATFORM_VERSION = #{virtualPlatformVersion},
+      </if>
+      <if test="managementUrl != null" >
+        MANAGEMENT_URL = #{managementUrl},
+      </if>
+      <if test="managementAccount != null" >
+        MANAGEMENT_ACCOUNT = #{managementAccount},
+      </if>
+      <if test="managementPassword != null" >
+        MANAGEMENT_PASSWORD = #{managementPassword},
+      </if>
+      <if test="connectStatus != null" >
+        CONNECT_STATUS = #{connectStatus},
+      </if>
+      <if test="updateStatus != null" >
+        UPDATE_STATUS = #{updateStatus},
+      </if>
+      <if test="updateCycle != null" >
+        UPDATE_CYCLE = #{updateCycle},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime},
+      </if>
+      <if test="taskId != null" >
+        TASK_ID = #{taskId},
+      </if>
+    </set>
+    where RES_VE_SID = #{resVeSid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hptsic.cloud.res.pojo.ResVe" >
+    update res_ve
+    set RES_PARENT_TOPOLOGY_SID = #{resParentTopologySid},
+      RES_VE_NAME = #{resVeName},
+      VIRTUAL_PLATFORM_TYPE = #{virtualPlatformType},
+      VIRTUAL_PLATFORM_VERSION = #{virtualPlatformVersion},
+      MANAGEMENT_URL = #{managementUrl},
+      MANAGEMENT_ACCOUNT = #{managementAccount},
+      MANAGEMENT_PASSWORD = #{managementPassword},
+      CONNECT_STATUS = #{connectStatus},
+      UPDATE_STATUS = #{updateStatus},
+      UPDATE_CYCLE = #{updateCycle},
+      UPDATE_TIME = #{updateTime},
+      TASK_ID = #{taskId}
+    where RES_VE_SID = #{resVeSid}
+  </update>
+</mapper>

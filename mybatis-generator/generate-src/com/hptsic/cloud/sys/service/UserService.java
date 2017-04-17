@@ -1,7 +1,7 @@
-package com.cs.service;
+package com.hptsic.cloud.sys.service;
 
-import com.cs.pojo.Criteria;
-import com.cs.pojo.User;
+import com.hptsic.cloud.sys.pojo.Criteria;
+import com.hptsic.cloud.sys.pojo.User;
 import java.util.List;
 
 public interface UserService {

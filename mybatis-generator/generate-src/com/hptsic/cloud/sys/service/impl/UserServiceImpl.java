@@ -1,20 +1,16 @@
-package com.cs.service.impl;
+package com.hptsic.cloud.sys.service.impl;
 
-import com.cs.controller.UserController;
-import com.cs.dao.UserMapper;
-import com.cs.pojo.Criteria;
-import com.cs.pojo.User;
-import com.cs.service.UserService;
-
+import com.hptsic.cloud.sys.dao.UserMapper;
+import com.hptsic.cloud.sys.pojo.Criteria;
+import com.hptsic.cloud.sys.pojo.User;
+import com.hptsic.cloud.sys.service.UserService;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@com.alibaba.dubbo.config.annotation.Service(interfaceClass=UserController.class, protocol = {"rest", "dubbo"})
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
