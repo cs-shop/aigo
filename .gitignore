@@ -1,9 +1,6 @@
 shop/.settings/org.eclipse.wst.common.project.facet.core.xml
 facade/.settings/org.eclipse.wst.common.component
-service/.classpath
 facade/.settings/org.eclipse.wst.common.project.facet.core.xml
-shop/.classpath
 shop/.settings/*
 shop/.settings/org.eclipse.wst.common.project.facet.core.xml
-facade/.classpath
 */.settings/*/mybatis-generator/
