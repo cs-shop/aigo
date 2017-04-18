@@ -46,7 +46,7 @@
 										placeholder="账号密码" class="form-password form-control" id="login-password">
 								</div>
 							</form>
-							<button class="btn" style="width: 100%" onclick="login()">登录</button>
+							<button id="login" class="btn" style="width: 100%">登录</button>
 						</div>
 					</div>
 				</div>
@@ -71,9 +71,16 @@
 	</div>
 </body>
 <script type="text/javascript">
-
-	seajs.use('my',function(my){
-		my.reg();
+	seajs.config({
+		  base: ctx+"/js/",
+		  alias: {
+		    "jquery": "jquery/jquery-1.11.1.js"
+		  }
+		});
+	seajs.use('user/my',function(m){
+		debugger;
+		m.init();
+		m.reg();
 	});
 
 </script>

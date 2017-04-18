@@ -4,7 +4,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
  		<!-- Javascript -->
-        <script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
+<%--         <script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script> --%>
         <script src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
         <script src="${ctx}/js/jquery/jquery.backstretch.min.js"></script>
         <script src="${ctx}/js/scripts.js"></script>

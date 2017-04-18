@@ -1198,10 +1198,5 @@ seajs.config = function(configData) {
 })(this);
 
 // Set configuration
-seajs.config({
-  base: ctx+"/js/",
-  alias: {
-    "jquery": "jquery/jquery-1.11.1.js"
-  }
-});
+
 
