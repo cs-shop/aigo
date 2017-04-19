@@ -32,6 +32,8 @@ public class GoodControllerImpl extends BaseController implements GoodController
 	@ResponseBody
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String getGoodsByParams() {
+		int total = 10;
+		int rows = 2;
 		Criteria criteria = new Criteria();
 		Map parameterMap = request.getParameterMap();
 		String[] goodName = (String[]) parameterMap.get("good_name");
@@ -39,7 +41,9 @@ public class GoodControllerImpl extends BaseController implements GoodController
 			criteria.put("goodsname", goodName[0]);
 		}
 		List<Good> goodList = goodService.selectByParams(criteria);
+		String returnJson = "{\"total\":" + total + ",\"rows\":" + JSON.toJSONString(goodList) + "}";
 		return JSON.toJSONString(goodList);
+//		return returnJson;
 	}
 
 	

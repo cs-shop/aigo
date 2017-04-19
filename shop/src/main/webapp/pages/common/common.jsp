@@ -28,7 +28,11 @@
 		  alias: {
 		    "jquery": "js/jquery/jquery-1.11.1.js",
 		    "bootstrap":"css/bootstrap/css/bootstrap.min.css",
-		    "bootstrap-theme":"css/bootstrap/css/bootstrap-theme.css"
+		    "bootstrap-theme":"css/bootstrap/css/bootstrap-theme.css",
+		    "bootstrap-table-css":"css/bootstrap/css/bootstrap-table.css",
+		    "bootstrap-table-js":"css/bootstrap/js/bootstrap-table.js",
+		    "bootstrap-table-zh":"css/bootstrap/js/bootstrap-table-zh-CN.js",
+		    "angular":"js/angular/angular.js",
 		  }
 		});
 

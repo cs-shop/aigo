@@ -8,18 +8,27 @@
  <%@include file="/pages/common/common.jsp" %>
 </head>
 <body>
-<div>
+<div class="container">
+ <div ng-app="myApp" ng-controller="myCtrl">
+    名字: <input ng-model="name">
+    <h1>你输入了: {{name}}</h1>
+</div>
+</div>
+<!-- 
+<table id="tb_departments"></table>
 <input id="good_name" type="text" class="form-control" value="123"/>
 <button type="button" class="btn btn-success">成功按钮</button>
-</div>
+</div> -->
 
 
 <script type="text/javascript">
-	var bootstrap = ["bootstrap","bootstrap-theme"];
+	var bootstrap = ["bootstrap","bootstrap-theme","bootstrap-table-js","bootstrap-table-css","bootstrap-table-zh"];
 	seajs.use(bootstrap);
+	var angular = ["angular"];
+	seajs.use(angular);
+	seajs.use("good/ng");
 	seajs.use("good/good",function(good){
-		good.search();
-	
+		good.init();
 	});
 </script>
 </body>
