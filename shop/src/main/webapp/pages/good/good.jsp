@@ -9,18 +9,31 @@
 </head>
 <body>
 <div ng-app="good" class="container" ng-init="names=['Jani','Hege','Kai','lilei','hanmei']">
- <div  ng-controller="good">
-   <div class="col-xs-4 col-sm-4 col-md-3" style="background-color: #dedef8;
-            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" ng-repeat="x in names">
-            <p> {{ x }}</p>
-        </div>
-</div>
-</div>
-<!-- 
-<table id="tb_departments"></table>
-<input id="good_name" type="text" class="form-control" value="123"/>
-<button type="button" class="btn btn-success">成功按钮</button>
-</div> -->
+
+		<div ng-controller="good">
+		<div id="J-goodsList" class="col-xs-6 col-sm-4 col-md-3 col-lg-3 goodslist" ng-repeat="x in names">
+			<div class="p-img" >
+				<a target="_blank" title="wahahah">
+					<img alt="" src="//img13.360buyimg.com/n7/jfs/t181/88/758646805/94933/bce3768f/5397f438N52fffbd3.jpg">
+				</a>
+			</div>
+			<div class="g_price">
+				<strong data-price="40.40" data-done="1">
+				<em>￥</em>
+				<i>40.80</i>
+				</strong>
+			</div>
+			<p>{{ x }}</p>
+		</div>
+	<!-- 		<div class="col-xs-4 col-sm-4 col-md-3" ng-repeat="x in names">
+				<div class="gl-i-wrap">
+					<p>{{ x }}</p>
+				</div>
+
+			</div> -->
+		<!-- 	<table id="tb_departments"></table> -->
+		</div>
+	</div>
 
 
 <script type="text/javascript">
@@ -32,6 +45,7 @@
 	seajs.use("good/good",function(good){
 		good.init();
 	});
+	seajs.use("../../css/good/good.css");
 </script>
 </body>
 </html>
