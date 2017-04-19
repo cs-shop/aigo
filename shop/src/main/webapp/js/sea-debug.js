@@ -1197,6 +1197,3 @@ seajs.config = function(configData) {
 
 })(this);
 
-// Set configuration
-
-

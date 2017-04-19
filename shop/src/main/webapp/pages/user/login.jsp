@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
- <script type="text/javascript" src="${ctx}/js/sea-debug.js"></script>
+<%--  <script type="text/javascript" src="${ctx}/js/sea-debug.js"></script> --%>
 </head>
 
 <body>
@@ -71,12 +71,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	seajs.config({
-		  base: ctx+"/js/",
-		  alias: {
-		    "jquery": "jquery/jquery-1.11.1.js"
-		  }
-		});
+
 	seajs.use('user/my',function(m){
 		debugger;
 		m.init();
