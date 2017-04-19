@@ -8,10 +8,12 @@
  <%@include file="/pages/common/common.jsp" %>
 </head>
 <body>
-<div class="container">
- <div ng-app="myApp" ng-controller="myCtrl">
-    名字: <input ng-model="name">
-    <h1>你输入了: {{name}}</h1>
+<div ng-app="good" class="container" ng-init="names=['Jani','Hege','Kai','lilei','hanmei']">
+ <div  ng-controller="good">
+   <div class="col-xs-4 col-sm-4 col-md-3" style="background-color: #dedef8;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;" ng-repeat="x in names">
+            <p> {{ x }}</p>
+        </div>
 </div>
 </div>
 <!-- 
