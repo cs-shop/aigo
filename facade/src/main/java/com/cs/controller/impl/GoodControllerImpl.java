@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cs.controller.BaseController;
 import com.cs.controller.GoodController;
 import com.cs.pojo.Criteria;
@@ -26,7 +27,7 @@ public class GoodControllerImpl extends BaseController implements GoodController
 	@Override
 	@ResponseBody
 	@RequestMapping(value="/list",method=RequestMethod.GET)
-	public String getGoodsByParams() {
+	public List<Good> getGoodsByParams() {
 		int total = 10;
 		int rows = 2;
 		Criteria criteria = new Criteria();
@@ -37,7 +38,7 @@ public class GoodControllerImpl extends BaseController implements GoodController
 		}
 		List<Good> goodList = goodService.selectByParams(criteria);
 		String returnJson = "{\"total\":" + total + ",\"rows\":" + JSON.toJSONString(goodList) + "}";
-		return JSON.toJSONString(goodList);
+		return  goodList;
 //		return returnJson;
 	}
 
