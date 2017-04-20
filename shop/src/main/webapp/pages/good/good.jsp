@@ -15,6 +15,8 @@
             <p> {{ x }}</p>
         </div>
 </div>
+
+<table id="tb_departments"></table>
 </div>
 <!-- 
 <table id="tb_departments"></table>
