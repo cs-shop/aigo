@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="${ctx }/css/footer.css">
 </head>
 <body class="index">
+<%@ include file="/pages/common/common.jsp" %>
 <!-- 头部 -->
 <%@ include file="/pages/common/navigat.jsp"%>
 <!-- 菜单、幻灯片 -->
