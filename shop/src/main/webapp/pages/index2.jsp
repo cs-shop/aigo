@@ -4,17 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<head>
-<script src="${ctx}/js/jquery/jquery-1.11.1.min.js"></script>
+ <%@include file="/pages/common/common.jsp" %>
 <head>
 <title>CS-SHOP</title>
 <link rel="stylesheet" href="${ctx }/css/jd.css">
 <link rel="stylesheet" href="${ctx }/css/footer.css">
 </head>
 <body class="index">
-<%@ include file="/pages/common/common.jsp" %>
 <!-- 头部 -->
 <%@ include file="/pages/common/navigat.jsp"%>
 <!-- 菜单、幻灯片 -->

@@ -19,9 +19,8 @@ define(function(require,exports,module) {
 	}
 
 	//左侧菜单相关事件
-//	$(".cate_menu").children(".cate_menu_item, .ng-scope").hover(function() { //一级导航悬浮
-		$(".cate_menu_item").hover(function() { //一级导航悬浮
-		console.info("ddd");
+//	$(".cate_menu").children(".cate_menu_item").hover(function() { //一级导航悬浮
+	$(".cate_menu_item").hover(function() { //一级导航悬浮
         $(this).addClass("cate_menu_item_on").siblings(".cate_menu_item").removeClass("cate_menu_item_on");
         var index = $(this).index();
         $(".cate_pop").children(".cate_part").hide();
