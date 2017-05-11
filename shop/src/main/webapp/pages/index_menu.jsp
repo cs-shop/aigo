@@ -6,16 +6,16 @@
 		<div class="fs_col1">
 			<div class="J_cate cate">
 				<ul class="JS_navCtn cate_menu">
-					<li class="cate_menu_item" ng-repeat="cat in goodsCat"  data-index="{{$index}}">
-						<a target="_blank"  class="cate_menu_lk" ng-href="{{cat.url}}" ng-bind="cat.name"></a>
+					<li class="cate_menu_item" ng-repeat="cat in goodsCat" ng-mouseover="test($index)" ng-mouseleave="move()">
+						<a target="_blank" data-index="{{cat.id}}" class="cate_menu_lk" ng-href="{{cat.url}}" ng-bind="cat.name"></a>
 					</li>
-					<li class="cate_menu_item cate_menu_item1">
+					<!-- <li class="cate_menu_item cate_menu_item1">
 						<a target="_blank" class="cate_menu_lk" href="###">手机</a>
 						<span class="cate_menu_line">/</span>
 						<a target="_blank" class="cate_menu_lk" href="###">运营商</a>
 						<span class="cate_menu_line">/</span>
 						<a target="_blank" class="cate_menu_lk" href="###">数码</a>
-					</li>
+					</li> -->
 					<!-- <li class="cate_menu_item" data-index="2">
 						<a target="_blank" class="cate_menu_lk" href="###">手机</a>
 						<span class="cate_menu_line">/</span>
